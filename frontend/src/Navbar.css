@@ -1,5 +1,37 @@
 .Navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+	align-items: center;
 
+}
+
+.Navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+	
+}
+
+.Navbar li {
+    float: left;
+}
+
+.NavbarLink {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+
+.Logo img {
+    width: 50px;
+    height: auto;
+	margin-top: 30px;
+    align-items: center;
 }
 
 .Navbar .NavbarLink {
