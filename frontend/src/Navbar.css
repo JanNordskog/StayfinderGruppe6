@@ -1,0 +1,33 @@
+.Navbar {
+
+}
+
+.Navbar .NavbarLink {
+    margin: 20px;
+    text-decoration: none;
+    color: black;
+    border-width: 0%;
+    transition: all 0.4s ease-in;
+    position: relative;
+
+}
+
+.Navbar .NavbarLink:hover:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0;
+	border-bottom: solid 2px #000;
+    
+	animation: border_anim 0.4s ease-in-out forwards;
+}
+
+@keyframes border_anim {
+	0%{
+		width: 0%;
+	}
+	100%{
+		width: 100%;
+	}
+}
