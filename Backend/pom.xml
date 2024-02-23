@@ -11,7 +11,7 @@
     <groupId>no.ntnu</groupId>
     <artifactId>backend-frontend-page</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>WebApplicationProject2024</name>
+    <name>StayfinderGruppe6</name>
     <description>This project shows how we can include a frontend application in Spring Boot</description>
     <properties>
         <java.version>11</java.version>

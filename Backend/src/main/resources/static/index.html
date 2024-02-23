@@ -91,10 +91,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--r-globalnav-color);
+
     position: relative;
     z-index: 1;
-    padding: 0 calc(8px / var(--r-globalnav-text-zoom-scale, 1));
+
     height: 44px;
     background: no-repeat;
     text-decoration: none;
@@ -184,18 +184,7 @@
         </li>
     </div>
   </div>
-  <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-  <h3>Spring boot backend test</h3>
-  <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
-  <label for="firstname">First Name</label> <br>
-  <input type="text" name="fname"/> <br>
 
-
-  <label for="lastname">Last name</label> <br>
-  <input type="text" name="lname"/> <br>
-
-  <label for="mail">mail</label><br>
-  <input type="text" name="mail"/> <br>
 
   <select name="gender">
     <option value="male">male</option>
