@@ -1,0 +1,78 @@
+ 
+.MainSearch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 800px;
+    
+}
+.MainItems{
+
+}
+
+form {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background-color: #f9d9d8;
+    color: #5a0032;
+    border: none;
+    cursor: pointer;
+    border-radius: .5rem;
+    height: 40px;
+    padding: 0.875rem 1rem;
+    transition: 0.5s linear;
+  }
+
+button:hover {
+    border-radius: 1.0rem;
+  }
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 20px;
+    width: 250px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 35px;
+}
+
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+   
+}
+
+h1 {
+    color: White;
+    font-family:"Main";
+    width: 900px;
+    font-size: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -200px;
+}
+
+.MainSearch {
+    background-image: url('http://localhost:8080/api/get/image/StayfinderSearchbackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; /* Adjust as needed */
+}
+
+
+
+
+

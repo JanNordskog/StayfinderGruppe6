@@ -12,7 +12,7 @@ function Navbar() {
                 <li><Link className="NavbarLink" to="/hotel">Utvalgte tilbud</Link></li>
                 <li><Link className="NavbarLink" to="/hotel">Hotel</Link></li>
             </ul>
-            <button>Button</button>
+            <button>Logg inn</button>
         </div>
     );
 }
