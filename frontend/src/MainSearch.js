@@ -11,7 +11,9 @@ function MainSearch() {
             <input type="text" id="destination" name="destination" placeholder="Skal til"/><br/>
             <DateRangeComp />
             <input type="number" id="guests" name="guests" min="1" placeholder="Gjester"/>
+            <div className="Søk">
             <button>Søk</button>
+            </div>
          </form> 
          </div>
         </div>

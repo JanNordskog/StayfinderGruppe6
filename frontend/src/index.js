@@ -8,6 +8,7 @@ import Navbar from './Navbar';
 import MainSearch from './MainSearch';
 import IconNavbar from './IconNavbar';
 import HotelShowCase from './HotelSchowCase';
+import DiscountAd from './DiscountAd';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,6 +19,7 @@ root.render(
     <MainSearch/>
     <IconNavbar/>
     <HotelShowCase/>
+    <DiscountAd/>
       <App />
     </BrowserRouter>
   </React.StrictMode>

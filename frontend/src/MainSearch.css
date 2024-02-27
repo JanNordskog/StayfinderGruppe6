@@ -18,7 +18,7 @@
     gap: 10px;
 }
 
-.MainItems button {
+.Søk button {
     background-color: #f9d9d8;
     color: #5a0032;
     border: none;
@@ -29,7 +29,7 @@
     transition: 0.5s linear;
 }
 
-.MainItems button:hover {
+.Søk button:hover {
     border-radius: 1.0rem;
 }
 
