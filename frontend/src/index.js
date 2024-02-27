@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import Navbar from './Navbar';
 import MainSearch from './MainSearch';
 import IconNavbar from './IconNavbar';
+import HotelShowCase from './HotelSchowCase';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,6 +17,7 @@ root.render(
     <Navbar />
     <MainSearch/>
     <IconNavbar/>
+    <HotelShowCase/>
       <App />
     </BrowserRouter>
   </React.StrictMode>
