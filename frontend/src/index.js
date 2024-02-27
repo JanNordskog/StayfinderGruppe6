@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Navbar from './Navbar';
 import MainSearch from './MainSearch';
+import IconNavbar from './IconNavbar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,6 +15,7 @@ root.render(
     <BrowserRouter>
     <Navbar />
     <MainSearch/>
+    <IconNavbar/>
       <App />
     </BrowserRouter>
   </React.StrictMode>
