@@ -5,14 +5,17 @@ function Navbar() {
     return (
         <div class="navbar">
             <div className="logo">
-                <img src="http://localhost:8080/api/get/image/Logo.png" alt="Logo" width="190" height="auto"></img>
+            <Link className="NavbarLink" to="/">  <img src="http://localhost:8080/api/get/image/LogoIcon.png" alt="Logo" width="60" height="auto" /></Link>
+
+           
+
             </div>
             <ul>
-                <li><Link className="NavbarLink" to="/">Hotell & destinasjoner</Link></li>
-                <li><Link className="NavbarLink" to="/hotel">Utvalgte tilbud</Link></li>
+                <li><Link className="NavbarLink" to="/hotellDestinasjoner">Hotell & destinasjoner</Link></li>
+                <li><Link className="NavbarLink" to="/UtvalgteTilbud">Utvalgte tilbud</Link></li>
                 <li><Link className="NavbarLink" to="/hotel">Hotel</Link></li>
             </ul>
-            <button>Logg inn</button>
+            <Link className="NavbarLink" to="/Login"><button>Logg inn</button></Link>
         </div>
     );
 }

@@ -16,10 +16,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Navbar />
-    <MainSearch/>
-    <IconNavbar/>
-    <HotelShowCase/>
-    <DiscountAd/>
+
       <App />
     </BrowserRouter>
   </React.StrictMode>

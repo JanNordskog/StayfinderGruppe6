@@ -52,7 +52,7 @@ const DateRangeComp = () => {
     <div className="calendarWrap">
 
       <input
-        value={`${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`}
+        value={`Fra ${format(range[0].startDate, "dd/MMM/yy")} Til ${format(range[0].endDate, "dd/MMM/yy")}`}
         readOnly
         className="inputBox"
         placeholder="Datoer"
