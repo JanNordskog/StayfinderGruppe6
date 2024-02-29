@@ -34,12 +34,17 @@
 }
 
 .MainItems input[type="text"],
-.MainItems input[type="number"] {
-    padding: 10px;
+.MainItems select {
     border-radius: 5px;
     border: 1px solid #ccc;
-    height: 20px;
+    font-size: 14px;
     width: 250px;
+   
+}
+
+.MainItems input[type="number"]::-webkit-inner-spin-button,
+.MainItems input[type="number"]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
 }
 
 .MainItems input[type="submit"] {
@@ -71,7 +76,6 @@
 
 /* Adjust background image as needed */
 .MainSearch {
-    background-image: url('http://localhost:8080/api/get/image/StayfinderSearchbackground.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

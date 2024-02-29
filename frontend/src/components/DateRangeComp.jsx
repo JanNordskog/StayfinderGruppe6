@@ -14,7 +14,7 @@ const DateRangeComp = () => {
   const [range, setRange] = useState([
     {
       startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      endDate: addDays(new Date(), 0),
       key: 'selection'
     }
   ])
@@ -59,7 +59,7 @@ const DateRangeComp = () => {
         onClick={ () => setOpen(open => !open) }
       />
 
-      <div ref={refOne}>
+      <div ref={refOne} className='DateRange'>
         {open && 
           <DateRange
             onChange={item => setRange([item.selection])}

@@ -5,3 +5,8 @@ input {
     height: 20px;
     width: 250px;
 }
+
+.DateRange {
+    position: absolute;
+    margin-top: 2px;
+}
