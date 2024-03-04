@@ -1,0 +1,75 @@
+.Footer {
+    font-family: "Main";
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.Footer .section {
+    flex: 1;
+    padding: 20px;
+}
+
+.Footer .left-section {
+    background-color: black;
+    color: white;
+}
+
+.Footer .right-section {
+    background-color: white;
+    color: black;
+}
+
+.Footer img {
+    width: 20%;
+}
+
+.Footer h1, .Footer h2 {
+    font-size: 24px;
+}
+
+.Footer p {
+    font-size: 16px;
+}
+
+.Footer form {
+    margin-top: 20px;
+}
+
+.Footer input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.Footer button {
+    background-color: #f9d9d8;
+    color: #5a0032;
+    border: none;
+    cursor: pointer;
+    border-radius: .5rem;
+    padding: 0.875rem 1rem;
+    transition: 0.5s linear;
+}
+
+.Footer button:hover {
+    border-radius: 1.0rem;
+}
+
+
+.Footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.Footer ul li {
+    margin-bottom: 10px;
+}
+
+.Footer ul a {
+    text-decoration: none;
+    color: inherit;
+}

@@ -3,6 +3,7 @@ import MainSearch from '../MainSearch';
 import IconNavbar from '../IconNavbar';
 import HotelShowCase from '../HotelSchowCase';
 import DiscountAd from '../DiscountAd';
+import Footer from '../Footer';
 
 function Home() {
     return(
@@ -11,6 +12,7 @@ function Home() {
              <IconNavbar/>
                <HotelShowCase/>
              <DiscountAd/>
+             <Footer/>
         </div>
     );
 }
