@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import HotellDestinasjoner from './pages/HotellDestinasjoner'; 
 import Hotel from './pages/Hotel'; 
 import UtvalgteTilbud from './pages/UtvalgteTilbud'; 
+import Registrer from './pages/Registrer'; 
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/hotellDestinasjoner' element={<HotellDestinasjoner />} />
         <Route path='/hotel' element={<Hotel />} />
         <Route path='/utvalgteTilbud' element={<UtvalgteTilbud />} />
+        <Route path='/registrer' element={<Registrer />} />
       </Routes>
     </>
   );

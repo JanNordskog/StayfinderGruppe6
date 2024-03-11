@@ -25,7 +25,7 @@ function LoginForm() {
 
                 <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
               
-                    <span className="psw">Forgot <a href="#">password?</a></span>
+                    <span className="psw">Forgot password</span>
                 </div>
 
          

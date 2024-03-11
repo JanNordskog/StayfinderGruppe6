@@ -44,6 +44,7 @@
     width: 90px;
     padding: 0.875rem 1rem;
     transition: 0.5s linear;
+    margin-top: 10px;
 }
 
 
@@ -64,6 +65,7 @@
 
 .LoginForm, .container {
     padding: 16px;
+   
 }
 
 .LoginForm, .login-button {

@@ -6,8 +6,8 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    display: flex; /* Center vertically */
-    align-items: center; /* Center vertically */
+    display: flex; 
+    align-items: center; 
     flex-direction: column; 
     margin-top: 80px;
 
@@ -15,35 +15,35 @@
 
 
 
-/* Heading */
+
 .Background h1 {
     font-family: Arial, sans-serif;
     font-size:70px;
     font-weight: bold;
-    color: white; /* Dark gray color */
+    color: white; 
     margin-bottom: 20px;
     text-align: left;
 }
 
-/* Paragraph */
+
 .Background p {
     font-family: Arial, sans-serif;
     font-size: 22px;
-    color: lightgrey; /* Slightly lighter gray color */
-    line-height: 1.5; /* Adjust line height for readability */
+    color: lightgrey; 
+    line-height: 1.5; 
     margin-bottom: 10px;
 }
 
 .Background ul {
-    list-style-type: none; /* Remove default bullet points */
-    padding: 0; /* Remove default padding */
+    list-style-type: none; 
+    padding: 0; 
     width: 1000px;
     margin-top: 100px;
 
    
 }
 
-/* List Items */
+
 .Background li {
-    margin-bottom: 80px; /* Add spacing between list items */
+    margin-bottom: 80px; 
 }
