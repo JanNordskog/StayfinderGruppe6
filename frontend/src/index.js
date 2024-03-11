@@ -5,10 +5,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Navbar from './Navbar';
-import MainSearch from './MainSearch';
-import IconNavbar from './IconNavbar';
-import HotelShowCase from './HotelSchowCase';
-import DiscountAd from './DiscountAd';
+
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,7 +14,6 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Navbar />
-
       <App />
     </BrowserRouter>
   </React.StrictMode>
