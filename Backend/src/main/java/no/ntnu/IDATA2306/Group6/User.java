@@ -1,41 +1,56 @@
 package no.ntnu.IDATA2306.Group6;
 
-public class User {
+import java.util.Objects;
 
-    private String fname;
-    private String lname;
-    private String mail;
-    private String gender;
-    public String getFname() {
-        return fname;
+/**
+ * Represents a resource: a User. We store user objects in the application state.
+ */
+public final class User {
+    
+    private final String email;
+    private final String password;
+
+    User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
-    public void setFname(String fname) {
-        this.fname = fname;
+
+    public String email() {
+        return email;
     }
-    public String getLname() {
-        return lname;
-    }
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
-    public String getMail() {
-        return mail;
-    }
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-    public String getGender() {
-        return gender;
-    }
-    public void setGender(String gender) {
-        this.gender = gender;
+
+    public String password() {
+        return password;
     }
 
     @Override
-    public String toString(){
-        return "User [fname="+ fname +",lname="+ lname +", mail="+ mail +", gender="+ gender +"]";
-
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (User) obj;
+        return Objects.equals(this.email, that.email) &&
+                Objects.equals(this.password, that.password);
     }
 
-    
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, password);
+    }
+
+    @Override
+    public String toString() {
+        return "User[" +
+                "email=" + email + ", " +
+                "password=" + password + ']';
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+
 }
