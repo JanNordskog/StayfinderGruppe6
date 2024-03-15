@@ -13,15 +13,15 @@ public class UserController {
     private final Map<Integer, User> users = new HashMap<>();
     private int userIdCounter = 1;
 
-    public UserController(){
+        public UserController(){
         initializeData();
     }
 
     private void initializeData() {
-        createUser(new User("Jan", "123"));
-        createUser(new User("Test", "test"));
-      }
-
+        createUser(new User("Jan", "123", "123 Main St", "Male", "1234567890", "1990-01-01"));
+        createUser(new User("Test", "test", "456 High St", "Female", "0987654321", "1992-02-02"));
+    }
+    
  @GetMapping
   public Collection<User> getAll() {
     return users.values();
@@ -54,4 +54,5 @@ public class UserController {
     public void deleteUser(@PathVariable int userId) {
         users.remove(userId);
     }
+    
 }
