@@ -2,13 +2,16 @@ package no.ntnu.IDATA2306.Group6;
 
 import java.util.Objects;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 /**
  * Represents a resource: a User. We store user objects in the application state.
  */
 public final class User {
     
     private final String email;
-    private final String password;
+    private String password;
+    private String hashedPassword;
     private final String address;
     private final String gender;
     private final String phone;
@@ -17,6 +20,8 @@ public final class User {
     User(String email, String password, String address, String gender, String phone, String dob) {
         this.email = email;
         this.password = password;
+        hashPassword();
+        this.password = hashedPassword;
         this.address = address;
         this.gender = gender;
         this.phone = phone;
@@ -69,7 +74,7 @@ public final class User {
     public String toString() {
         return "User[" +
                 "email=" + email + ", " +
-                "password=" + password + ", " +
+                "password=" + hashedPassword + ", " +
                 "address=" + address + ", " +
                 "gender=" + gender + ", " +
                 "phone=" + phone + ", " +
@@ -98,5 +103,10 @@ public final class User {
 
     public String getDob() {
         return dob;
+    }
+
+    public void hashPassword() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        hashedPassword = encoder.encode(this.password);
     }
 }
