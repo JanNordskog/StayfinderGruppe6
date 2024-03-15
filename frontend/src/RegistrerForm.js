@@ -20,7 +20,7 @@ function RegisterForm() {
         {
 
                 email: email,
-                password: email
+                password: password
 
         });
           alert("Employee Registation Successfully");
