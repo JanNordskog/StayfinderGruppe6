@@ -21,6 +21,8 @@ public class UserController {
         createUser(new User("Jan", "123", "123 Main St", "Male", "1234567890", "1990-01-01"));
         createUser(new User("Jan", "123", "123 Main St", "Male", "1234567890", "1990-01-01"));
         createUser(new User("Test", "test", "456 High St", "Female", "0987654321", "1992-02-02"));
+
+        System.out.println("Password matches: " + users.get(1).matchPassword("123"));
     }
     
  @GetMapping
