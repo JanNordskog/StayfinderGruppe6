@@ -5,7 +5,6 @@ import java.util.List;
 
 public class TestMain {
   public static void main(String[] args) throws SQLException {
-    new DatabaseConnection().addUser("Rune", "Rune", "Rune", "Rune", "Rune", "Rune", "1996-07-07", "Rune");
     List<User> userList = new DatabaseConnection().getUsers();
 
     userList.forEach((r) -> {

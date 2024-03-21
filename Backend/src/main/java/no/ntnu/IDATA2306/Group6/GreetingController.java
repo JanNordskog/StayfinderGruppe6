@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * A REST API controller which responds to HTTP requests for /hello.
- */
+
 @RestController
 public class GreetingController {
 

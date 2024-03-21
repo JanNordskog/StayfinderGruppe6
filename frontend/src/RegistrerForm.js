@@ -4,6 +4,7 @@ import "./RegistrerForm.css";
 import axios from "axios";
 
 function RegisterForm() {
+  const [name, setName] = useState(""); // New state for name
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rpassword, setRpassword] = useState("");
@@ -13,6 +14,7 @@ function RegisterForm() {
   const [dob, setDob] = useState("");
 
   async function save(event) {
+    console.log("name:", name); 
     console.log("email:", email);
     console.log("password:", password);
     console.log("address:", address);
@@ -22,6 +24,7 @@ function RegisterForm() {
     event.preventDefault();
 
     if (
+      !name || // Check name
       !email ||
       !password ||
       !rpassword ||
@@ -40,6 +43,7 @@ function RegisterForm() {
     }
     try {
       await axios.post("http://localhost:8080/user", {
+        name: name, // Include name in POST request
         email: email,
         password: password,
         address: address,
@@ -48,6 +52,7 @@ function RegisterForm() {
         dob: dob,
       });
       alert("Employee Registration Successfully");
+      setName(""); // Reset name
       setEmail("");
       setPassword("");
       setRpassword("");
@@ -59,11 +64,26 @@ function RegisterForm() {
       alert("User Registration Failed");
     }
   }
-
   return (
     <div className="RegistrerForm">
       <h1>Please fill in this form to create an account</h1>
       <div className="container">
+
+      <label htmlFor="name">
+          <b>Name</b>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter Name"
+          name="name"
+          id="name"
+          required
+          value={name}
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+        />
+
         <label htmlFor="email">
           <b>Email</b>
         </label>

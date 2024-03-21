@@ -1,126 +1,102 @@
 package no.ntnu.IDATA2306.Group6;
-
 import java.util.Objects;
-
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import jakarta.persistence.Table;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-/**
- * Represents a resource: a User. We store user objects in the application
- * state.
- */
 
 public final class User {
 
-  private String email;
-  private String password;
-  private String hashedPassword;
-  private String address;
-  private String gender;
-  private String phone;
-  private String dob;
-  private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private String name; 
+    private String email;
+    private String password;
+    private String hashedPassword;
+    private String address;
+    private String gender;
+    private String phone;
+    private String dob;
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-  User(String email, String password, String address, String gender, String phone, String dob) {
-    this.email = email;
-    this.password = password;
+   
+    public User(String name, String email, String password, String address, String gender, String phone, String dob) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.hashedPassword = hashPassword(); 
+        this.address = address;
+        this.gender = gender;
+        this.phone = phone;
+        this.dob = dob;
+    }
 
-    this.password = hashedPassword;
-    this.address = address;
-    this.gender = gender;
-    this.phone = phone;
-    this.dob = dob;
-  }
+ 
 
-  public String email() {
-    return email;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public String password() {
-    return password;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String address() {
-    return address;
-  }
+    public String getEmail() {
+        return email;
+    }
 
-  public String gender() {
-    return gender;
-  }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-  public String phone() {
-    return phone;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public String dob() {
-    return dob;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+        this.hashedPassword = encoder.encode(password); 
+    }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == this)
-      return true;
-    if (obj == null || obj.getClass() != this.getClass())
-      return false;
-    var that = (User) obj;
-    return Objects.equals(this.email, that.email) && Objects.equals(this.password, that.password)
-        && Objects.equals(this.address, that.address) && Objects.equals(this.gender, that.gender)
-        && Objects.equals(this.phone, that.phone) && Objects.equals(this.dob, that.dob);
-  }
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(email, password, address, gender, phone, dob);
-  }
+    public String getAddress() {
+        return address;
+    }
 
-  @Override
-  public String toString() {
-    return "User[" + "email=" + email + ", " + "password=" + hashedPassword + ", " + "address=" + address + ", "
-        + "gender=" + gender + ", " + "phone=" + phone + ", " + "dob=" + dob + ']';
-  }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-  public String getEmail() {
-    return email;
-  }
+    public String getGender() {
+        return gender;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-  public String getAddress() {
-    return address;
-  }
+    public String getPhone() {
+        return phone;
+    }
 
-  public String getGender() {
-    return gender;
-  }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-  public String getPhone() {
-    return phone;
-  }
+    public String getDob() {
+        return dob;
+    }
 
-  public String getDob() {
-    return dob;
-  }
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
 
-  public String hashPassword() {
-    hashedPassword = encoder.encode(this.password);
-    return hashedPassword;
-  }
+   
+    private String hashPassword() {
+        return encoder.encode(this.password);
+    }
 
-  public String getHashedPassword() {
-    return hashedPassword;
-  }
+    public boolean matchPassword(String rawPassword) {
+        return encoder.matches(rawPassword, this.hashedPassword);
+    }
 
-  public boolean matchPassword(String rawPassword) {
-    return encoder.matches(rawPassword, this.password);
-  }
+
 }
