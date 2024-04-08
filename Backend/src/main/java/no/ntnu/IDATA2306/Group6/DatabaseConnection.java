@@ -101,6 +101,42 @@ public class DatabaseConnection {
         }
     }
 
+    public List<Agency> getAgencies() {
+      try {
+          String query = "SELECT * FROM agencies";
+          ResultSet result = st.executeQuery(query);
+          List<Agency> agencies = new ArrayList<>();
+          while (result.next()) {
+              String agencyID = result.getString("agencyID");
+              String name = result.getString("name");
+              String email = result.getString("email");
+              String phoneNumber = result.getString("phoneNumber");
+              String website = result.getString("website");
+              Agency agency = new Agency(agencyID, name, email, phoneNumber, website);
+              agencies.add(agency);
+          }
+          result.close();
+          return agencies;
+      } catch (SQLException e) {
+          e.printStackTrace();
+          return null;
+      }
+  }
+
+  public void addAgency(String agencyID, String name, String email, String phoneNumber, String website) throws SQLException {
+      String query = "INSERT INTO agencies(agencyID, name, email, phoneNumber, website) " +
+              "VALUES (?, ?, ?, ?, ?)";
+
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+          pst.setString(1, agencyID);
+          pst.setString(2, name);
+          pst.setString(3, email);
+          pst.setString(4, phoneNumber);
+          pst.setString(5, website);
+          pst.executeUpdate();
+      }
+  }
+
    
 
 }
