@@ -64,14 +64,14 @@ public class DatabaseConnection {
             ResultSet result = st.executeQuery(query);
             List<Hotel> hotels = new ArrayList<>();
             while (result.next()) {
-                String hotelID = result.getString("hotel_id");
+                String hotelID = result.getString("hotelID");
                 String name = result.getString("name");
                 String address = result.getString("address");
                 String website = result.getString("website");
-                String phoneNumber = result.getString("phone_number");
-                String locationType = result.getString("location_type");
-                String roomTypeAvailable = result.getString("room_type_available");
-                String extraFeatures = result.getString("extra_features");
+                String phoneNumber = result.getString("phoneNumber");
+                String locationType = result.getString("locationType");
+                String roomTypeAvailable = result.getString("roomTypeAvailable");
+                String extraFeatures = result.getString("extraFeatures");
                 Hotel hotel = new Hotel(hotelID, name, address, website, phoneNumber, locationType, roomTypeAvailable, extraFeatures);
                 hotels.add(hotel);
             }
@@ -85,7 +85,7 @@ public class DatabaseConnection {
 
     public void addHotel(String hotelID, String name, String address, String website, String phoneNumber,
                         String locationType, String roomTypeAvailable, String extraFeatures) throws SQLException {
-        String query = "INSERT INTO hotels(hotel_id, name, address, website, phone_number, location_type, room_type_available, extra_features) " +
+        String query = "INSERT INTO hotels(hotelID, name, address, website, phoneNumber, locationType, roomTypeAvailable, extraFeatures) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pst = connection.prepareStatement(query)) {
