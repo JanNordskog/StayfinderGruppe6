@@ -137,6 +137,47 @@ public class DatabaseConnection {
       }
   }
 
+
+
+  public List<Listing> getListings() {
+    try {
+        String query = "SELECT * FROM listing";
+        ResultSet result = st.executeQuery(query);
+        List<Listing> listings = new ArrayList<>();
+        while (result.next()) {
+            String listingID = result.getString("listingID");
+            String hotelID = result.getString("hotelID");
+            String agencyID = result.getString("agencyID");
+            Date arrivalDate = result.getDate("arrivalDate");
+            Date departureDate = result.getDate("departureDate");
+            double price = result.getDouble("price");
+            Listing listing = new Listing(listingID, hotelID, agencyID, arrivalDate, departureDate, price);
+            listings.add(listing);
+        }
+        result.close();
+        return listings;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
+    }
+}
+
+public void addListing(String listingID, String hotelID, String agencyID, Date arrivalDate, Date departureDate, double price) throws SQLException {
+    String query = "INSERT INTO listing(listingID, hotelID, agencyID, arrivalDate, departureDate, price) " +
+            "VALUES (?, ?, ?, ?, ?, ?)";
+
+    try (PreparedStatement pst = connection.prepareStatement(query)) {
+        pst.setString(1, listingID);
+        pst.setString(2, hotelID);
+        pst.setString(3, agencyID);
+        pst.setDate(4, new java.sql.Date(arrivalDate.getTime()));
+        pst.setDate(5, new java.sql.Date(departureDate.getTime()));
+        pst.setDouble(6, price);
+        pst.executeUpdate();
+    }
+}
+
+
    
 
 }
