@@ -13,8 +13,13 @@ function SearchResults() {
                 {data.length > 0 ? (
                     data.map((item, index) => (
                         <div className="listing-card" key={index}>
-                            <h2>Hotel ID: {item.hotelID}</h2>
-                            <p><strong>Agency:</strong> {item.agencyID}</p>
+                            {/* Display the hotel name instead of the hotel ID */}
+                            <h2>{item.hotelName}</h2>
+                            <p><strong>Address:</strong> {item.hotelAddress}</p>
+                            <p><strong>Room Type Available:</strong> {item.roomTypeAvailable}</p>
+                            <p><strong>Extra Features:</strong> {item.extraFeatures}</p>
+                            {/* Display the agency name */}
+                            <p><strong>Agency:</strong> {item.agencyName}</p>
                             <p><strong>Arrival:</strong> {new Date(item.arrivalDate).toLocaleDateString()}</p>
                             <p><strong>Departure:</strong> {new Date(item.departureDate).toLocaleDateString()}</p>
                             <p className="price"><strong>Price:</strong> ${item.price}</p>

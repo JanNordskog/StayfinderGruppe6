@@ -16,8 +16,7 @@ public class ListingController {
     @GetMapping
     public ResponseEntity<List<Listing>> getAllListings() {
         try {
-            DatabaseConnection dbConnection = new DatabaseConnection();
-            List<Listing> listings = dbConnection.getListings();
+            List<Listing> listings = new DatabaseConnection().getListings();
             System.out.println(listings);
             return ResponseEntity.ok(listings); 
         } catch (SQLException e) {

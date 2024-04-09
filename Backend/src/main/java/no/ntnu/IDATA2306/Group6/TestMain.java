@@ -61,12 +61,20 @@ public class TestMain {
             for (Listing listing : listingList) {
                 System.out.println("Listing ID: " + listing.getListingID());
                 System.out.println("Hotel ID: " + listing.getHotelID());
+                // Now also display the additional details fetched from the hotels table
+                System.out.println("Hotel Name: " + listing.getHotelName());
+                System.out.println("Hotel Address: " + listing.getHotelAddress());
+                System.out.println("Room Type Available: " + listing.getRoomTypeAvailable());
+                System.out.println("Extra Features: " + listing.getExtraFeatures());
                 System.out.println("Agency ID: " + listing.getAgencyID());
+                // Displaying the additional detail fetched from the agencies table
+                System.out.println("Agency Name: " + listing.getAgencyName());
                 System.out.println("Arrival Date: " + listing.getArrivalDate());
                 System.out.println("Departure Date: " + listing.getDepartureDate());
-                System.out.println("Price: " + listing.getPrice());
-                System.out.println();
+                System.out.println("Price: $" + listing.getPrice());
+                System.out.println(); // Blank line for readability
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
