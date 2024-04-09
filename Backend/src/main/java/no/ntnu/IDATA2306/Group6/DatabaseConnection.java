@@ -142,12 +142,15 @@ public class DatabaseConnection {
 
     public List<Listing> getListings() {
         List<Listing> listings = new ArrayList<>();
+        // Adjusted query to use the correct column name 'sourceLink' for the image URL
         String query = "SELECT l.listingID, l.hotelID, h.name AS hotelName, h.address AS hotelAddress, h.roomTypeAvailable, h.extraFeatures, "
                 +
-                "l.agencyID, a.name AS agencyName, l.arrivalDate, l.departureDate, l.price " +
+                "l.agencyID, a.name AS agencyName, l.arrivalDate, l.departureDate, l.price, i.sourceLink AS imageLink "
+                + // Use 'i.sourceLink'
                 "FROM listing l " +
                 "JOIN hotels h ON l.hotelID = h.hotelID " +
-                "JOIN agencies a ON l.agencyID = a.agencyID";
+                "JOIN agencies a ON l.agencyID = a.agencyID " +
+                "JOIN hotelimages i ON l.hotelID = i.hotelID"; // Ensure 'hotelimages' is correctly joined
 
         try (PreparedStatement pst = connection.prepareStatement(query);
                 ResultSet result = pst.executeQuery()) {
@@ -164,9 +167,12 @@ public class DatabaseConnection {
                 Date arrivalDate = result.getDate("arrivalDate");
                 Date departureDate = result.getDate("departureDate");
                 double price = result.getDouble("price");
+                String imageLink = result.getString("imageLink"); // This now correctly fetches the image URL from
+                                                                  // 'sourceLink'
 
                 Listing listing = new Listing(listingID, hotelID, hotelName, hotelAddress, roomTypeAvailable,
-                        extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price);
+                        extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price, imageLink); // Pass the
+                                                                                                            // imageLink
                 listings.add(listing);
             }
         } catch (SQLException e) {
@@ -205,9 +211,10 @@ public class DatabaseConnection {
                 Date arrivalDate = result.getDate("arrivalDate");
                 Date departureDate = result.getDate("departureDate");
                 double price = result.getDouble("price");
+                String imageLink = result.getString("sourceLink");
                 // Create a new Listing object with the fetched data
                 return new Listing(listingID, hotelID, hotelName, hotelAddress, roomTypeAvailable,
-                        extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price);
+                        extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price, imageLink);
             }
             result.close();
         }
@@ -278,7 +285,7 @@ public class DatabaseConnection {
                 String hotelID = result.getString("hotelID");
                 int grade = result.getInt("grade");
                 String sourceLink = result.getString("sourceLink");
-                // Create a new HotelImages object with the fetched data
+
                 return new HotelImages(imageID, hotelID, grade, sourceLink);
             }
             result.close();

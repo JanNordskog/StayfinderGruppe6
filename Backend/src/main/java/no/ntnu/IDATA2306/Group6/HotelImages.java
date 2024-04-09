@@ -6,7 +6,6 @@ public class HotelImages {
     private int grade;
     private String sourceLink;
 
-    // Constructor
     public HotelImages(String imageID, String hotelID, int grade, String sourceLink) {
         this.imageID = imageID;
         this.hotelID = hotelID;
@@ -14,7 +13,6 @@ public class HotelImages {
         this.sourceLink = sourceLink;
     }
 
-    // Getters and Setters
     public String getImageID() {
         return imageID;
     }
@@ -47,8 +45,6 @@ public class HotelImages {
         this.sourceLink = sourceLink;
     }
 
-    // Optional: Override the toString method for easy printing of hotel image
-    // information
     @Override
     public String toString() {
         return "HotelImages{" +

@@ -54,18 +54,18 @@ public class TestMain {
             for (Listing listing : listingList) {
                 System.out.println("Listing ID: " + listing.getListingID());
                 System.out.println("Hotel ID: " + listing.getHotelID());
-                // Now also display the additional details fetched from the hotels table
                 System.out.println("Hotel Name: " + listing.getHotelName());
                 System.out.println("Hotel Address: " + listing.getHotelAddress());
                 System.out.println("Room Type Available: " + listing.getRoomTypeAvailable());
                 System.out.println("Extra Features: " + listing.getExtraFeatures());
                 System.out.println("Agency ID: " + listing.getAgencyID());
-                // Displaying the additional detail fetched from the agencies table
                 System.out.println("Agency Name: " + listing.getAgencyName());
                 System.out.println("Arrival Date: " + listing.getArrivalDate());
                 System.out.println("Departure Date: " + listing.getDepartureDate());
                 System.out.println("Price: $" + listing.getPrice());
-                System.out.println(); // Blank line for readability
+                // Print the image link
+                System.out.println("Image Link: " + listing.getImageLink());
+                System.out.println(); // To keep a blank line for better readability
             }
 
             List<HotelImages> hotelImagesList = new DatabaseConnection().getHotelImages();
@@ -79,12 +79,10 @@ public class TestMain {
                 System.out.println();
             }
 
-            // Test updating a hotel image
-            String imageIDToUpdate = "exampleImageID"; // Replace with an existing image ID
+            String imageIDToUpdate = "exampleImageID";
             HotelImages updatedHotelImage = new HotelImages("exampleImageID", "exampleHotelID", 5, "exampleSourceLink");
             new DatabaseConnection().updateHotelImage(imageIDToUpdate, updatedHotelImage);
 
-            // Test getting the updated hotel image
             HotelImages retrievedHotelImage = new DatabaseConnection().getHotelImage(imageIDToUpdate);
             System.out.println("Updated Hotel Image Details:");
             System.out.println("Image ID: " + retrievedHotelImage.getImageID());

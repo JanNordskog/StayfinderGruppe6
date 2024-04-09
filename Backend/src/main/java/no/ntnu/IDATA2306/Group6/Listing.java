@@ -14,11 +14,11 @@ public class Listing {
     private Date arrivalDate;
     private Date departureDate;
     private double price;
+    private String imageLink; // Added imageLink variable
 
-
-    // Constructor with all fields
-    public Listing(String listingID, String hotelID, String hotelName, String hotelAddress, String roomTypeAvailable, 
-                   String extraFeatures, String agencyID, String agencyName, Date arrivalDate, Date departureDate, double price) {
+    public Listing(String listingID, String hotelID, String hotelName, String hotelAddress, String roomTypeAvailable,
+            String extraFeatures, String agencyID, String agencyName, Date arrivalDate, Date departureDate,
+            double price, String imageLink) { // Added imageLink parameter
         this.listingID = listingID;
         this.hotelID = hotelID;
         this.hotelName = hotelName;
@@ -30,9 +30,9 @@ public class Listing {
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
         this.price = price;
+        this.imageLink = imageLink; // Initialize imageLink
     }
 
-    // Getters and Setters
     public String getListingID() {
         return listingID;
     }
@@ -120,6 +120,15 @@ public class Listing {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
     @Override
     public String toString() {
         return "Listing{" +
@@ -134,7 +143,8 @@ public class Listing {
                 ", arrivalDate=" + arrivalDate +
                 ", departureDate=" + departureDate +
                 ", price=" + price +
+                ", imageLink='" + imageLink + '\'' + // Include imageLink in toString
                 '}';
     }
-    
+
 }
