@@ -1,59 +1,96 @@
 package no.ntnu.IDATA2306.Group6;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/listings")
 public class ListingController {
 
-    private final Map<String, Listing> listings = new HashMap<>();
+
 
     @GetMapping
-    public Collection<Listing> getAllListings() {
-        return listings.values();
-    }
-
-    @PostMapping
-    public ResponseEntity<Listing> createListing(@RequestBody Listing newListing) {
-        if (listings.containsKey(newListing.getListingID())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+    public ResponseEntity<List<Listing>> getAllListings() {
+        try {
+            DatabaseConnection dbConnection = new DatabaseConnection();
+            List<Listing> listings = dbConnection.getListings();
+            System.out.println(listings);
+            return ResponseEntity.ok(listings); 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build(); 
         }
-        listings.put(newListing.getListingID(), newListing);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newListing);
     }
 
+   
+    @PostMapping
+    public ResponseEntity<?> createListing(@RequestBody Listing newListing) {
+        try {
+            DatabaseConnection dbConnection = new DatabaseConnection();
+            dbConnection.addListing(newListing);
+            return ResponseEntity.ok().build();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    
     @GetMapping("/{listingId}")
     public ResponseEntity<Listing> getListing(@PathVariable String listingId) {
-        Listing listing = listings.get(listingId);
-        if (listing != null) {
-            return ResponseEntity.ok(listing);
-        } else {
-            return ResponseEntity.notFound().build();
+        try {
+            DatabaseConnection dbConnection = new DatabaseConnection();
+            Listing listing = dbConnection.getListing(listingId); 
+            if (listing != null) {
+                return ResponseEntity.ok(listing);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build();
         }
     }
 
+  
     @PutMapping("/{listingId}")
-    public ResponseEntity<Listing> updateListing(@PathVariable String listingId, @RequestBody Listing updatedListing) {
-        if (!listings.containsKey(listingId)) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<?> updateListing(@PathVariable String listingId, @RequestBody Listing updatedListing) {
+        try {
+            DatabaseConnection dbConnection = new DatabaseConnection();
+            boolean updated = dbConnection.updateListing(listingId, updatedListing);
+            if (updated) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build();
         }
-        listings.put(listingId, updatedListing);
-        return ResponseEntity.ok(updatedListing);
     }
 
+  
     @DeleteMapping("/{listingId}")
     public ResponseEntity<Void> deleteListing(@PathVariable String listingId) {
-        if (!listings.containsKey(listingId)) {
-            return ResponseEntity.notFound().build();
+        try {
+            DatabaseConnection dbConnection = new DatabaseConnection();
+            boolean deleted = dbConnection.deleteListing(listingId); 
+            if (deleted) {
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build();
         }
-        listings.remove(listingId);
-        return ResponseEntity.noContent().build();
     }
+
+    
+
+
 }

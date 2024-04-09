@@ -29,6 +29,7 @@ public class UserController {
     
 @PostMapping
 public User createUser(@RequestBody User newUser) {
+    System.out.println("New user created");
     try {
        
         new DatabaseConnection().addUser(

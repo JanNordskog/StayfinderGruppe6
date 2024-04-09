@@ -162,22 +162,57 @@ public class DatabaseConnection {
     }
 }
 
-public void addListing(String listingID, String hotelID, String agencyID, Date arrivalDate, Date departureDate, double price) throws SQLException {
-    String query = "INSERT INTO listing(listingID, hotelID, agencyID, arrivalDate, departureDate, price) " +
-            "VALUES (?, ?, ?, ?, ?, ?)";
-
+public void addListing(Listing listing) throws SQLException {
+    String query = "INSERT INTO listing (listingID, hotelID, agencyID, arrivalDate, departureDate, price) VALUES (?, ?, ?, ?, ?, ?)";
     try (PreparedStatement pst = connection.prepareStatement(query)) {
-        pst.setString(1, listingID);
-        pst.setString(2, hotelID);
-        pst.setString(3, agencyID);
-        pst.setDate(4, new java.sql.Date(arrivalDate.getTime()));
-        pst.setDate(5, new java.sql.Date(departureDate.getTime()));
-        pst.setDouble(6, price);
+        pst.setString(1, listing.getListingID());
+        pst.setString(2, listing.getHotelID());
+        pst.setString(3, listing.getAgencyID());
+        pst.setDate(4, new java.sql.Date(listing.getArrivalDate().getTime()));
+        pst.setDate(5, new java.sql.Date(listing.getDepartureDate().getTime()));
+        pst.setDouble(6, listing.getPrice());
+        
         pst.executeUpdate();
     }
 }
 
+public Listing getListing(String listingID) throws SQLException {
+    String query = "SELECT * FROM listing WHERE listingID = ?";
+    try (PreparedStatement pst = connection.prepareStatement(query)) {
+        pst.setString(1, listingID);
+        ResultSet result = pst.executeQuery();
+        if (result.next()) {
+            Date arrivalDate = result.getDate("arrivalDate");
+            Date departureDate = result.getDate("departureDate");
+            double price = result.getDouble("price");
+            return new Listing(listingID, result.getString("hotelID"), result.getString("agencyID"), arrivalDate, departureDate, price);
+        }
+        result.close();
+    }
+    return null;
+}
 
-   
+public boolean updateListing(String listingID, Listing listing) throws SQLException {
+    String query = "UPDATE listing SET hotelID = ?, agencyID = ?, arrivalDate = ?, departureDate = ?, price = ? WHERE listingID = ?";
+    try (PreparedStatement pst = connection.prepareStatement(query)) {
+        pst.setString(1, listing.getHotelID());
+        pst.setString(2, listing.getAgencyID());
+        pst.setDate(3, new java.sql.Date(listing.getArrivalDate().getTime()));
+        pst.setDate(4, new java.sql.Date(listing.getDepartureDate().getTime()));
+        pst.setDouble(5, listing.getPrice());
+        pst.setString(6, listingID);
+        int updatedRows = pst.executeUpdate();
+        return updatedRows > 0;
+    }
+}
+
+public boolean deleteListing(String listingID) throws SQLException {
+    String query = "DELETE FROM listing WHERE listingID = ?";
+    try (PreparedStatement pst = connection.prepareStatement(query)) {
+        pst.setString(1, listingID);
+        int deletedRows = pst.executeUpdate();
+        return deletedRows > 0;
+    }
+}
 
 }
