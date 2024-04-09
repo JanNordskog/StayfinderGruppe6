@@ -1,0 +1,54 @@
+
+.RegistrerForm .container {
+    padding: 16px;
+}
+
+
+.RegistrerForm input[type="text"],
+.RegistrerForm input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+.RegistrerForm input[type="text"]:focus,
+.RegistrerForm input[type="password"]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+
+.RegistrerForm .hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+
+.RegistrerForm .registerbtn {
+    background-color: #f9d9d8;
+    color: #5a0032;
+    border: none;
+    cursor: pointer;
+    border-radius: .5rem;
+    width: 90px;
+    padding: 0.875rem 1rem;
+    transition: 0.5s linear;
+}
+
+.RegistrerForm .registerbtn:hover {
+    opacity: 1;
+}
+
+
+.RegistrerForm .a {
+    color: dodgerblue;
+}
+
+
+.RegistrerForm .signin {
+    background-color: #f1f1f1;
+    text-align: center;
+}

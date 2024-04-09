@@ -1,0 +1,44 @@
+.IconNavbar {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 20px;
+    background-color: white;
+    margin-bottom: 20px;
+  }
+  
+  .IconNavbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 900px;
+  }
+  
+  .IconNavbar li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .NavbarLink {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 10px;
+  }
+  
+  .NavbarLink:hover {
+
+  }
+  
+  .NavbarLink img {
+    height: 20px;
+    width: 20px;
+    margin-bottom: 10px;
+  }
+  

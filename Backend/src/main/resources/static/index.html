@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+          background-color:white;
+          margin: 0;
+        }
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: rgba(22, 22, 23, .88);
+          opacity: 0.9;
+          position: fixed; 
+          
+            width: 100%; 
+         top: 0; 
+         z-index: 1000;
+        }
+
+        ul::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    background: inherit;
+   
+    z-index: -1; 
+}
+
+        
+        li {
+          float: left;
+        }
+        
+        li a, .dropbtn {
+          display: inline-block;
+          color: lightgray;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover, .dropdown:hover .dropbtn {
+          color: white;
+        }
+        
+        li.dropdown {
+          display: inline-block;
+        }
+        
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+          text-align: left;
+        }
+        
+        .dropdown-content a:hover {background-color: #f1f1f1;}
+        
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+
+        .Navbar
+         {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: SF Pro Text,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    z-index: 1;
+
+    height: 44px;
+    background: no-repeat;
+    text-decoration: none;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    transition: color .32s cubic-bezier(.4,0,.6,1);
+         }
+
+         /* Style the search input */
+.navbar-search input[type="text"] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    margin-left: 35%;
+    background-color: #262627;
+}
+
+/* Style the submit button */
+.navbar-search button {
+    padding: 6px;
+    margin-top: 8px;
+    margin-left: 4px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.navbar-search button:hover {
+    background: #ccc;
+}
+
+.container{
+    position: relative;
+}
+
+
+.main-image {
+    /* or 'absolute' */
+    width: 100%;
+    z-index: 1; /* lower than the navbar */
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center the element */
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: white; /* Ensure the text is visible on your background */
+}
+
+        </style>
+</head>
+
+<body>
+  
+<ul>
+    <div class="Navbar">
+    <li><a href="#home"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/UNESCO_logo_white.png" alt="Italian Trulli" width="20px" >
+    </a></li>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#news">News</a></li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+      <div class="dropdown-content">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
+    </div>
+    </li>
+  
+  </ul>
+
+  <div class="container">
+    <img class="main-image" src="https://img.pikbest.com/backgrounds/20220119/apple-wallpaper-geometric-figure-color-gradient-e-commerce-style_6240587.jpg!sw800" alt="Background Image" width="100%">
+    <div class="center">
+        <li class="navbar-search">
+            <form action="/search" method="get">
+                <input type="text" placeholder="Search..." name="search">
+                <button type="submit">Go</button>
+            </form>
+        </li>
+    </div>
+  </div>
+
+
+  <select name="gender">
+    <option value="male">male</option>
+    <option value="female">female</option>
+  </select>
+  <br>
+
+  <button type="submit">submit</button>
+</form>
+</body>
+</html>
+

@@ -1,0 +1,82 @@
+/* MainSearch.module.css */
+
+.MainSearch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 800px;
+}
+
+.MainItems {
+    /* Your specific styles for MainItems */
+}
+
+.MainItems form {
+    display: flex;
+    gap: 10px;
+}
+
+.Søk button {
+    background-color: #f9d9d8;
+    color: #5a0032;
+    border: none;
+    cursor: pointer;
+    border-radius: .5rem;
+    height: 40px;
+    padding: 0.875rem 1rem;
+    transition: 0.5s linear;
+}
+
+.Søk button:hover {
+    border-radius: 1.0rem;
+}
+
+.MainItems input[type="text"],
+.MainItems select {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 250px;
+   
+}
+
+.MainItems input[type="number"]::-webkit-inner-spin-button,
+.MainItems input[type="number"]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+}
+
+.MainItems input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 35px;
+}
+
+.MainItems input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.MainItems h1 {
+    color: white;
+    font-family: "Main";
+    width: 900px;
+    font-size: 50px;
+    margin-left: -250px; 
+    margin-top: -200px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+
+
+.MainSearch {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
