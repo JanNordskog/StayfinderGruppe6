@@ -42,7 +42,7 @@ public class DatabaseConnection {
     }
 
     public void addUser(String name, String email, String password, String address, String gender, String phone,
-                        String dob, int userPerm) throws SQLException {
+            String dob, int userPerm) throws SQLException {
         String query = "INSERT INTO Users(name, email, password, address, gender, phone, dob, userPerm) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pst = connection.prepareStatement(query)) {
@@ -72,7 +72,8 @@ public class DatabaseConnection {
                 String locationType = result.getString("locationType");
                 String roomTypeAvailable = result.getString("roomTypeAvailable");
                 String extraFeatures = result.getString("extraFeatures");
-                Hotel hotel = new Hotel(hotelID, name, address, website, phoneNumber, locationType, roomTypeAvailable, extraFeatures);
+                Hotel hotel = new Hotel(hotelID, name, address, website, phoneNumber, locationType, roomTypeAvailable,
+                        extraFeatures);
                 hotels.add(hotel);
             }
             result.close();
@@ -84,8 +85,9 @@ public class DatabaseConnection {
     }
 
     public void addHotel(String hotelID, String name, String address, String website, String phoneNumber,
-                        String locationType, String roomTypeAvailable, String extraFeatures) throws SQLException {
-        String query = "INSERT INTO hotels(hotelID, name, address, website, phoneNumber, locationType, roomTypeAvailable, extraFeatures) " +
+            String locationType, String roomTypeAvailable, String extraFeatures) throws SQLException {
+        String query = "INSERT INTO hotels(hotelID, name, address, website, phoneNumber, locationType, roomTypeAvailable, extraFeatures) "
+                +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pst = connection.prepareStatement(query)) {
@@ -102,139 +104,197 @@ public class DatabaseConnection {
     }
 
     public List<Agency> getAgencies() {
-      try {
-          String query = "SELECT * FROM agencies";
-          ResultSet result = st.executeQuery(query);
-          List<Agency> agencies = new ArrayList<>();
-          while (result.next()) {
-              String agencyID = result.getString("agencyID");
-              String name = result.getString("name");
-              String email = result.getString("email");
-              String phoneNumber = result.getString("phoneNumber");
-              String website = result.getString("website");
-              Agency agency = new Agency(agencyID, name, email, phoneNumber, website);
-              agencies.add(agency);
-          }
-          result.close();
-          return agencies;
-      } catch (SQLException e) {
-          e.printStackTrace();
-          return null;
-      }
-  }
-
-  public void addAgency(String agencyID, String name, String email, String phoneNumber, String website) throws SQLException {
-      String query = "INSERT INTO agencies(agencyID, name, email, phoneNumber, website) " +
-              "VALUES (?, ?, ?, ?, ?)";
-
-      try (PreparedStatement pst = connection.prepareStatement(query)) {
-          pst.setString(1, agencyID);
-          pst.setString(2, name);
-          pst.setString(3, email);
-          pst.setString(4, phoneNumber);
-          pst.setString(5, website);
-          pst.executeUpdate();
-      }
-  }
-
-
-
-  public List<Listing> getListings() {
-    List<Listing> listings = new ArrayList<>();
-    String query = "SELECT l.listingID, l.hotelID, h.name AS hotelName, h.address AS hotelAddress, h.roomTypeAvailable, h.extraFeatures, " +
-                   "l.agencyID, a.name AS agencyName, l.arrivalDate, l.departureDate, l.price " +
-                   "FROM listing l " +
-                   "JOIN hotels h ON l.hotelID = h.hotelID " +
-                   "JOIN agencies a ON l.agencyID = a.agencyID";
-
-    try (PreparedStatement pst = connection.prepareStatement(query);
-         ResultSet result = pst.executeQuery()) {
-
-        while (result.next()) {
-            String listingID = result.getString("listingID");
-            String hotelID = result.getString("hotelID");
-            String hotelName = result.getString("hotelName");
-            String hotelAddress = result.getString("hotelAddress");
-            String roomTypeAvailable = result.getString("roomTypeAvailable");
-            String extraFeatures = result.getString("extraFeatures");
-            String agencyID = result.getString("agencyID");
-            String agencyName = result.getString("agencyName");
-            Date arrivalDate = result.getDate("arrivalDate");
-            Date departureDate = result.getDate("departureDate");
-            double price = result.getDouble("price");
-
-            Listing listing = new Listing(listingID, hotelID, hotelName, hotelAddress, roomTypeAvailable, 
-                                          extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price);
-            listings.add(listing);
+        try {
+            String query = "SELECT * FROM agencies";
+            ResultSet result = st.executeQuery(query);
+            List<Agency> agencies = new ArrayList<>();
+            while (result.next()) {
+                String agencyID = result.getString("agencyID");
+                String name = result.getString("name");
+                String email = result.getString("email");
+                String phoneNumber = result.getString("phoneNumber");
+                String website = result.getString("website");
+                Agency agency = new Agency(agencyID, name, email, phoneNumber, website);
+                agencies.add(agency);
+            }
+            result.close();
+            return agencies;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-    return listings;
-}
 
+    public void addAgency(String agencyID, String name, String email, String phoneNumber, String website)
+            throws SQLException {
+        String query = "INSERT INTO agencies(agencyID, name, email, phoneNumber, website) " +
+                "VALUES (?, ?, ?, ?, ?)";
 
-
-public void addListing(Listing listing) throws SQLException {
-    String query = "INSERT INTO listing (listingID, hotelID, agencyID, arrivalDate, departureDate, price) VALUES (?, ?, ?, ?, ?, ?)";
-    try (PreparedStatement pst = connection.prepareStatement(query)) {
-        pst.setString(1, listing.getListingID());
-        pst.setString(2, listing.getHotelID());
-        pst.setString(3, listing.getAgencyID());
-        pst.setDate(4, new java.sql.Date(listing.getArrivalDate().getTime()));
-        pst.setDate(5, new java.sql.Date(listing.getDepartureDate().getTime()));
-        pst.setDouble(6, listing.getPrice());
-        
-        pst.executeUpdate();
-    }
-}
-
-public Listing getListing(String listingID) throws SQLException {
-    String query = "SELECT * FROM listing WHERE listingID = ?";
-    try (PreparedStatement pst = connection.prepareStatement(query)) {
-        pst.setString(1, listingID);
-        ResultSet result = pst.executeQuery();
-        if (result.next()) {
-            String hotelID = result.getString("hotelID");
-            String hotelName = result.getString("hotelName");
-            String hotelAddress = result.getString("hotelAddress");
-            String roomTypeAvailable = result.getString("roomTypeAvailable");
-            String extraFeatures = result.getString("extraFeatures");
-            String agencyID = result.getString("agencyID");
-            String agencyName = result.getString("agencyName");
-            Date arrivalDate = result.getDate("arrivalDate");
-            Date departureDate = result.getDate("departureDate");
-            double price = result.getDouble("price");
-            // Create a new Listing object with the fetched data
-           return new Listing(listingID, hotelID, hotelName, hotelAddress, roomTypeAvailable, 
-                                          extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price);
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, agencyID);
+            pst.setString(2, name);
+            pst.setString(3, email);
+            pst.setString(4, phoneNumber);
+            pst.setString(5, website);
+            pst.executeUpdate();
         }
-        result.close();
     }
-    return null;
-}
 
-public boolean updateListing(String listingID, Listing listing) throws SQLException {
-    String query = "UPDATE listing SET hotelID = ?, agencyID = ?, arrivalDate = ?, departureDate = ?, price = ? WHERE listingID = ?";
-    try (PreparedStatement pst = connection.prepareStatement(query)) {
-        pst.setString(1, listing.getHotelID());
-        pst.setString(2, listing.getAgencyID());
-        pst.setDate(3, new java.sql.Date(listing.getArrivalDate().getTime()));
-        pst.setDate(4, new java.sql.Date(listing.getDepartureDate().getTime()));
-        pst.setDouble(5, listing.getPrice());
-        pst.setString(6, listingID);
-        int updatedRows = pst.executeUpdate();
-        return updatedRows > 0;
-    }
-}
+    public List<Listing> getListings() {
+        List<Listing> listings = new ArrayList<>();
+        String query = "SELECT l.listingID, l.hotelID, h.name AS hotelName, h.address AS hotelAddress, h.roomTypeAvailable, h.extraFeatures, "
+                +
+                "l.agencyID, a.name AS agencyName, l.arrivalDate, l.departureDate, l.price " +
+                "FROM listing l " +
+                "JOIN hotels h ON l.hotelID = h.hotelID " +
+                "JOIN agencies a ON l.agencyID = a.agencyID";
 
-public boolean deleteListing(String listingID) throws SQLException {
-    String query = "DELETE FROM listing WHERE listingID = ?";
-    try (PreparedStatement pst = connection.prepareStatement(query)) {
-        pst.setString(1, listingID);
-        int deletedRows = pst.executeUpdate();
-        return deletedRows > 0;
+        try (PreparedStatement pst = connection.prepareStatement(query);
+                ResultSet result = pst.executeQuery()) {
+
+            while (result.next()) {
+                String listingID = result.getString("listingID");
+                String hotelID = result.getString("hotelID");
+                String hotelName = result.getString("hotelName");
+                String hotelAddress = result.getString("hotelAddress");
+                String roomTypeAvailable = result.getString("roomTypeAvailable");
+                String extraFeatures = result.getString("extraFeatures");
+                String agencyID = result.getString("agencyID");
+                String agencyName = result.getString("agencyName");
+                Date arrivalDate = result.getDate("arrivalDate");
+                Date departureDate = result.getDate("departureDate");
+                double price = result.getDouble("price");
+
+                Listing listing = new Listing(listingID, hotelID, hotelName, hotelAddress, roomTypeAvailable,
+                        extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price);
+                listings.add(listing);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listings;
     }
-}
+
+    public void addListing(Listing listing) throws SQLException {
+        String query = "INSERT INTO listing (listingID, hotelID, agencyID, arrivalDate, departureDate, price) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, listing.getListingID());
+            pst.setString(2, listing.getHotelID());
+            pst.setString(3, listing.getAgencyID());
+            pst.setDate(4, new java.sql.Date(listing.getArrivalDate().getTime()));
+            pst.setDate(5, new java.sql.Date(listing.getDepartureDate().getTime()));
+            pst.setDouble(6, listing.getPrice());
+
+            pst.executeUpdate();
+        }
+    }
+
+    public Listing getListing(String listingID) throws SQLException {
+        String query = "SELECT * FROM listing WHERE listingID = ?";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, listingID);
+            ResultSet result = pst.executeQuery();
+            if (result.next()) {
+                String hotelID = result.getString("hotelID");
+                String hotelName = result.getString("hotelName");
+                String hotelAddress = result.getString("hotelAddress");
+                String roomTypeAvailable = result.getString("roomTypeAvailable");
+                String extraFeatures = result.getString("extraFeatures");
+                String agencyID = result.getString("agencyID");
+                String agencyName = result.getString("agencyName");
+                Date arrivalDate = result.getDate("arrivalDate");
+                Date departureDate = result.getDate("departureDate");
+                double price = result.getDouble("price");
+                // Create a new Listing object with the fetched data
+                return new Listing(listingID, hotelID, hotelName, hotelAddress, roomTypeAvailable,
+                        extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price);
+            }
+            result.close();
+        }
+        return null;
+    }
+
+    public boolean updateListing(String listingID, Listing listing) throws SQLException {
+        String query = "UPDATE listing SET hotelID = ?, agencyID = ?, arrivalDate = ?, departureDate = ?, price = ? WHERE listingID = ?";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, listing.getHotelID());
+            pst.setString(2, listing.getAgencyID());
+            pst.setDate(3, new java.sql.Date(listing.getArrivalDate().getTime()));
+            pst.setDate(4, new java.sql.Date(listing.getDepartureDate().getTime()));
+            pst.setDouble(5, listing.getPrice());
+            pst.setString(6, listingID);
+            int updatedRows = pst.executeUpdate();
+            return updatedRows > 0;
+        }
+    }
+
+    public boolean deleteListing(String listingID) throws SQLException {
+        String query = "DELETE FROM listing WHERE listingID = ?";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, listingID);
+            int deletedRows = pst.executeUpdate();
+            return deletedRows > 0;
+        }
+    }
+
+    public List<HotelImages> getHotelImages() {
+        try {
+            String query = "SELECT * FROM hotelimages";
+            ResultSet result = st.executeQuery(query);
+            List<HotelImages> hotelImagesList = new ArrayList<>();
+            while (result.next()) {
+                String imageID = result.getString("imageID");
+                String hotelID = result.getString("hotelID");
+                int grade = result.getInt("grade");
+                String sourceLink = result.getString("sourceLink");
+                HotelImages hotelImage = new HotelImages(imageID, hotelID, grade, sourceLink);
+                hotelImagesList.add(hotelImage);
+            }
+            result.close();
+            return hotelImagesList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void addHotelImage(String imageID, String hotelID, int grade, String sourceLink) throws SQLException {
+        String query = "INSERT INTO hotelimages (imageID, hotelID, grade, sourceLink) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, imageID);
+            pst.setString(2, hotelID);
+            pst.setInt(3, grade);
+            pst.setString(4, sourceLink);
+            pst.executeUpdate();
+        }
+    }
+
+    public HotelImages getHotelImage(String imageID) throws SQLException {
+        String query = "SELECT * FROM hotelimages WHERE imageID = ?";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, imageID);
+            ResultSet result = pst.executeQuery();
+            if (result.next()) {
+                String hotelID = result.getString("hotelID");
+                int grade = result.getInt("grade");
+                String sourceLink = result.getString("sourceLink");
+                // Create a new HotelImages object with the fetched data
+                return new HotelImages(imageID, hotelID, grade, sourceLink);
+            }
+            result.close();
+        }
+        return null;
+    }
+
+    public void updateHotelImage(String imageID, HotelImages updatedHotelImage) throws SQLException {
+        String query = "UPDATE hotelimages SET hotelID = ?, grade = ?, sourceLink = ? WHERE imageID = ?";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, updatedHotelImage.getHotelID());
+            pst.setInt(2, updatedHotelImage.getGrade());
+            pst.setString(3, updatedHotelImage.getSourceLink());
+            pst.setString(4, imageID);
+            pst.executeUpdate();
+        }
+    }
 
 }

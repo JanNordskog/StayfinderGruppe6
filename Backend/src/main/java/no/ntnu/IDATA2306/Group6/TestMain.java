@@ -6,10 +6,9 @@ import java.util.List;
 public class TestMain {
     public static void main(String[] args) {
         try {
-            
+
             List<User> userList = new DatabaseConnection().getUsers();
 
-            
             System.out.println("User Details:");
             for (User user : userList) {
                 System.out.println("Name: " + user.getName());
@@ -22,10 +21,8 @@ public class TestMain {
                 System.out.println();
             }
 
-           
             List<Hotel> hotelList = new DatabaseConnection().getHotels();
 
-            
             System.out.println("Hotel Details:");
             for (Hotel hotel : hotelList) {
                 System.out.println("Hotel ID: " + hotel.getHotelID());
@@ -39,10 +36,8 @@ public class TestMain {
                 System.out.println();
             }
 
-           
             List<Agency> agencyList = new DatabaseConnection().getAgencies();
 
-            
             System.out.println("Agency Details:");
             for (Agency agency : agencyList) {
                 System.out.println("Agency ID: " + agency.getAgencyID());
@@ -53,10 +48,8 @@ public class TestMain {
                 System.out.println();
             }
 
-          
             List<Listing> listingList = new DatabaseConnection().getListings();
 
-          
             System.out.println("Listing Details:");
             for (Listing listing : listingList) {
                 System.out.println("Listing ID: " + listing.getListingID());
@@ -74,7 +67,31 @@ public class TestMain {
                 System.out.println("Price: $" + listing.getPrice());
                 System.out.println(); // Blank line for readability
             }
-            
+
+            List<HotelImages> hotelImagesList = new DatabaseConnection().getHotelImages();
+
+            System.out.println("Hotel Images Details:");
+            for (HotelImages hotelImage : hotelImagesList) {
+                System.out.println("Image ID: " + hotelImage.getImageID());
+                System.out.println("Hotel ID: " + hotelImage.getHotelID());
+                System.out.println("Grade: " + hotelImage.getGrade());
+                System.out.println("Source Link: " + hotelImage.getSourceLink());
+                System.out.println();
+            }
+
+            // Test updating a hotel image
+            String imageIDToUpdate = "exampleImageID"; // Replace with an existing image ID
+            HotelImages updatedHotelImage = new HotelImages("exampleImageID", "exampleHotelID", 5, "exampleSourceLink");
+            new DatabaseConnection().updateHotelImage(imageIDToUpdate, updatedHotelImage);
+
+            // Test getting the updated hotel image
+            HotelImages retrievedHotelImage = new DatabaseConnection().getHotelImage(imageIDToUpdate);
+            System.out.println("Updated Hotel Image Details:");
+            System.out.println("Image ID: " + retrievedHotelImage.getImageID());
+            System.out.println("Hotel ID: " + retrievedHotelImage.getHotelID());
+            System.out.println("Grade: " + retrievedHotelImage.getGrade());
+            System.out.println("Source Link: " + retrievedHotelImage.getSourceLink());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
