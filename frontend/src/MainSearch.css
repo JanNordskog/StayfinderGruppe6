@@ -1,5 +1,3 @@
-/* MainSearch.module.css */
-
 .MainSearch {
     display: flex;
     flex-direction: column;
@@ -7,15 +5,43 @@
     justify-content: center;
     padding: 20px;
     height: 800px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .MainItems {
-    /* Your specific styles for MainItems */
+    text-align: center;
 }
 
 .MainItems form {
     display: flex;
     gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap; /* Wrap items when necessary */
+}
+
+.MainItems h1 {
+    color: white;
+    font-size: 50px;
+    margin: 0;
+    padding: 1rem;
+    max-width: 90%;
+}
+
+/* Set uniform height and width for all form elements */
+.MainItems input[type="text"],
+.MainItems select,
+.MainItems .DateRangePicker, /* Replace with actual date range picker selector */
+.Søk button {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    padding: 10px;
+    height: 42px; /* Adjusted height */
+    width: 200px; /* Adjusted width */
+    box-sizing: border-box;
+    flex: none; /* Prevent flexing to fit content */
 }
 
 .Søk button {
@@ -24,59 +50,33 @@
     border: none;
     cursor: pointer;
     border-radius: .5rem;
-    height: 40px;
-    padding: 0.875rem 1rem;
     transition: 0.5s linear;
+    padding: 10px 15px; /* Adjusted padding */
 }
 
 .Søk button:hover {
     border-radius: 1.0rem;
 }
 
-.MainItems input[type="text"],
-.MainItems select {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    width: 250px;
-   
+@media (max-width: 768px) {
+    .MainItems form {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .MainItems input[type="text"],
+    .MainItems select,
+    .MainItems .DateRangePicker, /* Replace with actual date range picker selector */
+    .Søk button {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    .MainItems h1 {
+        font-size: 2rem; /* Adjust font size */
+    }
 }
 
-.MainItems input[type="number"]::-webkit-inner-spin-button,
-.MainItems input[type="number"]::-webkit-outer-spin-button{
-    -webkit-appearance: none;
-}
-
-.MainItems input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    height: 35px;
-}
-
-.MainItems input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-.MainItems h1 {
-    color: white;
-    font-family: "Main";
-    width: 900px;
-    font-size: 50px;
-    margin-left: -250px; 
-    margin-top: -200px;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-}
-
-
-
-.MainSearch {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+@media (max-width: 480px) {
+    .MainItems h1 {
+        font-size: 1.5rem; /* Further adjust font size */
+    }
 }
