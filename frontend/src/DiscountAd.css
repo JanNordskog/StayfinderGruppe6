@@ -1,49 +1,82 @@
-.Background{
-    
+.Background {
     width: 100%;
     height: 700px;
     background-image: url('http://localhost:8080/api/get/image/Discountbackground.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    display: flex; 
-    align-items: center; 
-    flex-direction: column; 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     margin-top: 80px;
-
 }
-
-
-
 
 .Background h1 {
     font-family: Arial, sans-serif;
-    font-size:70px;
+    font-size: 70px;
     font-weight: bold;
-    color: white; 
+    color: white;
     margin-bottom: 20px;
     text-align: left;
 }
 
-
 .Background p {
     font-family: Arial, sans-serif;
     font-size: 22px;
-    color: lightgrey; 
-    line-height: 1.5; 
+    color: lightgrey;
+    line-height: 1.5;
     margin-bottom: 10px;
 }
 
 .Background ul {
-    list-style-type: none; 
-    padding: 0; 
+    list-style-type: none;
+    padding: 0;
     width: 1000px;
     margin-top: 100px;
-
-   
 }
-
 
 .Background li {
-    margin-bottom: 80px; 
+    margin-bottom: 80px;
 }
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+    .Background {
+        height: auto;
+        padding: 40px 20px;
+        margin-top: 40px;
+    }
+
+    .Background h1 {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .Background p {
+        font-size: 18px;
+    }
+
+    .Background ul {
+        width: auto;
+        padding: 0 20px;
+        margin-top: 50px;
+    }
+
+    .Background li {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Background h1 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .Background p {
+        font-size: 16px;
+    }
+
+
+}
+
