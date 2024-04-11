@@ -341,7 +341,12 @@ public class DatabaseConnection {
     public List<Listing> getListingsByDestinationAndDates(String destination, LocalDate arrivalDate,
             LocalDate departureDate) throws SQLException {
         List<Listing> listings = new ArrayList<>();
-        String query = "SELECT l.listingID, l.hotelID, h.name AS hotelName, h.address AS hotelAddress, h.roomTypeAvailable, h.extraFeatures, l.agencyID, a.name AS agencyName, l.arrivalDate, l.departureDate, l.price, i.sourceLink AS imageLink FROM listing l JOIN hotels h ON l.hotelID = h.hotelID JOIN agencies a ON l.agencyID = a.agencyID JOIN hotelimages i ON l.hotelID = i.hotelID WHERE (h.address LIKE ? OR h.name LIKE ?) AND l.arrivalDate <= ? AND l.departureDate >= ?";
+        String query = "SELECT l.listingID, l.hotelID, h.name AS hotelName, h.address AS hotelAddress, " +
+            "h.roomTypeAvailable, h.extraFeatures, l.agencyID, a.name AS agencyName, l.arrivalDate, " +
+            "l.departureDate, l.price, i.sourceLink AS imageLink FROM listing l JOIN hotels h ON " +
+            "l.hotelID = h.hotelID JOIN agencies a ON l.agencyID = a.agencyID JOIN hotelimages i ON " +
+            "l.hotelID = i.hotelID WHERE (h.address LIKE ? OR h.name LIKE ?) AND l.arrivalDate " +
+            "<= ? AND l.departureDate >= ?";
 
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, "%" + destination + "%");
@@ -374,5 +379,48 @@ public class DatabaseConnection {
         }
         return listings;
     }
+
+    public List<Listing> getListingsByHotelExtraFeatures(String extraFeaturesFilter) {
+        List<Listing> filteredListings = new ArrayList<>();
+        String query = "SELECT l.*, h.name AS hotelName, h.address AS hotelAddress, h.roomTypeAvailable, h.extraFeatures, " +
+            "a.name AS agencyName, i.sourceLink AS imageLink " +
+            "FROM listing l " +
+            "JOIN hotels h ON l.hotelID = h.hotelID " +
+            "JOIN agencies a ON l.agencyID = a.agencyID " +
+            "JOIN hotelimages i ON l.hotelID = i.hotelID " +
+            "WHERE h.extraFeatures LIKE ?";
+
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            // Set the parameter in the query to match the extra features filter
+            pst.setString(1, "%" + extraFeaturesFilter + "%");
+
+            try (ResultSet result = pst.executeQuery()) {
+                while (result.next()) {
+                    String listingID = result.getString("listingID");
+                    String hotelID = result.getString("hotelID");
+                    String hotelName = result.getString("hotelName");
+                    String hotelAddress = result.getString("hotelAddress");
+                    String roomTypeAvailable = result.getString("roomTypeAvailable");
+                    String extraFeatures = result.getString("extraFeatures");
+                    String agencyID = result.getString("agencyID");
+                    String agencyName = result.getString("agencyName");
+                    Date arrivalDate = result.getDate("arrivalDate");
+                    Date departureDate = result.getDate("departureDate");
+                    double price = result.getDouble("price");
+                    String imageLink = result.getString("imageLink");
+
+                    Listing listing = new Listing(listingID, hotelID, hotelName, hotelAddress, roomTypeAvailable,
+                        extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price, imageLink);
+                    filteredListings.add(listing);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // In real application, consider better exception handling
+        }
+
+        return filteredListings;
+    }
+
 
 }

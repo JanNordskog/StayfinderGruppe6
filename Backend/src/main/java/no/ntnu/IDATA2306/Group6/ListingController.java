@@ -41,6 +41,22 @@ public class ListingController {
         }
     }
 
+    @GetMapping("/filter/byExtraFeatures")
+    public ResponseEntity<List<Listing>> getListingsByHotelExtraFeatures(@RequestParam String extraFeatures) {
+        try {
+            DatabaseConnection dbConnection = new DatabaseConnection();
+            List<Listing> filteredListings = dbConnection.getListingsByHotelExtraFeatures(extraFeatures);
+            if (filteredListings != null && !filteredListings.isEmpty()) {
+                return ResponseEntity.ok(filteredListings);
+            } else {
+                return ResponseEntity.noContent().build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<?> createListing(@RequestBody Listing newListing) {
         try {
