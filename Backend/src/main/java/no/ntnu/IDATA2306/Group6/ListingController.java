@@ -26,14 +26,23 @@ public class ListingController {
 
     @GetMapping(params = { "destination", "arrivalDate", "departureDate" })
     public ResponseEntity<List<Listing>> getListingsByDestinationAndDates(
-
             @RequestParam String destination,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate arrivalDate,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate) {
         try {
-            System.out.println(departureDate + destination + arrivalDate);
-            List<Listing> listings = new DatabaseConnection().getListingsByDestinationAndDates(destination, arrivalDate,
-                    departureDate);
+            LocalDate today = LocalDate.now();
+            List<Listing> listings;
+
+            // Check if both arrivalDate and departureDate are today
+            if (arrivalDate.equals(today) && departureDate.equals(today)) {
+                // Fetch listings without applying date filters, assuming the method exists
+                listings = new DatabaseConnection().getListingsByDestination(destination);
+            } else {
+                // Fetch listings with date filters
+                listings = new DatabaseConnection().getListingsByDestinationAndDates(destination, arrivalDate,
+                        departureDate);
+            }
+
             return ResponseEntity.ok(listings);
         } catch (SQLException e) {
             e.printStackTrace();
