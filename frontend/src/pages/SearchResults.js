@@ -1,11 +1,13 @@
+// SearchResults.js
 import React from "react";
 import { useLocation } from "react-router-dom";
-import "./SearchResults.css"; // Make sure this is the correct path to your CSS file
-import Footer from "../Footer";
+import "./SearchResults.css"; // Ensure this path matches your file structure
+import Footer from "../Footer"; // Adjust the import path as needed
+import SearchBar from "../SearchBar"; // Adjust the import path as needed
 
 function SearchResults() {
   const location = useLocation();
-  const { data } = location.state || { data: [] };
+  const { data } = location.state || { data: [] }; // Ensure you're handling the state correctly based on your routing and state management
 
   const handleBooking = (hotelName) => {
     // Implement your booking logic or navigation here
@@ -14,8 +16,12 @@ function SearchResults() {
 
   return (
     <div className="Search">
+      <div className="search-bar-container">
+        <SearchBar />
+      </div>
+
       <div className="SearchResults">
-        <h1>Here is the search results:</h1>
+        <h1>Here are the search results:</h1>
         <div className="listings-grid">
           {data.length > 0 ? (
             data.map((item, index) => (
@@ -49,7 +55,6 @@ function SearchResults() {
                 <h2 className="price">
                   <strong>Price:</strong> ${item.price}
                 </h2>
-                {/* Book button */}
                 <button
                   className="book-button"
                   onClick={() => handleBooking(item.hotelName)}

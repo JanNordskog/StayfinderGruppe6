@@ -1,12 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
   return (
     <div className="Footer">
       <div className="section left-section">
-        <img src="http://localhost:8080/api/get/image/Logo.png" alt="Left Image" />
+        <img
+          src="http://localhost:8080/api/get/image/Logo.png"
+          alt="Left Image"
+        />
         <h1></h1>
         <p>Medlemskapet du har lett lenge etter.</p>
         <form>
@@ -16,7 +19,10 @@ const Footer = () => {
         </form>
       </div>
       <div className="section right-section">
-        <img src="http://localhost:8080/api/get/image/Logo.png" alt="Right Image" />
+        <img
+          src="http://localhost:8080/api/get/image/Logo.png"
+          alt="Right Image"
+        />
         <h2>Support</h2>
         <ul>
           <li>
