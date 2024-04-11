@@ -1,5 +1,5 @@
 // SearchResults.js
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./SearchResults.css"; // Ensure this path matches your file structure
 import Footer from "../Footer"; // Adjust the import path as needed
@@ -8,6 +8,10 @@ import SearchBar from "../SearchBar"; // Adjust the import path as needed
 function SearchResults() {
   const location = useLocation();
   const { data } = location.state || { data: [] }; // Ensure you're handling the state correctly based on your routing and state management
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleBooking = (hotelName) => {
     // Implement your booking logic or navigation here
