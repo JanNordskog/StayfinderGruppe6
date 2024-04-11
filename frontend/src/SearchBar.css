@@ -1,0 +1,71 @@
+/* SearchBar.css */
+.MainItems {
+  text-align: center;
+}
+
+.MainItems form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap; /* Wrap items when necessary */
+}
+
+.MainItems h1 {
+  color: white;
+  font-size: 50px;
+  margin: 0;
+  padding: 1rem;
+  max-width: 90%;
+  text-align: left;
+}
+
+.MainItems input[type="text"],
+.MainItems select,
+.MainItems .DateRangePicker, /* Replace with actual date range picker selector */
+.Søk button {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  padding: 10px;
+  height: 42px;
+  width: 200px;
+  box-sizing: border-box;
+  flex: none; /* Prevent flexing to fit content */
+}
+
+.Søk button {
+  background-color: #f9d9d8;
+  color: #5a0032;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: 0.5s linear;
+  padding: 10px 15px;
+}
+
+.Søk button:hover {
+  border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+  .MainItems form {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .MainItems input[type="text"],
+  .MainItems select,
+  .MainItems .DateRangePicker, /* Replace with actual date range picker selector */
+  .Søk button {
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  .MainItems h1 {
+    font-size: 2rem; /* Adjust font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .MainItems h1 {
+    font-size: 1.5rem; /* Further adjust font size */
+  }
+}

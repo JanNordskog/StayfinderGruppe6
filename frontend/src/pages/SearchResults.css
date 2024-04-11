@@ -70,3 +70,9 @@
 .book-button:hover {
   border-radius: 1rem;
 }
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Ensure it takes the full width */
+  padding: 20px 0; /* Add some padding above and below */
+}
