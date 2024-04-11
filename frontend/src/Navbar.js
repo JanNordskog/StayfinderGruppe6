@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"; // Ensure axios is imported if you plan to fetch data
 import "./Navbar.css";
 
 function Navbar() {
   const [isActive, setIsActive] = useState(false);
+  const navigate = useNavigate(); // Use the useNavigate hook
 
   const toggleMenu = () => {
     setIsActive(!isActive);
+  };
+
+  // Function to handle fetching all listings or with empty criteria
+  const handleAllListings = async () => {
+    try {
+      // You might want to modify this request to suit how your backend handles fetching all listings
+      const response = await axios.get("http://localhost:8080/listings");
+      navigate("/searchResults", { state: { data: response.data } });
+    } catch (error) {
+      console.error("Failed to fetch listings:", error);
+    }
   };
 
   return (
@@ -30,9 +43,10 @@ function Navbar() {
         onClick={() => setIsActive(false)}
       >
         <li>
-          <Link className="NavbarLink" to="/hotellDestinasjoner">
+          {/* Update this Link to use onClick handler */}
+          <a className="NavbarLink" href="#!" onClick={handleAllListings}>
             Hotell & destinasjoner
-          </Link>
+          </a>
         </li>
         <li>
           <Link className="NavbarLink" to="/UtvalgteTilbud">
