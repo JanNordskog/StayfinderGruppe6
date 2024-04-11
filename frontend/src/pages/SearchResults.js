@@ -45,11 +45,11 @@ function SearchResults() {
                   <strong>Agency:</strong> {item.agencyName}
                 </p>
                 <p>
-                  <strong>Arrival:</strong>{" "}
+                  <strong>Opens in:</strong>{" "}
                   {new Date(item.arrivalDate).toLocaleDateString()}
                 </p>
                 <p>
-                  <strong>Departure:</strong>{" "}
+                  <strong>Closes in:</strong>{" "}
                   {new Date(item.departureDate).toLocaleDateString()}
                 </p>
                 <h2 className="price">
