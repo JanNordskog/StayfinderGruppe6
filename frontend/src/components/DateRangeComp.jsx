@@ -14,8 +14,40 @@ const DateRangeComp = ({ range, setRange }) => {
 
   const handleSelect = (ranges) => {
     setRange([ranges.selection]);
-    setOpen(false); // Optionally close the picker after selection
+    //setOpen(false); // Close picker after selection
   };
+
+  // When opening the date picker, initialize with today's date if no date has been selected
+  const handleClick = () => {
+    if (!range[0].startDate || !range[0].endDate) {
+      setRange([
+        {
+          startDate: new Date(),
+          endDate: new Date(),
+          key: "selection",
+        },
+      ]);
+    }
+    setOpen(!open);
+  };
+
+  // Adjust the input value to display dates only if they are selected
+  const displayValue =
+    range[0].startDate && range[0].endDate
+      ? `Fra ${format(range[0].startDate, "dd/MM/yyyy")} Til ${format(
+          range[0].endDate,
+          "dd/MM/yyyy"
+        )}`
+      : "";
+
+  // Use handleClick for the onClick handler
+  <input
+    value={displayValue}
+    readOnly
+    className="inputBox"
+    placeholder="Datoer"
+    onClick={handleClick}
+  />;
 
   return (
     <div className="calendarWrap">
