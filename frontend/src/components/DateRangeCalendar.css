@@ -1,12 +1,12 @@
 input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    height: 20px;
-    width: 260px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  height: 20px;
+  width: 260px;
 }
 
 .DateRange {
-    position: absolute;
-    margin-top: 2px;
+  position: absolute;
+  margin-top: 2px;
 }

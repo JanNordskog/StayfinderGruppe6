@@ -1,6 +1,7 @@
 package no.ntnu.IDATA2306.Group6;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -333,6 +334,43 @@ public class DatabaseConnection {
                         extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price, imageLink);
                 listings.add(listing);
             }
+        }
+        return listings;
+    }
+
+    public List<Listing> getListingsByDestinationAndDates(String destination, LocalDate arrivalDate,
+            LocalDate departureDate) throws SQLException {
+        List<Listing> listings = new ArrayList<>();
+        String query = "SELECT l.listingID, l.hotelID, h.name AS hotelName, h.address AS hotelAddress, h.roomTypeAvailable, h.extraFeatures, l.agencyID, a.name AS agencyName, l.arrivalDate, l.departureDate, l.price, i.sourceLink AS imageLink FROM listing l JOIN hotels h ON l.hotelID = h.hotelID JOIN agencies a ON l.agencyID = a.agencyID JOIN hotelimages i ON l.hotelID = i.hotelID WHERE (h.address LIKE ? OR h.name LIKE ?) AND l.arrivalDate <= ? AND l.departureDate >= ?";
+
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, "%" + destination + "%");
+            pst.setString(2, "%" + destination + "%"); // Assumes destination might match hotelName or address
+            pst.setDate(3, java.sql.Date.valueOf(arrivalDate)); // Assumes arrivalDate is inclusive
+            pst.setDate(4, java.sql.Date.valueOf(departureDate)); // Assumes departureDate is inclusive
+
+            ResultSet result = pst.executeQuery();
+
+            while (result.next()) {
+                String listingID = result.getString("listingID");
+                String hotelID = result.getString("hotelID");
+                String hotelName = result.getString("hotelName");
+                String hotelAddress = result.getString("hotelAddress");
+                String roomTypeAvailable = result.getString("roomTypeAvailable");
+                String extraFeatures = result.getString("extraFeatures");
+                String agencyID = result.getString("agencyID");
+                String agencyName = result.getString("agencyName");
+                Date listingArrivalDate = result.getDate("arrivalDate"); // Renamed for clarity
+                Date listingDepartureDate = result.getDate("departureDate"); // Renamed for clarity
+                double price = result.getDouble("price");
+                String imageLink = result.getString("imageLink");
+
+                Listing listing = new Listing(listingID, hotelID, hotelName, hotelAddress, roomTypeAvailable,
+                        extraFeatures, agencyID, agencyName, listingArrivalDate, listingDepartureDate, price,
+                        imageLink);
+                listings.add(listing);
+            }
+
         }
         return listings;
     }

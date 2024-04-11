@@ -1,9 +1,11 @@
 package no.ntnu.IDATA2306.Group6;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -15,7 +17,6 @@ public class ListingController {
     public ResponseEntity<List<Listing>> getAllListings() {
         try {
             List<Listing> listings = new DatabaseConnection().getListings();
-            System.out.println(listings);
             return ResponseEntity.ok(listings);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -23,11 +24,16 @@ public class ListingController {
         }
     }
 
-    @GetMapping(params = "destination")
-    public ResponseEntity<List<Listing>> getListingsByDestination(@RequestParam String destination) {
+    @GetMapping(params = { "destination", "arrivalDate", "departureDate" })
+    public ResponseEntity<List<Listing>> getListingsByDestinationAndDates(
+
+            @RequestParam String destination,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate arrivalDate,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate) {
         try {
-            System.out.println(destination);
-            List<Listing> listings = new DatabaseConnection().getListingsByDestination(destination);
+            System.out.println(departureDate + destination + arrivalDate);
+            List<Listing> listings = new DatabaseConnection().getListingsByDestinationAndDates(destination, arrivalDate,
+                    departureDate);
             return ResponseEntity.ok(listings);
         } catch (SQLException e) {
             e.printStackTrace();

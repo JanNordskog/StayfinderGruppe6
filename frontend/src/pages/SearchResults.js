@@ -21,7 +21,7 @@ function SearchResults() {
       </div>
 
       <div className="SearchResults">
-        <h1>Here are the search results:</h1>
+        <h1></h1>
         <div className="listings-grid">
           {data.length > 0 ? (
             data.map((item, index) => (
