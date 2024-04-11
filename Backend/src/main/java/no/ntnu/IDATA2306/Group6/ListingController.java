@@ -11,21 +11,30 @@ import java.util.List;
 @RequestMapping("/listings")
 public class ListingController {
 
-
-
     @GetMapping
     public ResponseEntity<List<Listing>> getAllListings() {
         try {
             List<Listing> listings = new DatabaseConnection().getListings();
             System.out.println(listings);
-            return ResponseEntity.ok(listings); 
+            return ResponseEntity.ok(listings);
         } catch (SQLException e) {
             e.printStackTrace();
-            return ResponseEntity.internalServerError().build(); 
+            return ResponseEntity.internalServerError().build();
         }
     }
 
-   
+    @GetMapping(params = "destination")
+    public ResponseEntity<List<Listing>> getListingsByDestination(@RequestParam String destination) {
+        try {
+            System.out.println(destination);
+            List<Listing> listings = new DatabaseConnection().getListingsByDestination(destination);
+            return ResponseEntity.ok(listings);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<?> createListing(@RequestBody Listing newListing) {
         try {
@@ -38,12 +47,11 @@ public class ListingController {
         }
     }
 
-    
     @GetMapping("/{listingId}")
     public ResponseEntity<Listing> getListing(@PathVariable String listingId) {
         try {
             DatabaseConnection dbConnection = new DatabaseConnection();
-            Listing listing = dbConnection.getListing(listingId); 
+            Listing listing = dbConnection.getListing(listingId);
             if (listing != null) {
                 return ResponseEntity.ok(listing);
             } else {
@@ -55,7 +63,6 @@ public class ListingController {
         }
     }
 
-  
     @PutMapping("/{listingId}")
     public ResponseEntity<?> updateListing(@PathVariable String listingId, @RequestBody Listing updatedListing) {
         try {
@@ -72,12 +79,11 @@ public class ListingController {
         }
     }
 
-  
     @DeleteMapping("/{listingId}")
     public ResponseEntity<Void> deleteListing(@PathVariable String listingId) {
         try {
             DatabaseConnection dbConnection = new DatabaseConnection();
-            boolean deleted = dbConnection.deleteListing(listingId); 
+            boolean deleted = dbConnection.deleteListing(listingId);
             if (deleted) {
                 return ResponseEntity.noContent().build();
             } else {
@@ -88,8 +94,5 @@ public class ListingController {
             return ResponseEntity.internalServerError().build();
         }
     }
-
-    
-
 
 }
