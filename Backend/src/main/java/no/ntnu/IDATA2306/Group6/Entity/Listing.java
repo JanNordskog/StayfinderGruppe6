@@ -1,20 +1,53 @@
 package no.ntnu.IDATA2306.Group6.Entity;
 
+import jakarta.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "listings")
 public class Listing {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "listingID")
     private String listingID;
+
+    @Column(name = "hotelID")
     private String hotelID;
+
+    @Column(name = "hotelName")
     private String hotelName;
+
+    @Column(name = "hotelAddress")
     private String hotelAddress;
+
+    @Column(name = "roomTypeAvailable")
     private String roomTypeAvailable;
+
+    @Column(name = "extraFeatures")
     private String extraFeatures;
+
+    @Column(name = "agencyID")
     private String agencyID;
+
+    @Column(name = "agencyName")
     private String agencyName;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "arrivalDate")
     private Date arrivalDate;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "departureDate")
     private Date departureDate;
+
+    @Column(name = "price")
     private double price;
-    private String imageLink; // Added imageLink variable
+
+    @Column(name = "imageLink")
+    private String imageLink;
+
+    public Listing() {
+    }
 
     public Listing(String listingID, String hotelID, String hotelName, String hotelAddress, String roomTypeAvailable,
             String extraFeatures, String agencyID, String agencyName, Date arrivalDate, Date departureDate,

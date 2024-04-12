@@ -1,14 +1,29 @@
 package no.ntnu.IDATA2306.Group6.Entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "hotels")
+
 public class Hotel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "hotelID")
     private String hotelID;
+
     private String name;
+
     private String address;
+
     private String website;
+
     private String phoneNumber;
+
     private String locationType;
+
     private String roomTypeAvailable;
+
     private String extraFeatures;
 
     public Hotel(String hotelId, String name, String address, String website,
