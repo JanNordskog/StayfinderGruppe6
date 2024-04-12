@@ -14,18 +14,4 @@ import java.util.List;
 @RequestMapping("/extra")
 public class extrafeatureController {
 
-    @GetMapping(params = "extraFeatures")
-    public ResponseEntity<List<Listing>> getListingsByExtraFeatures(@RequestParam String extraFeatures) {
-        try {
-            // Assuming you have a method in DatabaseConnection that fetches listings by
-            // extra features
-            List<Listing> listings = new DatabaseConnection().getListingsByHotelExtraFeatures(extraFeatures);
-
-            return ResponseEntity.ok(listings);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
-        }
-    }
-
 }

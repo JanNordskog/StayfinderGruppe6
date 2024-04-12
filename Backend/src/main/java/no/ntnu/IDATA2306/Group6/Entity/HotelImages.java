@@ -1,35 +1,39 @@
 package no.ntnu.IDATA2306.Group6.Entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "hotel_images")
+@Table(name = "hotelimages")
 public class HotelImages {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "imageID")
     private String imageID;
 
-    @Column(name = "hotelID")
-    private String hotelID;
+    @NotNull
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "hotelID", referencedColumnName = "hotelID")
+    private Hotel hotel;
 
-    @Column(name = "grade")
     private int grade;
 
-    @Column(name = "sourceLink")
     private String sourceLink;
 
     public HotelImages() {
     }
 
-    public HotelImages(String imageID, String hotelID, int grade, String sourceLink) {
+    public HotelImages(String imageID, Hotel hotel, int grade, String sourceLink) {
         this.imageID = imageID;
-        this.hotelID = hotelID;
+        this.hotel = hotel;
         this.grade = grade;
         this.sourceLink = sourceLink;
     }
@@ -43,11 +47,7 @@ public class HotelImages {
     }
 
     public String getHotelID() {
-        return hotelID;
-    }
-
-    public void setHotelID(String hotelID) {
-        this.hotelID = hotelID;
+        return hotel.getHotelID();
     }
 
     public int getGrade() {
@@ -70,7 +70,7 @@ public class HotelImages {
     public String toString() {
         return "HotelImages{" +
                 "imageID='" + imageID + '\'' +
-                ", hotelID='" + hotelID + '\'' +
+                ", hotelID='" + hotel + '\'' +
                 ", grade=" + grade +
                 ", sourceLink='" + sourceLink + '\'' +
                 '}';

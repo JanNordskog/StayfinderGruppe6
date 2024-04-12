@@ -1,5 +1,7 @@
 package no.ntnu.IDATA2306.Group6.Entity;
 
+import java.security.PublicKey;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -25,6 +27,9 @@ public class Agency {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.website = website;
+    }
+
+    public Agency() {
     }
 
     public String getAgencyID() {

@@ -54,7 +54,7 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link className="NavbarLink" to="/hotel">
+          <Link className="NavbarLink" to="/hotelPage">
             Om oss
           </Link>
         </li>

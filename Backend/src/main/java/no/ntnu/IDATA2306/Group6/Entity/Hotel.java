@@ -26,6 +26,9 @@ public class Hotel {
 
     private String extraFeatures;
 
+    public Hotel() {
+    }
+
     public Hotel(String hotelId, String name, String address, String website,
             String phoneNumber, String locationType, String roomTypeAvailable, String extraFeatures) {
         this.hotelID = hotelId;
