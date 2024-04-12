@@ -5,6 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.ntnu.IDATA2306.Group6.Entity.Agency;
+import no.ntnu.IDATA2306.Group6.Entity.Hotel;
+import no.ntnu.IDATA2306.Group6.Entity.HotelImages;
+import no.ntnu.IDATA2306.Group6.Entity.Listing;
+import no.ntnu.IDATA2306.Group6.Entity.User;
+
 public class DatabaseConnection {
 
     private String dbUrl = "jdbc:mysql://localhost:3306/stayfinder";
@@ -342,11 +348,11 @@ public class DatabaseConnection {
             LocalDate departureDate) throws SQLException {
         List<Listing> listings = new ArrayList<>();
         String query = "SELECT l.listingID, l.hotelID, h.name AS hotelName, h.address AS hotelAddress, " +
-            "h.roomTypeAvailable, h.extraFeatures, l.agencyID, a.name AS agencyName, l.arrivalDate, " +
-            "l.departureDate, l.price, i.sourceLink AS imageLink FROM listing l JOIN hotels h ON " +
-            "l.hotelID = h.hotelID JOIN agencies a ON l.agencyID = a.agencyID JOIN hotelimages i ON " +
-            "l.hotelID = i.hotelID WHERE (h.address LIKE ? OR h.name LIKE ?) AND l.arrivalDate " +
-            "<= ? AND l.departureDate >= ?";
+                "h.roomTypeAvailable, h.extraFeatures, l.agencyID, a.name AS agencyName, l.arrivalDate, " +
+                "l.departureDate, l.price, i.sourceLink AS imageLink FROM listing l JOIN hotels h ON " +
+                "l.hotelID = h.hotelID JOIN agencies a ON l.agencyID = a.agencyID JOIN hotelimages i ON " +
+                "l.hotelID = i.hotelID WHERE (h.address LIKE ? OR h.name LIKE ?) AND l.arrivalDate " +
+                "<= ? AND l.departureDate >= ?";
 
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, "%" + destination + "%");
@@ -382,13 +388,14 @@ public class DatabaseConnection {
 
     public List<Listing> getListingsByHotelExtraFeatures(String extraFeaturesFilter) {
         List<Listing> filteredListings = new ArrayList<>();
-        String query = "SELECT l.*, h.name AS hotelName, h.address AS hotelAddress, h.roomTypeAvailable, h.extraFeatures, " +
-            "a.name AS agencyName, i.sourceLink AS imageLink " +
-            "FROM listing l " +
-            "JOIN hotels h ON l.hotelID = h.hotelID " +
-            "JOIN agencies a ON l.agencyID = a.agencyID " +
-            "JOIN hotelimages i ON l.hotelID = i.hotelID " +
-            "WHERE h.extraFeatures LIKE ?";
+        String query = "SELECT l.*, h.name AS hotelName, h.address AS hotelAddress, h.roomTypeAvailable, h.extraFeatures, "
+                +
+                "a.name AS agencyName, i.sourceLink AS imageLink " +
+                "FROM listing l " +
+                "JOIN hotels h ON l.hotelID = h.hotelID " +
+                "JOIN agencies a ON l.agencyID = a.agencyID " +
+                "JOIN hotelimages i ON l.hotelID = i.hotelID " +
+                "WHERE h.extraFeatures LIKE ?";
 
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             // Set the parameter in the query to match the extra features filter
@@ -410,7 +417,7 @@ public class DatabaseConnection {
                     String imageLink = result.getString("imageLink");
 
                     Listing listing = new Listing(listingID, hotelID, hotelName, hotelAddress, roomTypeAvailable,
-                        extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price, imageLink);
+                            extraFeatures, agencyID, agencyName, arrivalDate, departureDate, price, imageLink);
                     filteredListings.add(listing);
                 }
             }
@@ -421,6 +428,5 @@ public class DatabaseConnection {
 
         return filteredListings;
     }
-
 
 }

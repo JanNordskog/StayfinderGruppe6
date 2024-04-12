@@ -1,4 +1,4 @@
-package no.ntnu.IDATA2306.Group6;
+package no.ntnu.IDATA2306.Group6.Entity;
 
 public class Agency {
     private String agencyID;
@@ -7,7 +7,6 @@ public class Agency {
     private String phoneNumber;
     private String website;
 
-  
     public Agency(String agencyID, String name, String email, String phoneNumber, String website) {
         this.agencyID = agencyID;
         this.name = name;
@@ -16,7 +15,6 @@ public class Agency {
         this.website = website;
     }
 
-    
     public String getAgencyID() {
         return agencyID;
     }

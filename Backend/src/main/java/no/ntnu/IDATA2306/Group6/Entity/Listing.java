@@ -1,4 +1,4 @@
-package no.ntnu.IDATA2306.Group6;
+package no.ntnu.IDATA2306.Group6.Entity;
 
 import java.util.Date;
 

@@ -1,8 +1,10 @@
-package no.ntnu.IDATA2306.Group6;
+package no.ntnu.IDATA2306.Group6.Controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import no.ntnu.IDATA2306.Group6.Entity.Hotel;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,7 +14,6 @@ import java.util.Map;
 @CrossOrigin
 @RequestMapping("/hotels")
 public class HotelController {
-
 
     private final Map<String, Hotel> hotels = new HashMap<>();
 

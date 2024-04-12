@@ -1,10 +1,10 @@
-package no.ntnu.IDATA2306.Group6;
+package no.ntnu.IDATA2306.Group6.Entity;
 
 public class Hotel {
 
     private String hotelID;
     private String name;
-    private String address ;
+    private String address;
     private String website;
     private String phoneNumber;
     private String locationType;
@@ -12,7 +12,7 @@ public class Hotel {
     private String extraFeatures;
 
     public Hotel(String hotelId, String name, String address, String website,
-    String phoneNumber, String locationType, String roomTypeAvailable, String extraFeatures ){
+            String phoneNumber, String locationType, String roomTypeAvailable, String extraFeatures) {
         this.hotelID = hotelId;
         this.name = name;
         this.address = address;
@@ -23,7 +23,6 @@ public class Hotel {
         this.extraFeatures = extraFeatures;
     }
 
-    
     public String getHotelID() {
         return hotelID;
     }
@@ -56,6 +55,4 @@ public class Hotel {
         return extraFeatures;
     }
 
-
-    
 }
