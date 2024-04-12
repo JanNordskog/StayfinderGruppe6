@@ -1,44 +1,72 @@
+/* Main container for the navbar, with central alignment and hidden overflow */
 .IconNavbar {
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    margin-top: 20px;
-    background-color: white;
-    margin-bottom: 20px;
-  }
-  
-  .IconNavbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-    width: 900px;
-  }
-  
-  .IconNavbar li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .NavbarLink {
-    color: black;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 10px;
-  }
-  
-  .NavbarLink:hover {
+  display: flex;
+  justify-content: center;
+  overflow: hidden; /* Arrows will control the scrolling */
+  position: relative; /* Needed to position arrows */
+  margin-top: 20px;
+  background-color: white;
+  margin-bottom: 20px;
+}
 
-  }
-  
-  .NavbarLink img {
-    height: 20px;
-    width: 20px;
-    margin-bottom: 10px;
-  }
-  
+/* List settings for horizontal layout and overflow control */
+.IconNavbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start; /* Changed to flex-start to align items to the left */
+  width: 900px;
+  overflow-x: auto; /* Enables horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS devices */
+  scroll-behavior: smooth; /* Smooth scrolling when using scrollIntoView */
+}
+
+/* Style for list items, aligning items centrally in a column */
+.IconNavbar li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Style links with black color and no text decoration, center alignment */
+.NavbarLink {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+}
+
+/* Hover effect for links */
+.NavbarLink:hover {
+  color: #555;
+}
+
+/* Image styling within links */
+.NavbarLink img {
+  height: 20px;
+  width: 20px;
+  margin-bottom: 10px;
+}
+
+/* Arrow styling with adjusted size */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1000;
+  width: 20px; /* Adjusted width */
+  height: 20px; /* Adjusted height */
+}
+
+.left-arrow {
+  left: 300px;
+}
+
+.right-arrow {
+  right: 300px;
+}
