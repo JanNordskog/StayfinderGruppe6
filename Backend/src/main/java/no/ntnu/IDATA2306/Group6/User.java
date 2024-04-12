@@ -19,7 +19,7 @@ public final class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.hashedPassword = hashPassword(); 
+        this.hashedPassword = hashPassword(password);
         this.address = address;
         this.gender = gender;
         this.phone = phone;
@@ -90,8 +90,14 @@ public final class User {
     }
 
    
-    private String hashPassword() {
-        return encoder.encode(this.password);
+    private String hashPassword(String password)
+    {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+        //String result = encoder.encode(password;
+        //assertTrue(encoder.matches("myPassword", result));
+        String result = encoder.encode(password);
+        System.out.println(result);
+        return result;
     }
 
     public boolean matchPassword(String rawPassword) {

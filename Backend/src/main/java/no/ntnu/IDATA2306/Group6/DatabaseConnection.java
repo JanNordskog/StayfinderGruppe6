@@ -1,5 +1,7 @@
 package no.ntnu.IDATA2306.Group6;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,7 +51,7 @@ public class DatabaseConnection {
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, name);
             pst.setString(2, email);
-            pst.setString(3, password);
+            pst.setString(3, hashPassword(password));
             pst.setString(4, address);
             pst.setString(5, gender);
             pst.setString(6, phone);
@@ -58,6 +60,18 @@ public class DatabaseConnection {
             pst.executeUpdate();
         }
     }
+
+    
+    private String hashPassword(String password)
+    {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+        //String result = encoder.encode(password;
+        //assertTrue(encoder.matches("myPassword", result));
+        String result = encoder.encode(password);
+        System.out.println(result);
+        return result;
+    }
+
 
     public List<Hotel> getHotels() {
         try {
