@@ -9,13 +9,13 @@
   margin-bottom: 20px;
 }
 
-/* List settings for horizontal layout and overflow control */
+/* List settings for horizontal layout and overflow control, centered */
 .IconNavbar ul {
   list-style-type: none;
-  margin: 0;
+  margin: auto; /* Centers the ul within the navbar */
   padding: 0;
   display: flex;
-  justify-content: flex-start; /* Changed to flex-start to align items to the left */
+  justify-content: flex-start; /* Items are aligned to the start of the ul */
   width: 900px;
   overflow-x: auto; /* Enables horizontal scrolling */
   -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS devices */
