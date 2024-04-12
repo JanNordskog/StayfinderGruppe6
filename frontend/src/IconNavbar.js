@@ -174,11 +174,10 @@ const IconNavbar = () => {
     }
   };
 
-  // JSX for component rendering
+
   return (
       <>
         <nav className="IconNavbar">
-          <img src="http://localhost:8080/api/get/image/Leftarrow.png" className="arrow left-arrow" onClick={() => scroll('left')} alt="Scroll Left" />
           <ul ref={navRef}>
             <li>
               <a className="NavbarLink" onClick={handleNavigateToPool} href="#!">
@@ -253,7 +252,6 @@ const IconNavbar = () => {
               </a>
             </li>
           </ul>
-          <img src="http://localhost:8080/api/get/image/Rightarrow.png" className="arrow right-arrow" onClick={() => scroll('right')} alt="Scroll Right" />
         </nav>
         <hr/>
       </>

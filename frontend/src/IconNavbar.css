@@ -1,36 +1,44 @@
-/* Main container for the navbar, with central alignment and hidden overflow */
+
 .IconNavbar {
   display: flex;
   justify-content: center;
-  overflow: hidden; /* Arrows will control the scrolling */
-  position: relative; /* Needed to position arrows */
-  margin-top: 20px;
+  overflow: visible;
+  position: relative;
+  margin-top: 80px;
   background-color: white;
-  margin-bottom: 20px;
+  margin-bottom: 80px;
+  padding: 0 50px;
 }
 
-/* List settings for horizontal layout and overflow control, centered */
+
 .IconNavbar ul {
-  list-style-type: none;
-  margin: auto; /* Centers the ul within the navbar */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+  align-items: center;
   padding: 0;
-  display: flex;
-  justify-content: flex-start; /* Items are aligned to the start of the ul */
-  width: 900px;
-  overflow-x: auto; /* Enables horizontal scrolling */
-  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS devices */
-  scroll-behavior: smooth; /* Smooth scrolling when using scrollIntoView */
+  margin: 0;
+  width: calc(100% - 100px);
+  overflow: visible;
 }
 
-/* Style for list items, aligning items centrally in a column */
+
 .IconNavbar li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  transition: transform 0.3s;
+  overflow: visible;
 }
 
-/* Style links with black color and no text decoration, center alignment */
+
+.IconNavbar li:hover {
+  transform: scale(1.5);
+  z-index: 10;
+}
+
+
 .NavbarLink {
   color: black;
   text-decoration: none;
@@ -38,35 +46,14 @@
   flex-direction: column;
   align-items: center;
   font-size: 10px;
+  overflow: visible;
 }
 
-/* Hover effect for links */
-.NavbarLink:hover {
-  color: #555;
-}
 
-/* Image styling within links */
 .NavbarLink img {
-  height: 20px;
-  width: 20px;
-  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Arrow styling with adjusted size */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  z-index: 1000;
-  width: 20px; /* Adjusted width */
-  height: 20px; /* Adjusted height */
-}
 
-.left-arrow {
-  left: 300px;
-}
-
-.right-arrow {
-  right: 300px;
-}
