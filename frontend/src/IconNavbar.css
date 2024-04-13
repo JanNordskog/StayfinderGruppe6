@@ -71,25 +71,26 @@
   filter: saturate(0) invert(0.7); /* Desaturate and partially invert icons by default */
 }
 
-.NavbarLink img:hover {
-  filter: invert(95%) sepia(1) hue-rotate(300deg) saturate(30%); /* Apply the light pink tint to icons on hover */
+/* Change icon color to light pink on card hover */
+.IconNavbar li:hover .NavbarLink img {
+  filter: invert(95%) sepia(1) hue-rotate(300deg) saturate(30%); /* Adjusted to match #f9d9d8 */
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for larger screens */
 @media (min-width: 1200px) {
   .IconNavbar ul {
     max-width: 1200px;
     padding: 0 50px;
   }
 }
-
+/* Responsive adjustments for medium sized screens */
 @media (max-width: 1199px) and (min-width: 992px) {
   .IconNavbar ul {
     max-width: 950px;
     padding: 0 30px;
   }
 }
-
+/* Responsive adjustments for tablet screens */
 @media (max-width: 991px) and (min-width: 769px) {
   .IconNavbar ul {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -98,6 +99,7 @@
   }
 }
 
+/* Mobile specific adjustments */
 @media (max-width: 768px) {
   .IconNavbar ul {
     grid-template-columns: repeat(3, 80px);
@@ -106,9 +108,20 @@
     max-width: 100%;
     padding: 0 10px;
   }
+
   .IconNavbar li {
     width: 80px;
     height: 100px;
     padding: 0.2rem;
+  }
+
+  .NavbarLink {
+    justify-content: center;
+    text-align: center; /* Center text alignment specifically for mobile */
+    font-size: 10px;
+  }
+
+  .NavbarLink img {
+    width: 20px;
   }
 }
