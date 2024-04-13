@@ -9,6 +9,7 @@ import no.ntnu.IDATA2306.Group6.DatabaseConnection;
 import no.ntnu.IDATA2306.Group6.Entity.Listing;
 import no.ntnu.IDATA2306.Group6.Repo.ListingRepo;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,49 +25,19 @@ public class ListingController {
     @Autowired
     private ListingRepo listingRepo;
 
+    public ListingController(ListingRepo listingRepo) {
+        this.listingRepo = listingRepo;
+    }
+
     @GetMapping
     public Collection<Listing> getAll() {
-        System.out.println("nudawegrphnmfæmgåpmhsæll");
         return listingRepo.findAll();
     }
 
-    @GetMapping(params = { "destination", "arrivalDate", "departureDate" })
-    public ResponseEntity<List<Listing>> getListingsByDestinationAndDates(
-            @RequestParam String destination,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate arrivalDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate) {
-        LocalDate today = LocalDate.now();
-        List<Listing> listings = new ArrayList<>();
-
-        // Check if both arrivalDate and departureDate are today
-        if (arrivalDate.equals(today) && departureDate.equals(today)) {
-            // Fetch listings without applying date filters, assuming the method exists
-            // listings = new DatabaseConnection().getListingsByDestination(destination);
-        } else {
-            // Fetch listings with date filters
-            // listings = new
-            // DatabaseConnection().getListingsByDestinationAndDates(destination,
-            // arrivalDate,
-            // departureDate);
-        }
-
-        return ResponseEntity.ok(listings);
-    }
-
-    @GetMapping("/filter/byExtraFeatures")
-    public ResponseEntity<List<Listing>> getListingsByHotelExtraFeatures(@RequestParam String extraFeatures) {
-        try {
-            DatabaseConnection dbConnection = new DatabaseConnection();
-            List<Listing> filteredListings = new ArrayList<>(); // dbConnection.getListingsByHotelExtraFeatures(extraFeatures);
-            if (filteredListings != null && !filteredListings.isEmpty()) {
-                return ResponseEntity.ok(filteredListings);
-            } else {
-                return ResponseEntity.noContent().build();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
-        }
+    // This method only gets called when the 'address' parameter is provided
+    @GetMapping(params = "address")
+    public Collection<Listing> getByAddress(@RequestParam String address) {
+        return listingRepo.findByHotelAddress(address);
     }
 
     @PostMapping
