@@ -95,7 +95,7 @@ public class Listing {
     }
 
     public String getImageLink() {
-        return hotelImages.getImageID();
+        return hotelImages.getSourceLink();
     }
 
     @Override

@@ -12,13 +12,13 @@ public class Agency {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "agencyID")
     private String agencyID;
-
+    @Column(name = "name")
     private String name;
-
+    @Column(name = "email")
     private String email;
-
+    @Column(name = "phoneNumber")
     private String phoneNumber;
-
+    @Column(name = "website")
     private String website;
 
     public Agency(String agencyID, String name, String email, String phoneNumber, String website) {

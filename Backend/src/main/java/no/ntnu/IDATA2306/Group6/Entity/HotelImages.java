@@ -23,9 +23,9 @@ public class HotelImages {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "hotelID", referencedColumnName = "hotelID")
     private Hotel hotel;
-
+    @Column(name = "grade")
     private int grade;
-
+    @Column(name = "sourceLink")
     private String sourceLink;
 
     public HotelImages() {

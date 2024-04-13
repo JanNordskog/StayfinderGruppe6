@@ -177,8 +177,7 @@ public class DatabaseConnection {
                 String hotelID = result.getString("hotelID");
                 int grade = result.getInt("grade");
                 String sourceLink = result.getString("sourceLink");
-                HotelImages hotelImage = new HotelImages(imageID, hotelID, grade, sourceLink);
-                hotelImagesList.add(hotelImage);
+
             }
             result.close();
             return hotelImagesList;
@@ -209,7 +208,6 @@ public class DatabaseConnection {
                 int grade = result.getInt("grade");
                 String sourceLink = result.getString("sourceLink");
 
-                return new HotelImages(imageID, hotelID, grade, sourceLink);
             }
             result.close();
         }
