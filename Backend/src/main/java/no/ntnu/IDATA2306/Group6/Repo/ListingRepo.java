@@ -16,4 +16,8 @@ public interface ListingRepo extends JpaRepository<Listing, String> {
         List<Listing> findByDestinationAndDate(@Param("destination") String destination,
                         @Param("arrivalDate") Date arrivalDate, @Param("departureDate") Date departureDate);
 
+        // In your ListingRepo interface
+        @Query("SELECT l FROM Listing l WHERE l.hotel.extraFeatures LIKE %:extraFeatures%")
+        List<Listing> findByHotelExtraFeatures(@Param("extraFeatures") String extraFeatures);
+
 }
