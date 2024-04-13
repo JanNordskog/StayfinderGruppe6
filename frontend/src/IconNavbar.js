@@ -10,9 +10,9 @@ const IconNavbar = () => {
   // Function to handle horizontal scrolling
   const scroll = (direction) => {
     if (direction === 'left') {
-      navRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+      navRef.current.scrollBy({left: -200, behavior: 'smooth'});
     } else {
-      navRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+      navRef.current.scrollBy({left: 200, behavior: 'smooth'});
     }
   };
 
@@ -24,7 +24,7 @@ const IconNavbar = () => {
           extraFeatures: "pool",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -37,7 +37,7 @@ const IconNavbar = () => {
           extraFeatures: "bar",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -50,7 +50,7 @@ const IconNavbar = () => {
           extraFeatures: "spa",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -63,7 +63,7 @@ const IconNavbar = () => {
           extraFeatures: "resort",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -77,7 +77,7 @@ const IconNavbar = () => {
           extraFeatures: "business center",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -90,7 +90,7 @@ const IconNavbar = () => {
           extraFeatures: "fitness center",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -103,7 +103,7 @@ const IconNavbar = () => {
           extraFeatures: "art decor",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -116,7 +116,7 @@ const IconNavbar = () => {
           extraFeatures: "gym",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -129,7 +129,7 @@ const IconNavbar = () => {
           extraFeatures: "rooftop",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -142,7 +142,7 @@ const IconNavbar = () => {
           extraFeatures: "eco-friendly",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -155,7 +155,7 @@ const IconNavbar = () => {
           extraFeatures: "babysitting",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
@@ -168,64 +168,64 @@ const IconNavbar = () => {
           extraFeatures: "dining",
         },
       });
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", {state: {data: response.data}});
     } catch (error) {
       console.error("Failed to fetch listings based on extra features:", error);
     }
   };
 
+  /*<li>
+    <a className="NavbarLink" onClick={handleNavigateToPool} href="#!">
+      <img src="http://localhost:8080/api/get/image/Pool.png" alt="Pool"/>
+      Pool
+    </a>
+  </li>*/
 
   return (
       <>
         <nav className="IconNavbar">
           <ul ref={navRef}>
             <li>
-              <a className="NavbarLink" onClick={handleNavigateToPool} href="#!">
-                <img src="http://localhost:8080/api/get/image/Pool.png" alt="Pool" />
-                Pool
-              </a>
-            </li>
-            <li>
               <a className="NavbarLink" onClick={handleNavigateToBar} href="#!">
-                <img src="http://localhost:8080/api/get/image/Bar.png" alt="Bar" />
+                <img src="http://localhost:8080/api/get/image/Bar.png" alt="Bar"/>
                 Bar
               </a>
             </li>
             <li>
               <a className="NavbarLink" onClick={handleNavigateToSpa} href="#!">
-                <img src="http://localhost:8080/api/get/image/Spa.png" alt="Spa" />
+                <img src="http://localhost:8080/api/get/image/Spa.png" alt="Spa"/>
                 Spa
               </a>
             </li>
             <li>
               <a className="NavbarLink" onClick={handleNavigateToResort} href="#!">
-              <img src="http://localhost:8080/api/get/image/Resort.png" alt="Resort"/>
-              Resort
-            </a>
+                <img src="http://localhost:8080/api/get/image/Resort.png" alt="Resort"/>
+                Resort
+              </a>
             </li>
             <li>
               <a className="NavbarLink" onClick={handleNavigateToBusinessCenter} href="#!">
-              <img src="http://localhost:8080/api/get/image/BusinessCenter.png" alt="Business Center"/>
+                <img src="http://localhost:8080/api/get/image/BusinessCenter.png" alt="Business Center"/>
                 Business Center
-            </a>
+              </a>
             </li>
             <li>
               <a className="NavbarLink" onClick={handleNavigateToFitnessCenter} href="#!">
-              <img src="http://localhost:8080/api/get/image/FitnessCenter.png" alt="Fitness Center"/>
+                <img src="http://localhost:8080/api/get/image/FitnessCenter.png" alt="Fitness Center"/>
                 Fitness Center
-            </a>
+              </a>
             </li>
             <li>
               <a className="NavbarLink" onClick={handleNavigateToArtDecor} href="#!">
-              <img src="http://localhost:8080/api/get/image/ArtDecor.png" alt="Art Decor"/>
+                <img src="http://localhost:8080/api/get/image/ArtDecor.png" alt="Art Decor"/>
                 Art Decor
-            </a>
+              </a>
             </li>
             <li>
               <a className="NavbarLink" onClick={handleNavigateToGym} href="#!">
-              <img src="http://localhost:8080/api/get/image/Gym.png" alt="Gym"/>
+                <img src="http://localhost:8080/api/get/image/Gym.png" alt="Gym"/>
                 Gym
-            </a>
+              </a>
             </li>
             <li>
               <a className="NavbarLink" onClick={handleNavigateToRoofTop} href="#!">
