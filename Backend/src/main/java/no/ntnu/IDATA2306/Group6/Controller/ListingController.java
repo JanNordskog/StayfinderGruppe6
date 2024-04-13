@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import no.ntnu.IDATA2306.Group6.DatabaseConnection;
 import no.ntnu.IDATA2306.Group6.Entity.Listing;
 import no.ntnu.IDATA2306.Group6.Repo.ListingRepo;
 
