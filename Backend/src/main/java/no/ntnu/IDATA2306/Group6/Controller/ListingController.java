@@ -11,6 +11,7 @@ import no.ntnu.IDATA2306.Group6.Repo.ListingRepo;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -39,10 +40,15 @@ public class ListingController {
     public Collection<Listing> searchListings(@RequestParam String destination,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date arrivalDate,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date departureDate) {
-        System.out.println(destination + arrivalDate + departureDate);
+        Date today = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         System.out.println(destination + sdf.format(arrivalDate) + sdf.format(departureDate));
-        return listingRepo.findByDestinationAndDate(destination, arrivalDate, departureDate);
+
+        if (sdf.format(arrivalDate).equals(sdf.format(today)) && sdf.format(departureDate).equals(sdf.format(today))) {
+            return listingRepo.findByHotelAddress(destination);
+        } else {
+            return listingRepo.findByDestinationAndDate(destination, arrivalDate, departureDate);
+        }
     }
 
 }
