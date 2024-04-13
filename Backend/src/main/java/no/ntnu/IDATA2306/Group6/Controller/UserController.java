@@ -1,6 +1,8 @@
 package no.ntnu.IDATA2306.Group6.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import no.ntnu.IDATA2306.Group6.DatabaseConnection;
@@ -31,41 +33,13 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User newUser) {
-        System.out.println("New user created");
+    public ResponseEntity<User> createUser(@RequestBody User newUser) {
         try {
-
-            new DatabaseConnection().addUser(
-                    newUser.getName(),
-                    newUser.getEmail(),
-                    newUser.getPassword(),
-                    newUser.getAddress(),
-                    newUser.getGender(),
-                    newUser.getPhone(),
-                    newUser.getDob(),
-                    0);
-            return newUser;
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-            return null;
+            User savedUser = userRepo.save(newUser); // Save the new user to the database
+            return ResponseEntity.ok(savedUser); // Return the saved user with an OK status
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build(); // Return an Internal Server Error status
         }
-    }
-
-    @GetMapping("/{userId}")
-    public User getUser(@PathVariable int userId) {
-        return users.get(userId);
-    }
-
-    @PutMapping("/{userId}")
-    public User updateUser(@PathVariable int userId, @RequestBody User updatedUser) {
-        users.put(userId, updatedUser);
-        return updatedUser;
-    }
-
-    @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable int userId) {
-        users.remove(userId);
     }
 
 }
