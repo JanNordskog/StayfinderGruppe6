@@ -29,19 +29,18 @@ function SearchBar() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Ensure searchParams.destination is correctly set to capture the user input for either name or address
-    const searchInput = searchParams.destination; // Adjust this line based on how you manage state for the search input
+    const { destination, range } = searchParams;
+    const { startDate, endDate } = range[0]; // Assuming the first range item contains the dates
 
     try {
-      // Adjust the endpoint or params as necessary to match your API's requirements
       const response = await axios.get("http://localhost:8080/listings", {
         params: {
-          address: searchInput, // This parameter must match what the backend expects
+          destination: destination,
+          arrivalDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+          departureDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
         },
       });
 
-      // Assuming you're using React Router for navigation
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Search failed:", error);
