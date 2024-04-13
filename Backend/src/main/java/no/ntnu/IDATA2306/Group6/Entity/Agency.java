@@ -1,5 +1,7 @@
 package no.ntnu.IDATA2306.Group6.Entity;
 
+import java.security.PublicKey;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,13 +12,13 @@ public class Agency {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "agencyID")
     private String agencyID;
-
+    @Column(name = "name")
     private String name;
-
+    @Column(name = "email")
     private String email;
-
+    @Column(name = "phoneNumber")
     private String phoneNumber;
-
+    @Column(name = "website")
     private String website;
 
     public Agency(String agencyID, String name, String email, String phoneNumber, String website) {
@@ -25,6 +27,9 @@ public class Agency {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.website = website;
+    }
+
+    public Agency() {
     }
 
     public String getAgencyID() {

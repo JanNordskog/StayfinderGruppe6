@@ -1,36 +1,27 @@
 package no.ntnu.IDATA2306.Group6.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Date;
 
 @Entity
-@Table(name = "listings")
+@Table(name = "listing")
 public class Listing {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "listingID")
     private String listingID;
 
-    @Column(name = "hotelID")
-    private String hotelID;
+    @NotNull
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "hotelID", referencedColumnName = "hotelID")
+    private Hotel hotel;
 
-    @Column(name = "hotelName")
-    private String hotelName;
-
-    @Column(name = "hotelAddress")
-    private String hotelAddress;
-
-    @Column(name = "roomTypeAvailable")
-    private String roomTypeAvailable;
-
-    @Column(name = "extraFeatures")
-    private String extraFeatures;
-
-    @Column(name = "agencyID")
-    private String agencyID;
-
-    @Column(name = "agencyName")
-    private String agencyName;
+    @NotNull
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "agencyID", referencedColumnName = "agencyID")
+    private Agency agency;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "arrivalDate")
@@ -43,141 +34,83 @@ public class Listing {
     @Column(name = "price")
     private double price;
 
-    @Column(name = "imageLink")
-    private String imageLink;
+    @NotNull
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "imageID", referencedColumnName = "imageID")
+    private HotelImages hotelImages;
 
     public Listing() {
     }
 
-    public Listing(String listingID, String hotelID, String hotelName, String hotelAddress, String roomTypeAvailable,
-            String extraFeatures, String agencyID, String agencyName, Date arrivalDate, Date departureDate,
-            double price, String imageLink) { // Added imageLink parameter
+    public Listing(String listingID, Hotel hotel, @NotNull Agency agency, Date arrivalDate, Date departureDate,
+            double price,
+            HotelImages hotelImages) {
         this.listingID = listingID;
-        this.hotelID = hotelID;
-        this.hotelName = hotelName;
-        this.hotelAddress = hotelAddress;
-        this.roomTypeAvailable = roomTypeAvailable;
-        this.extraFeatures = extraFeatures;
-        this.agencyID = agencyID;
-        this.agencyName = agencyName;
+        this.agency = agency;
+        this.hotel = hotel;
+        this.hotelImages = hotelImages;
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
         this.price = price;
-        this.imageLink = imageLink; // Initialize imageLink
     }
 
     public String getListingID() {
         return listingID;
     }
 
+    public String getAgencyName() {
+        return agency.getName();
+    }
+
     public void setListingID(String listingID) {
         this.listingID = listingID;
     }
 
-    public String getHotelID() {
-        return hotelID;
-    }
-
-    public void setHotelID(String hotelID) {
-        this.hotelID = hotelID;
-    }
-
     public String getHotelName() {
-        return hotelName;
-    }
-
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+        return hotel.getName();
     }
 
     public String getHotelAddress() {
-        return hotelAddress;
-    }
-
-    public void setHotelAddress(String hotelAddress) {
-        this.hotelAddress = hotelAddress;
+        return hotel.getAddress();
     }
 
     public String getRoomTypeAvailable() {
-        return roomTypeAvailable;
-    }
-
-    public void setRoomTypeAvailable(String roomTypeAvailable) {
-        this.roomTypeAvailable = roomTypeAvailable;
+        return hotel.getRoomTypeAvailable();
     }
 
     public String getExtraFeatures() {
-        return extraFeatures;
-    }
-
-    public void setExtraFeatures(String extraFeatures) {
-        this.extraFeatures = extraFeatures;
-    }
-
-    public String getAgencyID() {
-        return agencyID;
-    }
-
-    public void setAgencyID(String agencyID) {
-        this.agencyID = agencyID;
-    }
-
-    public String getAgencyName() {
-        return agencyName;
-    }
-
-    public void setAgencyName(String agencyName) {
-        this.agencyName = agencyName;
+        return hotel.getExtraFeatures();
     }
 
     public Date getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(Date arrivalDate) {
-        this.arrivalDate = arrivalDate;
-    }
-
     public Date getDepartureDate() {
         return departureDate;
-    }
-
-    public void setDepartureDate(Date departureDate) {
-        this.departureDate = departureDate;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
+        return hotelImages.getSourceLink();
     }
 
     @Override
     public String toString() {
-        return "Listing{" +
-                "listingID='" + listingID + '\'' +
-                ", hotelID='" + hotelID + '\'' +
-                ", hotelName='" + hotelName + '\'' +
-                ", hotelAddress='" + hotelAddress + '\'' +
-                ", roomTypeAvailable='" + roomTypeAvailable + '\'' +
-                ", extraFeatures='" + extraFeatures + '\'' +
-                ", agencyID='" + agencyID + '\'' +
-                ", agencyName='" + agencyName + '\'' +
-                ", arrivalDate=" + arrivalDate +
-                ", departureDate=" + departureDate +
-                ", price=" + price +
-                ", imageLink='" + imageLink + '\'' + // Include imageLink in toString
-                '}';
+        return "Listing [listingID=" + listingID + ", hotelID=" + hotel + ", agency=" + agency + ", arrivalDate="
+                + arrivalDate + ", departureDate="
+                + departureDate + ", price=" + price + ", imageLink=" + hotelImages + "]";
+    }
+
+    public Agency getAgency() {
+        return agency;
+    }
+
+    public void setAgency(Agency agency) {
+        this.agency = agency;
     }
 
 }

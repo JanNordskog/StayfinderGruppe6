@@ -29,20 +29,18 @@ function SearchBar() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const { destination, range } = searchParams;
+    const { startDate, endDate } = range[0]; // Assuming the first range item contains the dates
 
     try {
-      // Adjust the endpoint or params as necessary to match your API's requirements
       const response = await axios.get("http://localhost:8080/listings", {
         params: {
-          destination: searchParams.destination,
-          arrivalDate: searchParams.range[0].startDate
-            .toISOString()
-            .split("T")[0], // Format date as needed
-          departureDate: searchParams.range[0].endDate
-            .toISOString()
-            .split("T")[0], // Format date as needed
+          destination: destination,
+          arrivalDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+          departureDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
         },
       });
+
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Search failed:", error);
