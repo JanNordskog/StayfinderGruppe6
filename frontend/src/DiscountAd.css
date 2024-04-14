@@ -1,7 +1,7 @@
 .Background {
     width: 100%;
     height: 700px;
-    background-image: url('http://localhost:8080/api/get/image/Discountbackground.png');
+    background-image: url('http://localhost:8080/api/get/image/Discountbackground1.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -12,20 +12,22 @@
 }
 
 .Background h1 {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     font-size: 70px;
     font-weight: bold;
     color: white;
     margin-bottom: 20px;
     text-align: left;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* Shadow for better readability */
 }
 
 .Background p {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     font-size: 22px;
     color: lightgrey;
     line-height: 1.5;
     margin-bottom: 10px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Shadow for better readability */
 }
 
 .Background ul {
@@ -76,7 +78,4 @@
     .Background p {
         font-size: 16px;
     }
-
-
 }
-

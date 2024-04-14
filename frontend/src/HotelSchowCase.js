@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Make sure axios is imported
+import axios from "axios";
 import "./HotelSchowCase.css";
 
 function HotelShowCase() {
@@ -61,7 +61,7 @@ function HotelShowCase() {
   return (
     <div className="hotelshowcase">
       <div className="container">
-        <h1>Utforsk populære destinasjoner</h1>
+        <h1>Discover trending destinations</h1>
         <ul className="destinations">
           <li className="destination">
             {/* Use onClick handler directly on the <li> element */}

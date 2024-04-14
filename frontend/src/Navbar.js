@@ -11,7 +11,7 @@ function Navbar() {
     setIsActive(!isActive);
   };
 
-  // Function to handle fetching all listings or with empty criteria
+  // Function to handle fe5gr´tching all listings or with empty criteria
   const handleAllListings = async () => {
     try {
       // You might want to modify this request to suit how your backend handles fetching all listings
@@ -45,17 +45,17 @@ function Navbar() {
         <li>
           {/* Update this Link to use onClick handler */}
           <a className="NavbarLink" href="#!" onClick={handleAllListings}>
-            Hotell & destinasjoner
+            Hotell & destinations
           </a>
         </li>
         <li>
           <Link className="NavbarLink" to="/UtvalgteTilbud">
-            Utvalgte tilbud
+            Check sites
           </Link>
         </li>
         <li>
           <Link className="NavbarLink" to="/hotelPage">
-            Om oss
+            About us
           </Link>
         </li>
         <Link className="NavbarLink3" to="/Login">

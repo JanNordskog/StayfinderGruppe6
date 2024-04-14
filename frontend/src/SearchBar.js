@@ -54,7 +54,7 @@ function SearchBar() {
           type="text"
           id="destination"
           name="destination"
-          placeholder="Skal til"
+          placeholder="Going to"
           onChange={handleChange}
         />
         <DateRangeComp
@@ -62,7 +62,7 @@ function SearchBar() {
           setRange={(range) => setSearchParams({ ...searchParams, range })}
         />
         <select id="Gjester" name="guests" onChange={handleChange}>
-          <option value="0">Antall gjester</option>
+          <option value="0">Guests</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

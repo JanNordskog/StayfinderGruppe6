@@ -34,7 +34,7 @@ const DateRangeComp = ({ range, setRange }) => {
   // Adjust the input value to display dates only if they are selected
   const displayValue =
     range[0].startDate && range[0].endDate
-      ? `Fra ${format(range[0].startDate, "dd/MM/yyyy")} Til ${format(
+      ? `From ${format(range[0].startDate, "dd/MM/yyyy")} To ${format(
           range[0].endDate,
           "dd/MM/yyyy"
         )}`
@@ -52,7 +52,7 @@ const DateRangeComp = ({ range, setRange }) => {
   return (
     <div className="calendarWrap">
       <input
-        value={`Fra ${format(range[0].startDate, "dd/MM/yyyy")} Til ${format(
+        value={`From ${format(range[0].startDate, "dd/MM/yyyy")} To ${format(
           range[0].endDate,
           "dd/MM/yyyy"
         )}`}

@@ -1,5 +1,5 @@
-/* Updated MainSearch.css */
 .MainSearch {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,3 +10,18 @@
   background-size: cover;
   background-position: center;
 }
+
+.MainItems {
+  position: relative;
+  text-align: center;
+}
+
+.MainItems h1 {
+  color: white;
+  font-size: 48px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  margin: 0;
+  padding-top: 30px;
+}
+
+
