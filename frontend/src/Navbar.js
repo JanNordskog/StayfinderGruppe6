@@ -25,7 +25,7 @@ function Navbar() {
   return (
     <div className={`navbar ${isActive ? "active" : ""}`}>
       <div className="logo">
-        <Link className="NavbarLink" to="/">
+        <Link className="NavbarDink" to="/">
           <img
             src="http://localhost:8080/api/get/image/LogoIcon.png"
             alt="Logo"
