@@ -1,7 +1,10 @@
 package no.ntnu.IDATA2306.Group6.Repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import no.ntnu.IDATA2306.Group6.Entity.User; // Ensure this import statement is correct
+import org.springframework.data.jpa.repository.Query;
+import no.ntnu.IDATA2306.Group6.Entity.User;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
+    @Query("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+    User findByEmailAndPassword(String email, String password);
 }

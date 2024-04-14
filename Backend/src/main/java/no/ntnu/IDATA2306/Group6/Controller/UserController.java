@@ -31,13 +31,26 @@ public class UserController {
         return userRepo.findAll();
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("uname");
+        String password = credentials.get("psw"); // This should ideally be hashed
+
+        User user = userRepo.findByEmailAndPassword(email, password);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        }
+    }
+
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User newUser) {
+    public ResponseEntity<?> createUser(@RequestBody User newUser) {
         try {
-            User savedUser = userRepo.save(newUser); // Save the new user to the database
-            return ResponseEntity.ok(savedUser); // Return the saved user with an OK status
+            User savedUser = userRepo.save(newUser);
+            return ResponseEntity.ok(savedUser);
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().build(); // Return an Internal Server Error status
+            return ResponseEntity.internalServerError().build();
         }
     }
 
