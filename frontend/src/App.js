@@ -9,6 +9,7 @@ import UtvalgteTilbud from "./pages/UtvalgteTilbud";
 import Registrer from "./pages/Registrer";
 import SearchResults from "./pages/SearchResults";
 import HotelPage from "./pages/HotelPage";
+import ControlPanel from "./pages/ControlPanel";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/registrer" element={<Registrer />} />
         <Route path="/searchResults" element={<SearchResults />} />
         <Route path="/hotelPage" element={<HotelPage />} />
+        <Route path="/controlPanel" element={<ControlPanel />} />
       </Routes>
     </>
   );
