@@ -44,13 +44,17 @@ public class UserController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody User newUser) {
-        try {
-            User savedUser = userRepo.save(newUser);
-            return ResponseEntity.ok(savedUser);
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
+    @GetMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestParam("uname") String name, @RequestParam("psw") String password) {
+        // Ideally, you would hash the password here before comparing it with database
+        // entries
+        User user = userRepo.findByEmailAndPassword(name, password);
+        System.out.println(name + password);
+        System.out.println(user);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
     }
 
