@@ -61,6 +61,14 @@ function LoginForm() {
           <button type="submit">Logg inn</button>
           {error && <div style={{ color: "red" }}>{error}</div>}
         </div>
+
+        <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
+          <span className="psw">Forgot password</span>
+        </div>
+
+        <p>
+          Har du ikke en konto? <Link to="/registrer">Registrer deg her</Link>
+        </p>
       </form>
     </div>
   );
