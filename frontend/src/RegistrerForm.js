@@ -41,6 +41,14 @@ function RegisterForm() {
       alert("Passwords do not match!");
       return;
     }
+
+    const currentDate = new Date();
+    const enteredDate = new Date(dob);
+    if (enteredDate > currentDate) {
+      alert("Date of birth cannot be in the future!");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:8080/user", {
         name: name, // Include name in POST request
