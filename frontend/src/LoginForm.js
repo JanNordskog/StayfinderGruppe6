@@ -20,8 +20,8 @@ function LoginForm() {
       });
       if (response.status === 200) {
         console.log("Login successful", response.data);
-        // Redirect to control panel page
-        navigate("/controlPanel");
+        // Redirect to control panel page with user data
+        navigate("/controlPanel", { state: { user: response.data } });
       } else {
         setError("Invalid username or password");
       }
@@ -47,7 +47,6 @@ function LoginForm() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-
           <label htmlFor="psw">
             <b>Password</b>
           </label>
@@ -59,18 +58,9 @@ function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
           <button type="submit">Logg inn</button>
           {error && <div style={{ color: "red" }}>{error}</div>}
         </div>
-
-        <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
-          <span className="psw">Forgot password</span>
-        </div>
-
-        <p>
-          Har du ikke en konto? <Link to="/registrer">Registrer deg her</Link>
-        </p>
       </form>
     </div>
   );

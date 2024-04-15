@@ -1,0 +1,44 @@
+/* ControlPanel.css */
+.Panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f4f4f9;
+  color: #333;
+  font-family: "Arial", sans-serif;
+}
+
+h1 {
+  color: #4a90e2;
+  margin-bottom: 20px;
+}
+
+.user-details {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 80%;
+  max-width: 500px;
+}
+
+.user-detail {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.user-detail label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+  .user-details {
+    width: 90%;
+    padding: 15px;
+  }
+}

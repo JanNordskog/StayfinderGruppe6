@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios"; // Ensure axios is imported if you plan to fetch data
 import "./Navbar.css";
 
 function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate(); // Use the useNavigate hook
+
+  const location = useLocation(); // Hook to access router state
+  const user = location.state?.user; // Access user data passed in state
 
   const toggleMenu = () => {
     setIsActive(!isActive);
