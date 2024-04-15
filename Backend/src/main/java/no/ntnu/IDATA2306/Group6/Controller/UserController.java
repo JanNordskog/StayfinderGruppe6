@@ -51,7 +51,7 @@ public class UserController {
         User user = userRepo.findByEmailAndPassword(name, password);
         System.out.println(name + password);
         System.out.println(user);
-        if (user != null) {
+        if (user != null && user.getPassword().equals(password)) {
             return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
