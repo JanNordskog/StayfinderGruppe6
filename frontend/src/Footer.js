@@ -6,8 +6,8 @@ const Footer = () => {
     return (
         <div className="Footer">
             <div className="section left-section">
-                <img src="http://localhost:8080/api/get/image/Logo.png" alt="Left Image" />
-                <p>Medlemskapet du har lett lenge etter.</p>
+
+                <p>Sign up for newsletter to get discounted offers!</p>
                 <form>
                     <input type="text" placeholder="Enter your details" />
                     <button type="submit">Submit</button>
