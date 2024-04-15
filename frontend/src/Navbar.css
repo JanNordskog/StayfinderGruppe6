@@ -10,6 +10,7 @@
 
 .navbar .logo {
   width: 60px;
+  z-index: 100;
 }
 
 .navbar img {
