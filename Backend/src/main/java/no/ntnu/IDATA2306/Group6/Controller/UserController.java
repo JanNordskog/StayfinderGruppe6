@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import no.ntnu.IDATA2306.Group6.Entity.User;
 import no.ntnu.IDATA2306.Group6.Repo.UserRepo;
@@ -68,6 +69,16 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
+    }
+
+    private String hashPassword(String password)
+    {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+        //String result = encoder.encode(password;
+        //assertTrue(encoder.matches("myPassword", result));
+        String result = encoder.encode(password);
+        System.out.println(result);
+        return result;
     }
 
 }
