@@ -8,9 +8,9 @@ function ControlPanel() {
 
   return (
     <div className="Panel">
-      <h1>Du har nå logget inn</h1>
       {user && (
         <div>
+          <h1>Du har nå logget inn</h1>
           <h2>Velkommen, {user.name}</h2>
           <p>Email: {user.email}</p>
           <p>Address: {user.address}</p>

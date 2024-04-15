@@ -12,6 +12,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.sql.SQLException;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @CrossOrigin
@@ -29,6 +31,16 @@ public class UserController {
     public Collection<User> getAll() {
 
         return userRepo.findAll();
+    }
+
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User newUser) {
+        try {
+            User savedUser = userRepo.save(newUser); // Save the new user to the database
+            return ResponseEntity.ok(savedUser); // Return the saved user with an OK status
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build(); // Return an Internal Server Error status
+        }
     }
 
     @PostMapping("/login")
@@ -51,7 +63,7 @@ public class UserController {
         User user = userRepo.findByEmailAndPassword(name, password);
         System.out.println(name + password);
         System.out.println(user);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null) {
             return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
