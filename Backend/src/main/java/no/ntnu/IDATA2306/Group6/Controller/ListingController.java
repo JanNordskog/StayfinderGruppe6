@@ -50,4 +50,32 @@ public class ListingController {
         }
     }
 
+    @PutMapping("/{id}/hide")
+    public ResponseEntity<Listing> hideListing(@PathVariable String id) {
+        Optional<Listing> listing = listingRepo.findById(id);
+        if (listing.isPresent()) {
+            Listing updatedListing = listing.get();
+            updatedListing.setVisible(0); // Assuming `setVisible` is a method in your Listing entity to update
+                                          // visibility
+            listingRepo.save(updatedListing);
+            return ResponseEntity.ok(updatedListing);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/{id}/show")
+    public ResponseEntity<Listing> showListing(@PathVariable String id) {
+        Optional<Listing> listing = listingRepo.findById(id);
+        if (listing.isPresent()) {
+            Listing updatedListing = listing.get();
+            updatedListing.setVisible(1); // Assuming `setVisible` is a method in your Listing entity to update
+                                          // visibility
+            listingRepo.save(updatedListing);
+            return ResponseEntity.ok(updatedListing);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
