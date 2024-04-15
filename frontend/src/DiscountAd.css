@@ -18,7 +18,7 @@
     color: white;
     margin-bottom: 20px;
     text-align: left;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* Shadow for better readability */
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
 
 .Background p {
@@ -27,7 +27,7 @@
     color: lightgrey;
     line-height: 1.5;
     margin-bottom: 10px;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Shadow for better readability */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
 }
 
 .Background ul {
@@ -39,6 +39,20 @@
 
 .Background li {
     margin-bottom: 80px;
+}
+
+.Background a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: rgb(212, 40, 112);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.Background a:hover {
+    background-color: rgb(233, 78, 135);
 }
 
 /* Responsive adjustments for mobile devices */
