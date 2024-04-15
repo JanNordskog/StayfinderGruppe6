@@ -10,6 +10,7 @@ import Registrer from "./pages/Registrer";
 import SearchResults from "./pages/SearchResults";
 import HotelPage from "./pages/HotelPage";
 import ControlPanel from "./pages/ControlPanel";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/searchResults" element={<SearchResults />} />
         <Route path="/hotelPage" element={<HotelPage />} />
         <Route path="/controlPanel" element={<ControlPanel />} />
+        <Route path="/aboutus" element={<AboutUs />} />
       </Routes>
     </>
   );
