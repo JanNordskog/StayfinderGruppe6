@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import no.ntnu.IDATA2306.Group6.Entity.User;
 import no.ntnu.IDATA2306.Group6.Repo.UserRepo;
@@ -71,11 +72,10 @@ public class UserController {
         }
     }
 
-    private String hashPassword(String password)
-    {
+    private String hashPassword(String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
-        //String result = encoder.encode(password;
-        //assertTrue(encoder.matches("myPassword", result));
+        // String result = encoder.encode(password;
+        // assertTrue(encoder.matches("myPassword", result));
         String result = encoder.encode(password);
         System.out.println(result);
         return result;
