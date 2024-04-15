@@ -4,10 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-<<<<<<< HEAD
-import org.springframework.security.crypto.bcrypt.BCrypt;
-=======
->>>>>>> 7883af6c5ef34be872cd0eb7e1d31b2930a417ca
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import no.ntnu.IDATA2306.Group6.Entity.User;
@@ -39,16 +35,24 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User newUser) {
+    public ResponseEntity<User> createUser(@RequestBody User newUser)
+    {
         try {
-            newUser.setPassword(hashPassword(newUser.getPassword()));
+            String userPsw = newUser.getPassword().toString();
+            newUser.setPassword(hashPassword(userPsw));
 
             User savedUser = userRepo.save(newUser); // Save the new user to the database
             return ResponseEntity.ok(savedUser); // Return the saved user with an OK status
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
+            System.out.println(newUser.getPassword());
             return ResponseEntity.internalServerError().build(); // Return an Internal Server Error status
+
         }
     }
+
+
+
 
     /*@PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials) {
@@ -70,7 +74,6 @@ public class UserController {
         // entries
         User user = userRepo.findByEmailAndPassword(name, hashedPsw);
         System.out.println(name + hashedPsw);
-        System.out.println(user);
         if (user != null) {
             return ResponseEntity.ok(user);
         } else {
@@ -79,7 +82,7 @@ public class UserController {
     }
 
     private String hashPassword(String password) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
         // String result = encoder.encode(password;
         // assertTrue(encoder.matches("myPassword", result));
         String result = encoder.encode(password);
