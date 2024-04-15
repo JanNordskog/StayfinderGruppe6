@@ -1,21 +1,30 @@
 // SearchResults.js
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import "./SearchResults.css"; // Ensure this path matches your file structure
-import Footer from "../Footer"; // Adjust the import path as needed
-import SearchBar from "../SearchBar"; // Adjust the import path as needed
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./SearchResults.css";
+import Footer from "../Footer";
+import SearchBar from "../SearchBar";
 
 function SearchResults() {
   const location = useLocation();
-  const { data } = location.state || { data: [] }; // Ensure you're handling the state correctly based on your routing and state management
+  const navigate = useNavigate();
+  const { data } = location.state || { data: [] };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleBooking = (hotelName) => {
-    // Implement your booking logic or navigation here
-    console.log(`Booking for ${hotelName}`);
+  const handleBooking = (hotelId) => {
+    axios
+      .get(`http://localhost:8080/hotels/${hotelId}`)
+      .then((response) => {
+        navigate("/hotelpage", { state: { data: response.data } });
+      })
+      .catch((error) => {
+        console.error("Error fetching hotel data:", error);
+        alert("Hotel data could not be fetched.");
+      });
   };
 
   return (
@@ -25,7 +34,7 @@ function SearchResults() {
       </div>
 
       <div className="SearchResults">
-        <h1></h1>
+        <h1>Hotel Listings</h1>
         <div className="listings-grid">
           {data.length > 0 ? (
             data.map((item, index) => (
@@ -45,23 +54,12 @@ function SearchResults() {
                 <p>
                   <strong>Extra Features:</strong> {item.extraFeatures}
                 </p>
-                <p>
-                  <strong>Agency:</strong> {item.agencyName}
-                </p>
-                <p>
-                  <strong>Opens in:</strong>{" "}
-                  {new Date(item.arrivalDate).toLocaleDateString()}
-                </p>
-                <p>
-                  <strong>Closes in:</strong>{" "}
-                  {new Date(item.departureDate).toLocaleDateString()}
-                </p>
                 <h2 className="price">
                   <strong>Price:</strong> ${item.price}
                 </h2>
                 <button
                   className="book-button"
-                  onClick={() => handleBooking(item.hotelName)}
+                  onClick={() => handleBooking(item.hotelID)}
                 >
                   Book now
                 </button>

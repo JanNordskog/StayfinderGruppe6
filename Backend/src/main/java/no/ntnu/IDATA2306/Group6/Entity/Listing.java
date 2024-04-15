@@ -77,6 +77,10 @@ public class Listing {
         this.listingID = listingID;
     }
 
+    public String getHotelID() {
+        return hotel.getHotelID(); // This method delegates the call to the Hotel object
+    }
+
     public String getHotelName() {
         return hotel.getName();
     }
