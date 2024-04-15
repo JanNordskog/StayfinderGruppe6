@@ -10,12 +10,12 @@
   font-family: "Arial", sans-serif;
 }
 
-h1 {
+.Panel h1 {
   color: #4a90e2;
   margin-bottom: 20px;
 }
 
-.user-details {
+.Panel .user-details {
   background: white;
   padding: 20px;
   border-radius: 10px;
@@ -25,19 +25,19 @@ h1 {
   max-width: 500px;
 }
 
-.user-detail {
+.Panel .user-detail {
   margin: 10px 0;
   font-size: 16px;
   line-height: 1.5;
 }
 
-.user-detail label {
+.Panel .user-detail label {
   font-weight: bold;
   margin-right: 10px;
 }
 
 @media (max-width: 600px) {
-  .user-details {
+  .Panel .user-details {
     width: 90%;
     padding: 15px;
   }
