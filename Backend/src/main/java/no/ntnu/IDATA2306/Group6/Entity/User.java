@@ -25,6 +25,9 @@ public final class User {
     private String phone;
     private String dob;
 
+    @Column(nullable = false)
+    private Integer userperm = 0; // default value is 0
+
     public User(String name, String email, String password, String address, String gender, String phone, String dob) {
         this.name = name;
         this.email = email;
@@ -36,6 +39,14 @@ public final class User {
     }
 
     public User() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -94,4 +105,11 @@ public final class User {
         this.dob = dob;
     }
 
+    public Integer getUserperm() {
+        return userperm;
+    }
+
+    public void setUserperm(Integer userperm) {
+        this.userperm = userperm;
+    }
 }

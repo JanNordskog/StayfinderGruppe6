@@ -9,8 +9,10 @@ function ControlPanel() {
   const [listings, setListings] = useState([]);
 
   useEffect(() => {
-    fetchListings();
-  }, []);
+    if (user?.userperm === 1) {
+      fetchListings();
+    }
+  }, [user]);
 
   const fetchListings = async () => {
     try {
@@ -56,56 +58,59 @@ function ControlPanel() {
         </div>
       )}
 
-      <div>
-        <h2>Available Listings:</h2>
-        {listings.length > 0 ? (
-          <ul>
-            {listings.map((listing) => (
-              <li
-                key={listing.listingID}
-                style={{
-                  margin: "20px",
-                  padding: "10px",
-                  border: "1px solid #ccc",
-                  borderRadius: "8px",
-                }}
-              >
-                <h3>
-                  {listing.hotelName} - {listing.roomTypeAvailable}
-                </h3>
-                <img
-                  src={listing.imageLink}
-                  alt={listing.hotelName}
-                  style={{ width: "100px", height: "auto" }}
-                />
-                <p>Agency: {listing.agency.name}</p>
-                <p>
-                  Contact: {listing.agency.email} | {listing.agency.phoneNumber}
-                </p>
-                <p>Hotel Address: {listing.hotelAddress}</p>
-                <p>
-                  Arrival: {listing.arrivalDate} | Departure:{" "}
-                  {listing.departureDate}
-                </p>
-                <p>Price: ${listing.price}</p>
-                <p>Features: {listing.extraFeatures}</p>
-                <button
-                  onClick={() =>
-                    toggleListingVisibility(
-                      listing.listingID,
-                      listing.visible === 0
-                    )
-                  }
+      {user?.userperm === 1 && ( // Conditional rendering based on user permissions
+        <div>
+          <h2>Available Listings:</h2>
+          {listings.length > 0 ? (
+            <ul>
+              {listings.map((listing) => (
+                <li
+                  key={listing.listingID}
+                  style={{
+                    margin: "20px",
+                    padding: "10px",
+                    border: "1px solid #ccc",
+                    borderRadius: "8px",
+                  }}
                 >
-                  {listing.visible === 0 ? "Show Listing" : "Hide Listing"}
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No listings available.</p>
-        )}
-      </div>
+                  <h3>
+                    {listing.hotelName} - {listing.roomTypeAvailable}
+                  </h3>
+                  <img
+                    src={listing.imageLink}
+                    alt={listing.hotelName}
+                    style={{ width: "100px", height: "auto" }}
+                  />
+                  <p>Agency: {listing.agency.name}</p>
+                  <p>
+                    Contact: {listing.agency.email} |{" "}
+                    {listing.agency.phoneNumber}
+                  </p>
+                  <p>Hotel Address: {listing.hotelAddress}</p>
+                  <p>
+                    Arrival: {listing.arrivalDate} | Departure:
+                    {listing.departureDate}
+                  </p>
+                  <p>Price: ${listing.price}</p>
+                  <p>Features: {listing.extraFeatures}</p>
+                  <button
+                    onClick={() =>
+                      toggleListingVisibility(
+                        listing.listingID,
+                        listing.visible === 0
+                      )
+                    }
+                  >
+                    {listing.visible === 0 ? "Show Listing" : "Hide Listing"}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No listings available.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
