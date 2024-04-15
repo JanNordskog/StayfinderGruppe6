@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  height: 800px;
+  padding: 20px; /* Reconsider if you need padding as it affects the total height */
+  height: calc(100vh - 60px); /* Subtract the navbar height, adjust if different */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -24,7 +24,7 @@
 
 .MainItems h1 {
   position: absolute;
-  top: 265px;
+  top: 265px; /* This will need adjusting if the navbar height is different */
   left: 50%;
   transform: translateX(-50%);
   width: max-content;
@@ -35,12 +35,36 @@
 
 }
 
+/* Styles for mobile devices */
 @media (max-width: 768px) {
   .MainItems h1 {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
-
+    font-size: 24px; /* Smaller font size for smaller screens */
+    top: 270px;
   }
+
+  .MainSearch {
+    height: calc(100vh - 100px); /* Adjust the navbar height for mobile devices if needed */
+    padding: 10px; /* Optionally reduce padding on smaller screens */
+  }
+}
+
+/* Styles for larger screens if needed */
+@media (min-width: 769px) {
+  .MainSearch {
+    /* If the navbar height is different or other styles need to change on larger screens */
+    height: calc(100vh - 60px); /* Ensure this matches the actual navbar height */
+    padding: 20px; /* Consistent padding with the original style, adjust if necessary */
+  }
+
+  .MainItems h1 {
+    /* Adjustments for larger screens if needed */
+    top: 310px; /* Align with the design requirements */
+    font-size: 48px; /* Consistent font size with the original style */
+    /* Add any additional styles for larger screens here */
+  }
+
+  /* Add any other styles for larger screens here */
 }

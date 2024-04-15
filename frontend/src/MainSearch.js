@@ -14,7 +14,7 @@ function MainSearch() {
             }}
         >
             <div className="MainItems">
-                <h1>Where do you want to stay?</h1>
+                <h1>Book your journey</h1>
                 <SearchBar />
             </div>
         </div>
