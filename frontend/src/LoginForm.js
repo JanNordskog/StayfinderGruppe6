@@ -41,7 +41,7 @@ function LoginForm() {
           </label>
           <input
             type="text"
-            placeholder="Enter Username"
+            placeholder="Enter Username or email"
             name="uname"
             required
             value={username}

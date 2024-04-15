@@ -1,17 +1,12 @@
 /* Base Styles */
 .RegistrerForm {
     display: grid;
-    justify-content: center;
-    align-items: center;
+    place-items: center;
     height: 100vh;
 }
 
 .RegistrerForm .container {
     padding: 16px;
-}
-
-RegisterForm.h1{
-
 }
 
 .RegistrerForm input[type="text"],

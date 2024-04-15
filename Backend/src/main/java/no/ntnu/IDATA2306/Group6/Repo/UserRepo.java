@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import no.ntnu.IDATA2306.Group6.Entity.User;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
-    @Query("SELECT u FROM User u WHERE u.name = :name AND u.password = :password")
+    @Query("SELECT u FROM User u WHERE (u.name = :name or u.email = :name) AND u.password = :password")
     User findByEmailAndPassword(String name, String password);
 }
