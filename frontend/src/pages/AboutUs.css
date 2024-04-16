@@ -5,8 +5,9 @@
     height: 200px;
     border: 1px solid #f1f1f1;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
-    padding: 5%;
+    margin: 5%;
     border: transparent;
+
 }
 
 /* This container is needed to position the front and back side */
@@ -50,4 +51,12 @@
     padding: 10px;
     box-sizing: border-box;
     height: 150%;
+}
+
+.us {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
 }
