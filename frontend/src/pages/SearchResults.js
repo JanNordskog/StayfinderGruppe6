@@ -70,7 +70,6 @@ function SearchResults() {
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
