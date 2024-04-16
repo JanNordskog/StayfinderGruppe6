@@ -5,6 +5,8 @@
     height: 200px;
     border: 1px solid #f1f1f1;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    padding: 5%;
+    border: transparent;
 }
 
 /* This container is needed to position the front and back side */
@@ -34,6 +36,7 @@
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
     background-color: #bbb;
+    background-size: cover; /* Cover the whole area */
     color: black;
 }
 
@@ -42,4 +45,9 @@
     background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 150%;
 }
