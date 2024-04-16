@@ -4,12 +4,12 @@ import './AboutUs.css'; // Assuming you have an accompanying CSS file for stylin
 
 function AboutUs() {
     return (
-        <div className="hotel">
+        <div className="us">
             <h1>About us:</h1>
             <div className="flip-card">
                 <div className="flip-card-inner">
                     <div className="flip-card-front">
-                        <img src="http://localhost:8080/api/get/image/jan.jpg" alt="Avatar" style={{ width: '300px', height: '300px' }} />
+                        <img src="http://localhost:8080/api/get/image/jan.png" alt="Avatar" style={{ width: '300px', height: '300px' }} />
                     </div>
                     <div className="flip-card-back">
                         <h1>Jan Nordskog</h1>
