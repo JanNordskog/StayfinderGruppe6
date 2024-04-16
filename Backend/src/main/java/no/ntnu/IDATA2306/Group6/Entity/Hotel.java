@@ -25,12 +25,15 @@ public class Hotel {
     private String roomTypeAvailable;
     @Column(name = "extraFeatures")
     private String extraFeatures;
+    @Column(name = "description") // Added new column for description
+    private String description;
 
     public Hotel() {
     }
 
     public Hotel(String hotelId, String name, String address, String website,
-            String phoneNumber, String locationType, String roomTypeAvailable, String extraFeatures) {
+            String phoneNumber, String locationType, String roomTypeAvailable,
+            String extraFeatures, String description) {
         this.hotelID = hotelId;
         this.name = name;
         this.address = address;
@@ -39,6 +42,11 @@ public class Hotel {
         this.locationType = locationType;
         this.roomTypeAvailable = roomTypeAvailable;
         this.extraFeatures = extraFeatures;
+        this.description = description; // Initialize new field
+    }
+
+    public String getDescription() { // Getter for description
+        return description;
     }
 
     public String getHotelID() {

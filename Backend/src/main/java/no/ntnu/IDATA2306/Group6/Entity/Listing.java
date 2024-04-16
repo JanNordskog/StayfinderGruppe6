@@ -85,6 +85,10 @@ public class Listing {
         return hotel.getName();
     }
 
+    public String getHotelDescription() {
+        return hotel.getDescription();
+    }
+
     public String getHotelAddress() {
         return hotel.getAddress();
     }
