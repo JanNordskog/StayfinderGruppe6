@@ -26,10 +26,23 @@ function AboutUs() {
                     <div className="flip-card-back">
                         <h1>Ulrik Ribler</h1>
                         <p>Architect & Engineer</p>
+                        <p>Professional AI user</p>
+                    </div>
+                </div>
+            </div>
+            <div className="flip-card">
+                <div className="flip-card-inner">
+                    <div className="flip-card-front">
+                        <img src="http://localhost:8080/api/get/image/alejandro.png" alt="Avatar" style={{ width: '300px', height: '300px' }} />
+                    </div>
+                    <div className="flip-card-back">
+                        <h1>Alejandro Miguel Talley Grønhaug</h1>
+                        <p>Architect & Engineer</p>
                         <p>We love that guy</p>
                     </div>
                 </div>
             </div>
+
             <Footer />
         </div>
     );
