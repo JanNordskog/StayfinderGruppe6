@@ -35,7 +35,7 @@ public class ListingController {
     }
 
     // This method only gets called when the 'address' parameter is provided
-    @GetMapping(params = { "destination", "arrivalDate", "departureDate" })
+    @GetMapping(value = "/engine", params = { "destination", "arrivalDate", "departureDate" })
     public Collection<Listing> searchListings(@RequestParam String destination,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date arrivalDate,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date departureDate) {
@@ -76,6 +76,13 @@ public class ListingController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/getlistingByID/{id}")
+    public ResponseEntity<Listing> getListingById(@PathVariable String id) {
+        Optional<Listing> listing = listingRepo.findById(id);
+        return listing.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 }

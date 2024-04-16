@@ -33,7 +33,7 @@ function SearchBar() {
     const { startDate, endDate } = range[0]; // Assuming the first range item contains the dates
 
     try {
-      const response = await axios.get("http://localhost:8080/listings", {
+      const response = await axios.get("http://localhost:8080/listings/engine", {
         params: {
           destination: destination,
           arrivalDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
