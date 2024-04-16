@@ -15,15 +15,15 @@ function SearchResults() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleBooking = (hotelId) => {
+  const handleBooking = (listingId) => {
     axios
-      .get(`http://localhost:8080/hotels/${hotelId}`)
+      .get(`http://localhost:8080/listings/getlistingByID/${listingId}`)
       .then((response) => {
         navigate("/hotelpage", { state: { data: response.data } });
       })
       .catch((error) => {
-        console.error("Error fetching hotel data:", error);
-        alert("Hotel data could not be fetched.");
+        console.error("Error fetching listing data:", error);
+        alert("Listing data could not be fetched.");
       });
   };
 
@@ -59,7 +59,7 @@ function SearchResults() {
                 </h2>
                 <button
                   className="book-button"
-                  onClick={() => handleBooking(item.hotelID)}
+                  onClick={() => handleBooking(item.listingID)} // Ensure this is the correct property name for listing ID in your data structure
                 >
                   Book now
                 </button>
