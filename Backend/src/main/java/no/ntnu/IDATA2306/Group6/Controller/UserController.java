@@ -6,9 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.google.common.hash.Hashing;
+
+
 import no.ntnu.IDATA2306.Group6.Entity.User;
 import no.ntnu.IDATA2306.Group6.Repo.UserRepo;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,8 +42,10 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User newUser)
     {
         try {
-            String userPsw = newUser.getPassword().toString();
-            newUser.setPassword(hashPassword(userPsw));
+            String userPsw = newUser.getPassword();
+            String hashedPsw = hashPassword(userPsw);
+            newUser.setPassword(hashedPsw);
+            System.out.println(userPsw+" "+hashedPsw);
 
             User savedUser = userRepo.save(newUser); // Save the new user to the database
             return ResponseEntity.ok(savedUser); // Return the saved user with an OK status
@@ -81,13 +87,18 @@ public class UserController {
         }
     }
 
-    private String hashPassword(String password) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
-        // String result = encoder.encode(password;
-        // assertTrue(encoder.matches("myPassword", result));
+    private String hashPassword(String password)
+    {
+        String sha256hex = Hashing.sha256()
+                .hashString(password, StandardCharsets.UTF_8)
+                .toString();
+
+        /*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+        //String result = encoder.encode(password;
+        //assertTrue(encoder.matches("myPassword", result));
         String result = encoder.encode(password);
         System.out.println(result);
-        return result;
+        */
+        return sha256hex;
     }
-
 }
