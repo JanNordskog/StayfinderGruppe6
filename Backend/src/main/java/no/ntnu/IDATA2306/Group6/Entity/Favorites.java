@@ -12,8 +12,8 @@ public class Favorites {
     private Long favoriteID;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hotelID", nullable = false)
-    private Hotel hotel;
+    @JoinColumn(name = "userID", nullable = false) 
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "listingID", nullable = false)
@@ -23,8 +23,8 @@ public class Favorites {
     public Favorites() {
     }
 
-    public Favorites(Hotel hotel, Listing listing) {
-        this.hotel = hotel;
+    public Favorites(User user, Listing listing) {
+        this.user = user;
         this.listing = listing;
     }
 
@@ -37,13 +37,13 @@ public class Favorites {
         this.favoriteID = favoriteID;
     }
 
-    // Getter and Setter for hotel
-    public Hotel getHotel() {
-        return hotel;
+    // Getter and Setter for user
+    public User getUser() {
+        return user;
     }
 
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     // Getter and Setter for listing
@@ -60,7 +60,7 @@ public class Favorites {
     public String toString() {
         return "Favorites{" +
                 "favoriteID=" + favoriteID +
-                ", hotel=" + hotel +
+                ", user=" + user +
                 ", listing=" + listing +
                 '}';
     }
