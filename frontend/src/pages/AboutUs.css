@@ -32,6 +32,7 @@
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+
 }
 
 /* Style the front side (fallback if image is missing) */
@@ -39,6 +40,7 @@
   background-color: #bbb;
   background-size: cover; /* Cover the whole area */
   color: black;
+  border-radius: 360px;
 }
 
 /* Style the back side */
@@ -48,18 +50,22 @@
   transform: rotateY(180deg);
   height: 300px;
   width: 300px;
+  border-radius: 45px;
 }
 
 .us {
-  display: flex;
-  flex-direction: column;
+  align-items: center;
 }
 
 
 .cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Adjusts spacing between cards */
+  justify-content: center;
+}
+
+img {
+  border-radius: 45px;
 }
 
 
@@ -73,5 +79,6 @@
   .flip-card {
     flex: 0 0 100%; /* Each card takes full width of the container */
   }
+
 }
 
