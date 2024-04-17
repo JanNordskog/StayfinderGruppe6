@@ -11,10 +11,10 @@ import no.ntnu.IDATA2306.Group6.Repo.ListingRepo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+
 import java.util.Optional;
 
 @RestController
