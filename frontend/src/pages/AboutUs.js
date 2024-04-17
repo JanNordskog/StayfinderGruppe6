@@ -5,6 +5,7 @@ import './AboutUs.css'; // Assuming you have an accompanying CSS file for stylin
 function AboutUs() {
     return (
       <div className="us">
+        <meta name="viewport" content="width=device, initial-scale=1.0" />
         <h1>About us:</h1>
         <div className='cards'>
           <div className="flip-card">

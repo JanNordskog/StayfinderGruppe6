@@ -2,11 +2,11 @@
 .flip-card {
   background-color: transparent;
   width: 300px;
-  height: 200px;
+  height: 300px;
   border: 1px solid #f1f1f1;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
-  margin: 5%;
   border: transparent;
+  margin: 2%;
 }
 
 /* This container is needed to position the front and back side */
@@ -53,9 +53,25 @@
 .us {
   display: flex;
   flex-direction: column;
-  margin: 100px;
 }
 
-.us .cards {
-    display: flex;
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Adjusts spacing between cards */
 }
+
+
+/* Media query for smaller screens */
+@media (max-width: 400px) {
+  .cards {
+    flex-direction: column;
+    align-items: center; /* Centers cards vertically */
+  }
+
+  .flip-card {
+    flex: 0 0 100%; /* Each card takes full width of the container */
+  }
+}
+
