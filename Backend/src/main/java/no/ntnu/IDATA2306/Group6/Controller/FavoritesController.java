@@ -25,7 +25,7 @@ public class FavoritesController {
 
     // Get a specific favorite by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Favorites> getFavoriteById(@PathVariable Long id) {
+    public ResponseEntity<Favorites> getFavoriteById(@PathVariable Integer id) {
         Optional<Favorites> favorite = favoritesRepo.findById(id);
         return favorite.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -39,7 +39,7 @@ public class FavoritesController {
 
     // Delete a favorite
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteFavorite(@PathVariable Long id) {
+    public ResponseEntity<?> deleteFavorite(@PathVariable Integer id) {
         if (favoritesRepo.existsById(id)) {
             favoritesRepo.deleteById(id);
             return ResponseEntity.ok().build();
