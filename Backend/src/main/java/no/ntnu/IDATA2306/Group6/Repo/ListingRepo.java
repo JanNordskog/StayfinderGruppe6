@@ -18,4 +18,8 @@ public interface ListingRepo extends JpaRepository<Listing, String> {
 
         @Query("SELECT l FROM Listing l WHERE l.hotel.extraFeatures LIKE %:extraFeatures% AND l.visible = 1")
         List<Listing> findByHotelExtraFeatures(@Param("extraFeatures") String extraFeatures);
+
+        @Query("SELECT hotelID FROM listing WHERE listing.listingid IN (SELECT favorites.listingid FROM favorites WHERE favorites.userid IN (SELECT users.userid FROM users))")
+        List<Listing> findFavorites(@Param("userid") String userid);
+
 }
