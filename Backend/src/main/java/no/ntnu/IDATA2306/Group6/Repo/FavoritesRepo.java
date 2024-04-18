@@ -12,6 +12,6 @@ import java.util.List;
 
 public interface FavoritesRepo extends JpaRepository<Favorites, Long> {
     // Additional custom queries can be defined here
-    @Query("SELECT l FROM Listing l JOIN (l.hotel h WHERE (h.address LIKE %:address% OR h.name LIKE %:address%) AND l.visible = 1")
+    @Query("SELECT hotelID FROM listing INNER JOIN favorites ON listing.listingid = favorites.listingid INNER JOIN users ON favorites.userid = users.userid")
     List<Listing> findFavorites(Long userid);
 }
