@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "../Footer";
 import "./HotelPage.css";
+import DateRangeComp from "../components/DateRangeComp";
 
 function HotelPage() {
   const location = useLocation();
-  const hotel = location.state?.data; // Assuming the data is passed as 'data' in the state
+  const hotel = location.state?.data;
+
+    const [dateRange, setDateRange] = useState([
+        {
+            startDate: new Date(),
+            endDate: new Date(),
+            key: 'selection'
+        }
+    ]);
+
+    const isDateSelected = dateRange[0].startDate && dateRange[0].endDate;
 
   return (
       <div className="hotelpage">
@@ -32,7 +43,8 @@ function HotelPage() {
               <p>
                 <img src={hotel.imageLink} alt={hotel.hotelName} style={{ width: "100%", height: "auto" }}/>
               </p>
-              <button className="book-now-btn">Book Now</button>  {/* Book Now button */}
+              <DateRangeComp range={dateRange} setRange={setDateRange} />
+              <button className="book-now-btn" disabled={!isDateSelected}>Book Now</button>
             </div>
         ) : (
             <p>No hotel data available.</p>

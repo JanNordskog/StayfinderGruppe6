@@ -41,7 +41,7 @@
   height: auto;
   margin-top: 10px;
 }
-.hotelpage button{
+.hotelpage .book-now-btn{
   background-color: #f9d9d8;
   color: #5a0032;
   border: none;
