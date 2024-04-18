@@ -7,13 +7,13 @@ function ControlPanel() {
   const location = useLocation();
   const user = location.state?.user;
   const [listings, setListings] = useState([]);
-  const userid = user?.userid;
+  const userid = user.userid;
 
   useEffect(() => {
     if (user?.userperm === 1) {
       fetchListings();
     }
-    else (user?.userperm === 0)
+    else if (user?.userperm === 0)
     {
         fetchFaveListings();
     }
@@ -28,24 +28,26 @@ function ControlPanel() {
     } catch (error) {
       console.error("Error fetching listings:", error);
     }
-
-
   };
 
 
 
-    const fetchFaveListings = async => {
+
+    const fetchFaveListings = async () => {
         try {
             const response = await axios.get("http://localhost:8080//api/favorites/{id}", {
                 params: {
                   userid: userid,
                 },
               });
-                    response.data.map((listing) => ({ ...listing, hidden: false }))
+                    response.data.map((listing) => ({ ...listing, hidden: false })
                   );
                 } catch (error) {
                   console.error("Could not load favorites:", error);
-                }});
+                }
+                };
+
+
 
   const toggleListingVisibility = async (id, isVisible) => {
     try {

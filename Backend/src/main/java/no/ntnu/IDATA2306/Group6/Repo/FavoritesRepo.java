@@ -10,8 +10,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.Date;
 import java.util.List;
 
-public interface FavoritesRepo extends JpaRepository<Favorites, Long> {
+public interface FavoritesRepo extends JpaRepository<Favorites, Integer> {
     // Additional custom queries can be defined here
     @Query("SELECT hotelID FROM listing INNER JOIN favorites ON listing.listingid = favorites.listingid INNER JOIN users ON favorites.userid = users.userid")
-    List<Listing> findFavorites(Long userid);
+    List<Favorites> findFavorites(Integer userid);
 }
