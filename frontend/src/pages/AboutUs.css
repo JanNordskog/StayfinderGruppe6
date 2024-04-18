@@ -55,6 +55,8 @@
 
 .us {
   align-items: center;
+  margin: 0 auto;
+  max-width: 70%;
 }
 
 
@@ -67,6 +69,7 @@
 .us img {
   border-radius: 45px;
 }
+
 
 
 /* Media query for smaller screens */

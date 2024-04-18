@@ -5,7 +5,7 @@
 }
 
 /* Modified the grid to have only one column */
-.listings-grid {
+.search .listings-grid {
   display: grid;
   grid-template-columns: 1fr; /* Only one column */
   gap: 20px;
