@@ -41,3 +41,13 @@
   height: auto;
   margin-top: 10px;
 }
+.hotelpage button{
+  background-color: #f9d9d8;
+  color: #5a0032;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  transition: 0.5s linear;
+}
+
