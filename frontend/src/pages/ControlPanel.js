@@ -32,7 +32,6 @@ function ControlPanel() {
     if (isAdmin) {
       fetchListings();
     }
-  }, [isAdmin]); // Only fetch listings if isAdmin changes.
 
   const fetchListings = async () => {
     try {
@@ -43,6 +42,15 @@ function ControlPanel() {
     } catch (error) {
       console.error("Error fetching listings:", error);
     }
+
+    const fetchFaveListings = async =>
+    {
+        try {
+            const response = await axios.get"http://localhost:8080//api/favorites/{id}");
+        }
+    }
+
+
   };
 
   const toggleListingVisibility = async (id, isVisible) => {

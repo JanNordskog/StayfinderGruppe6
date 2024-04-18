@@ -38,7 +38,6 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User newUser) {
         try {
-            // String userPsw = ;
             String hashedPsw = hashPassword(newUser.getPassword());
             newUser.setPassword(hashedPsw);
 
