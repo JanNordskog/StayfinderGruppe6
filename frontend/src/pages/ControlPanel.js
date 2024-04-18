@@ -8,7 +8,6 @@ function ControlPanel() {
   // Retrieve user data from sessionStorage
   const user = JSON.parse(sessionStorage.getItem("user"));
   const [listings, setListings] = useState([]);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -43,15 +42,23 @@ function ControlPanel() {
       console.error("Error fetching listings:", error);
     }
 
-    const fetchFaveListings = async =>
-    {
-        try {
-            const response = await axios.get"http://localhost:8080//api/favorites/{id}");
-        }
-    }
-
 
   };
+
+
+
+    const fetchFaveListings = async => {
+        try {
+            const response = await axios.get("http://localhost:8080//api/favorites/{id}", {
+                params: {
+                  userid: userid,
+                },
+              });
+                    response.data.map((listing) => ({ ...listing, hidden: false }))
+                  );
+                } catch (error) {
+                  console.error("Could not load favorites:", error);
+                }});
 
   const toggleListingVisibility = async (id, isVisible) => {
     try {
