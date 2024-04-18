@@ -3,13 +3,13 @@ package no.ntnu.IDATA2306.Group6.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import com.google.common.hash.Hashing;
 
 import no.ntnu.IDATA2306.Group6.Entity.User;
 import no.ntnu.IDATA2306.Group6.Repo.UserRepo;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,30 +38,22 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User newUser) {
         try {
+            //String userPsw = ;
+            String hashedPsw = hashPassword(newUser.getPassword());
+            newUser.setPassword(hashedPsw);
+
             User savedUser = userRepo.save(newUser); // Save the new user to the database
             return ResponseEntity.ok(savedUser); // Return the saved user with an OK status
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build(); // Return an Internal Server Error status
         }
     }
-
-    @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials) {
-        String email = credentials.get("uname");
-        String password = credentials.get("psw"); // This should ideally be hashed
-
-        User user = userRepo.findByEmailAndPassword(email, password);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-        }
-    }
-
+    
     @GetMapping("/login")
     public ResponseEntity<?> loginUser(@RequestParam("uname") String name, @RequestParam("psw") String password) {
         // Ideally, you would hash the password here before comparing it with database
         // entries
+        password = hashPassword(password);
         User user = userRepo.findByEmailAndPassword(name, password);
         System.out.println(name + password);
         System.out.println(user);
@@ -72,14 +64,11 @@ public class UserController {
         }
     }
 
-    private String hashPassword(String password)
-    {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
-        //String result = encoder.encode(password;
-        //assertTrue(encoder.matches("myPassword", result));
-        String result = encoder.encode(password);
-        System.out.println(result);
-        return result;
-    }
-
+        private String hashPassword(String password)
+        {
+            String sha256hex = Hashing.sha256()
+                    .hashString(password, StandardCharsets.UTF_8)
+                    .toString();
+            return sha256hex;
+        }
 }
