@@ -9,15 +9,31 @@ import "react-date-range/dist/theme/default.css";
 import "./DateRangeCalendar.css";
 
 const DateRangeComp = ({ range, setRange }) => {
-  // State to manage the visibility of the DateRange picker
   const [open, setOpen] = useState(false);
+  const pickerRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (pickerRef.current && !pickerRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
 
   const handleSelect = (ranges) => {
     setRange([ranges.selection]);
-    //setOpen(false); // Close picker after selection
   };
 
-  // When opening the date picker, initialize with today's date if no date has been selected
+
   const handleClick = () => {
     if (!range[0].startDate || !range[0].endDate) {
       setRange([
@@ -31,7 +47,7 @@ const DateRangeComp = ({ range, setRange }) => {
     setOpen(!open);
   };
 
-  // Adjust the input value to display dates only if they are selected
+
   const displayValue =
     range[0].startDate && range[0].endDate
       ? `From ${format(range[0].startDate, "dd/MM/yyyy")} To ${format(
@@ -62,17 +78,19 @@ const DateRangeComp = ({ range, setRange }) => {
         onClick={() => setOpen(!open)} // Toggles the visibility of the DateRange picker
       />
 
-      {open && ( // Only render the DateRange picker if 'open' is true
-        <DateRange
-          editableDateInputs={true}
-          onChange={handleSelect}
-          moveRangeOnFirstSelection={false}
-          ranges={range}
-          months={2} // Adjust based on your requirement
-          direction="horizontal"
-          className="calendarElement"
-        />
-      )}
+      <div ref={pickerRef}>
+        {open && (
+            <DateRange
+                editableDateInputs={true}
+                onChange={handleSelect}
+                moveRangeOnFirstSelection={false}
+                ranges={range}
+                months={2} // Adjust based on your requirement
+                direction="horizontal"
+                className="calendarElement"
+            />
+        )}
+      </div>
     </div>
   );
 };
