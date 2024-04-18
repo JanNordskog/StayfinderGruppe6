@@ -7,11 +7,26 @@ function ControlPanel() {
   const location = useLocation();
   const user = location.state?.user;
   const [listings, setListings] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    if (user?.userperm === 1) {
-      fetchListings();
-    }
+    const checkAdminStatus = async () => {
+      if (user) {
+        try {
+          const response = await axios.get(
+            `http://localhost:8080/user/${user.id}/is-admin`
+          );
+          setIsAdmin(response.data); // Assuming the endpoint returns true/false directly
+          if (response.data) {
+            fetchListings();
+          }
+        } catch (error) {
+          console.error("Error checking admin status:", error);
+        }
+      }
+    };
+
+    checkAdminStatus();
   }, [user]);
 
   const fetchListings = async () => {
@@ -58,7 +73,7 @@ function ControlPanel() {
         </div>
       )}
 
-      {user?.userperm === 1 && ( // Conditional rendering based on user permissions
+      {isAdmin && (
         <div>
           <h2>Available Listings:</h2>
           {listings.length > 0 ? (
