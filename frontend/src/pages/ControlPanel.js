@@ -12,6 +12,10 @@ function ControlPanel() {
     if (user?.userperm === 1) {
       fetchListings();
     }
+    else (user?.userperm === 0)
+    {
+        fetchFaveListings();
+    }
   }, [user]);
 
   const fetchListings = async () => {
@@ -23,6 +27,15 @@ function ControlPanel() {
     } catch (error) {
       console.error("Error fetching listings:", error);
     }
+
+    const fetchFaveListings = async =>
+    {
+        try {
+            const response = await axios.get"http://localhost:8080//api/favorites/{id}");
+        }
+    }
+
+
   };
 
   const toggleListingVisibility = async (id, isVisible) => {

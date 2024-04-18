@@ -38,7 +38,6 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User newUser) {
         try {
-            //String userPsw = ;
             String hashedPsw = hashPassword(newUser.getPassword());
             newUser.setPassword(hashedPsw);
 
@@ -48,7 +47,7 @@ public class UserController {
             return ResponseEntity.internalServerError().build(); // Return an Internal Server Error status
         }
     }
-    
+
     @GetMapping("/login")
     public ResponseEntity<?> loginUser(@RequestParam("uname") String name, @RequestParam("psw") String password) {
         // Ideally, you would hash the password here before comparing it with database
