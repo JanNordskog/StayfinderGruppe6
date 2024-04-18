@@ -22,6 +22,7 @@
   border: 1px solid #ccc;
   border-radius: 0.5em;
   overflow: hidden;
+  border: transparent;
 }
 
 .destination a {
