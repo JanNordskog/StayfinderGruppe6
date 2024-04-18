@@ -20,8 +20,8 @@ function LoginForm() {
       });
       if (response.status === 200) {
         console.log("Login successful", response.data);
-        // Redirect to control panel page with user data
-        navigate("/controlPanel", { state: { user: response.data } });
+        sessionStorage.setItem("user", JSON.stringify(response.data)); // Store user data in sessionStorage
+        navigate("/controlPanel", { replace: true }); // Navigate with replace to avoid navigating back to login
       } else {
         setError("Invalid username or password");
       }
@@ -30,6 +30,7 @@ function LoginForm() {
       console.error("Login error:", error);
     }
   };
+
 
   return (
     <div className="loginForm">

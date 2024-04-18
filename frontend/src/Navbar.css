@@ -6,6 +6,7 @@
   background-color: white;
   padding: 20px;
   font-family: "Main";
+  width: 100%;
 }
 
 .navbar .logo {
@@ -26,7 +27,7 @@
   flex-grow: 1;
   justify-content: right;
   color: black;
-  margin-right: 25px;
+  margin-right: 0px;
 }
 
 .navbar ul li {
@@ -43,6 +44,7 @@
   border-radius: 0.5rem;
   padding: 0.875rem 1rem;
   transition: 0.5s linear;
+  margin-right: 50px;
 }
 
 .navbar button:hover {
@@ -81,6 +83,7 @@
   display: none;
   cursor: pointer;
   margin-left: auto;
+  margin-right: px;
 }
 
 .hamburger img {

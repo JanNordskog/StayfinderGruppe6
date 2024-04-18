@@ -5,10 +5,13 @@
   align-items: center;
   justify-content: center;
   padding: 20px; /* Reconsider if you need padding as it affects the total height */
-  height: calc(100vh - 60px); /* Subtract the navbar height, adjust if different */
+  height: calc(
+    100vh - 60px
+  ); /* Subtract the navbar height, adjust if different */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  width: 100%;
 }
 
 .MainItems {
@@ -30,9 +33,8 @@
   width: max-content;
   color: white;
   font-size: 48px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   margin: 0;
-
 }
 
 /* Styles for mobile devices */
@@ -42,12 +44,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 24px; /* Smaller font size for smaller screens */
-    top: 270px;
+    top: 190px;
   }
 
   .MainSearch {
-    height: calc(100vh - 100px); /* Adjust the navbar height for mobile devices if needed */
-    padding: 10px; /* Optionally reduce padding on smaller screens */
+    height: calc(
+      100vh - 100px
+    ); /* Adjust the navbar height for mobile devices if needed */
   }
 }
 
@@ -55,8 +58,11 @@
 @media (min-width: 769px) {
   .MainSearch {
     /* If the navbar height is different or other styles need to change on larger screens */
-    height: calc(100vh - 60px); /* Ensure this matches the actual navbar height */
-    padding: 20px; /* Consistent padding with the original style, adjust if necessary */
+    height: calc(
+      100vh - 60px
+    ); /* Ensure this matches the actual navbar height */
+
+    width: 100%;
   }
 
   .MainItems h1 {

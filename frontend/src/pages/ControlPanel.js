@@ -1,33 +1,38 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ControlPanel.css";
 
 function ControlPanel() {
-  const location = useLocation();
-  const user = location.state?.user;
+  const navigate = useNavigate();
+  // Retrieve user data from sessionStorage
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const [listings, setListings] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const checkAdminStatus = async () => {
-      if (user) {
+    if (user) {
+      const checkAdminStatus = async () => {
         try {
           const response = await axios.get(
             `http://localhost:8080/user/${user.id}/is-admin`
           );
-          setIsAdmin(response.data); // Assuming the endpoint returns true/false directly
-          if (response.data) {
-            fetchListings();
-          }
+          setIsAdmin(response.data);
         } catch (error) {
           console.error("Error checking admin status:", error);
         }
-      }
-    };
+      };
+      checkAdminStatus();
+    } else {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
-    checkAdminStatus();
-  }, [user]);
+  useEffect(() => {
+    if (isAdmin) {
+      fetchListings();
+    }
+  }, [isAdmin]); // Only fetch listings if isAdmin changes.
 
   const fetchListings = async () => {
     try {
@@ -59,6 +64,12 @@ function ControlPanel() {
     }
   };
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("user"); // Clear the user session data
+    window.dispatchEvent(new Event("storage")); // Manually trigger the storage event
+    navigate("/login"); // Redirect to login page
+  };
+
   return (
     <div className="Panel">
       {user && (
@@ -70,6 +81,8 @@ function ControlPanel() {
           <p>Phone: {user.phone}</p>
           <p>Gender: {user.gender}</p>
           <p>Date of Birth: {user.dob}</p>
+          <button onClick={handleLogout}>Logout</button>{" "}
+          {/* Add a logout button */}
         </div>
       )}
 

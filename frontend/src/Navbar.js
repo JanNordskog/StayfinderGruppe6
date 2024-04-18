@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import axios from "axios"; // Ensure axios is imported if you plan to fetch data
 import "./Navbar.css";
+import axios from "axios";
 
 function Navbar() {
   const [isActive, setIsActive] = useState(false);
-  const navigate = useNavigate(); // Use the useNavigate hook
+  const navigate = useNavigate();
 
-  const location = useLocation(); // Hook to access router state
-  const user = location.state?.user; // Access user data passed in state
+  // Retrieve user data from sessionStorage and parse it
+  const user = JSON.parse(sessionStorage.getItem("user"));
 
   const toggleMenu = () => {
     setIsActive(!isActive);
   };
 
-  // Function to handle fe5gr´tching all listings or with empty criteria
   const handleAllListings = async () => {
     try {
       // You might want to modify this request to suit how your backend handles fetching all listings
@@ -47,7 +45,6 @@ function Navbar() {
         onClick={() => setIsActive(false)}
       >
         <li>
-          {/* Update this Link to use onClick handler */}
           <a className="NavbarLink" href="#!" onClick={handleAllListings}>
             Hotell & destinations
           </a>
@@ -62,14 +59,30 @@ function Navbar() {
             About us
           </Link>
         </li>
-        <Link className="NavbarLink3" to="/Login">
-          <button>Logg inn</button>
-        </Link>
+        {user ? (
+          <li>
+            <Link className="NavbarLink3" to="/controlPanel">
+              <button>My Page</button>
+            </Link>
+          </li>
+        ) : (
+          <li>
+            <Link className="NavbarLink3" to="/Login">
+              <button>Logg inn</button>
+            </Link>
+          </li>
+        )}
       </ul>
       <div className="logg-inn-desktop">
-        <Link className="NavbarLink2" to="/Login">
-          <button>Logg inn</button>
-        </Link>
+        {user ? (
+          <Link className="NavbarLink2" to="/controlPanel">
+            <button>My Page</button>
+          </Link>
+        ) : (
+          <Link className="NavbarLink2" to="/Login">
+            <button>Logg inn</button>
+          </Link>
+        )}
       </div>
     </div>
   );
