@@ -1,53 +1,130 @@
-.hotelpage {
+.hotel-description {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin: 20px;
+}
+
+.hotel-page-container {
+  display: flex;
+  flex-direction: column;
   font-family: "Arial", sans-serif;
-  color: #333;
-  max-width: 800px;
-  margin: auto;
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 20px;
   background: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.hotelpage h1,
-.hotel h2 {
-  color: #0056b3;
-}
-
-.hotelpage h1 {
-  border-bottom: 2px solid #0056b3;
+.hotel-header h1 {
+  color: #2e2e2e;
+  margin-bottom: 20px;
   padding-bottom: 10px;
+  font-size: 28px;
 }
 
-.hotelpage h2 {
-  margin-top: 20px;
+.hotel-main-content {
+  display: flex;
+  gap: 20px;
 }
 
-.hotelpage p {
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-.hotelpage a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.hotelpage a:hover {
-  text-decoration: underline;
-}
-
-.hotelpage img {
-  max-width: 100%;
+.hotel-image img {
+  width: 100%;
   height: auto;
-  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.hotelpage .book-now-btn{
-  background-color: #f9d9d8;
-  color: #5a0032;
+
+.hotel-details {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  gap: 10px;
+}
+
+.hotel-details h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.hotel-details p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+}
+
+.hotel-details strong {
+  color: #333;
+}
+
+.book-now-btn {
+  background-color: #4e607e;
+  color: #ffffff;
   border: none;
   cursor: pointer;
-  border-radius: 0.5rem;
-  padding: 0.875rem 1rem;
-  transition: 0.5s linear;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  align-self: start;
 }
 
+.book-now-btn:hover {
+  background-color: #3a4e6e;
+}
+
+.book-now-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hotel-main-content {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .hotel-page-container {
+    padding: 15px;
+  }
+
+  .hotel-header h1 {
+    font-size: 24px;
+  }
+
+  .hotel-details h2 {
+    font-size: 20px;
+  }
+
+  .hotel-details p {
+    font-size: 14px;
+  }
+
+  .book-now-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hotel-header h1 {
+    padding-bottom: 5px;
+  }
+
+  .book-now-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+}
