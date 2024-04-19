@@ -10,7 +10,7 @@ import java.util.Date;
 public class Listing {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "listingID")
+    @Column(name = "listingid")
     private String listingID;
 
     @NotNull
