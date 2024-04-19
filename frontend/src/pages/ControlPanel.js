@@ -48,14 +48,16 @@ function ControlPanel() {
 
     const fetchFaveListings = async () => {
         try {
-            const response = await axios.get("http://localhost:8080//api/favorites/{id}", {
+            const response = await axios.get("http://localhost:8080//api/favorites/listing", {
                 params: {
                   userid: userid,
                 },
               });
+              setListings(
                     response.data.map((listing) => ({ ...listing, hidden: false })
-                  );
-                } catch (error) {
+                  ));
+                }
+                catch (error) {
                   console.error("Could not load favorites:", error);
                 }
                 };
