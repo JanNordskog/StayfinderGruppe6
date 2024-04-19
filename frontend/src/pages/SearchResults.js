@@ -11,6 +11,7 @@ function SearchResults() {
   const { data: initialData } = location.state || { data: [] };
   const [data, setData] = useState(initialData);
   const [sortType, setSortType] = useState("");
+  const searchParams = JSON.parse(sessionStorage.getItem("searchParams"));
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -44,6 +45,13 @@ function SearchResults() {
       });
   };
 
+  const formatDates = ({ startDate, endDate }) => {
+    // Convert strings to Date objects
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    return `${start.toLocaleDateString()} - ${end.toLocaleDateString()}`;
+  };
+
   return (
     <div className="Search">
       <div className="search-bar-container">
@@ -51,16 +59,30 @@ function SearchResults() {
       </div>
       <div className="SearchResults">
         <h1>Hotel Listings</h1>
-        <div>
-          <div className="sort-dropdown-container">
-            <label htmlFor="sort">Sort by:</label>
-            <select id="sort" onChange={(e) => setSortType(e.target.value)}>
-              <option value="">Select</option>
-              <option value="price1">Price low-high</option>
-              <option value="price2">Price high-low</option>
-              <option value="name">Name</option>
-            </select>
-          </div>
+        <div className="search-details">
+          {searchParams && (
+            <div className="search-params-display">
+              <h3>Search Details:</h3>
+              <p>
+                <strong>Destination:</strong> {searchParams.destination}
+              </p>
+              <p>
+                <strong>Guests:</strong> {searchParams.guests}
+              </p>
+              <p>
+                <strong>Dates:</strong> {formatDates(searchParams.range[0])}
+              </p>
+            </div>
+          )}
+        </div>
+        <div className="sort-dropdown-container">
+          <label htmlFor="sort">Sort by:</label>
+          <select id="sort" onChange={(e) => setSortType(e.target.value)}>
+            <option value="">Select</option>
+            <option value="price1">Price low-high</option>
+            <option value="price2">Price high-low</option>
+            <option value="name">Name</option>
+          </select>
         </div>
         <div className="listings-grid">
           {data.length > 0 ? (
@@ -86,7 +108,7 @@ function SearchResults() {
                 </h2>
                 <button
                   className="book-button"
-                  onClick={() => handleBooking(item.listingID)} // Ensure this is the correct property name for listing ID in your data structure
+                  onClick={() => handleBooking(item.listingID)}
                 >
                   Book now
                 </button>

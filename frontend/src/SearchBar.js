@@ -8,6 +8,7 @@ import { addDays } from "date-fns";
 
 function SearchBar() {
   const navigate = useNavigate();
+  const savedSearchParams = JSON.parse(sessionStorage.getItem("searchParams"));
   const [searchParams, setSearchParams] = useState({
     destination: "",
     guests: "0",
@@ -31,6 +32,7 @@ function SearchBar() {
     event.preventDefault();
     const { destination, range } = searchParams;
     const { startDate, endDate } = range[0]; // Assuming the first range item contains the dates
+    sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
 
     try {
       const response = await axios.get(
