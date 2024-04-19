@@ -8,7 +8,6 @@ import { addDays } from "date-fns";
 
 function SearchBar() {
   const navigate = useNavigate();
-  const savedSearchParams = JSON.parse(sessionStorage.getItem("searchParams"));
   const [searchParams, setSearchParams] = useState({
     destination: "",
     guests: "0",
@@ -30,60 +29,66 @@ function SearchBar() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { destination, range } = searchParams;
+    const { destination, guests, range } = searchParams;
     const { startDate, endDate } = range[0]; // Assuming the first range item contains the dates
+
+    if (parseInt(guests, 10) < 1) {
+      alert("Please select at least one guest.");
+      return; // Stop further execution if validation fails
+    }
+
     sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
 
     try {
       const response = await axios.get(
-        "http://localhost:8080/listings/engine",
-        {
-          params: {
-            destination: destination,
-            arrivalDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
-            departureDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
-          },
-        }
+          "http://localhost:8080/listings/engine",
+          {
+            params: {
+              destination,
+              arrivalDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+              departureDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+            },
+          }
       );
 
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", { state: { data: response.data, range: range[0] } });
     } catch (error) {
       console.error("Search failed:", error);
     }
   };
 
   return (
-    <div className="MainItems">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          id="destination"
-          name="destination"
-          placeholder="Going to"
-          onChange={handleChange}
-        />
-        <DateRangeComp
-          range={searchParams.range}
-          setRange={(range) => setSearchParams({ ...searchParams, range })}
-        />
-        <select id="Gjester" name="guests" onChange={handleChange}>
-          <option value="0">Guests</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-        <div className="Søk">
-          <button type="submit">Search</button>
-        </div>
-      </form>
-    </div>
+      <div className="MainItems">
+        <form onSubmit={handleSubmit}>
+          <input
+              type="text"
+              id="destination"
+              name="destination"
+              placeholder="Going to"
+              onChange={handleChange}
+          />
+          <DateRangeComp
+              range={searchParams.range}
+              setRange={(newRange) => setSearchParams({ ...searchParams, range: newRange })}
+          />
+          <select id="Gjester" name="guests" onChange={handleChange}>
+            <option value="0">Guests</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <div className="Søk">
+            <button type="submit">Search</button>
+          </div>
+        </form>
+      </div>
   );
 }
 

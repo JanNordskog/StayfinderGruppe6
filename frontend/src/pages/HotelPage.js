@@ -88,9 +88,6 @@ function HotelPage() {
             <div className="search-params-display">
               <h3>Search Details:</h3>
               <p>
-                <strong>Destination:</strong> {searchParams.destination}
-              </p>
-              <p>
                 <strong>Guests:</strong> {searchParams.guests}
               </p>
               <p>
