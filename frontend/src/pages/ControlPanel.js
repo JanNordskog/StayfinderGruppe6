@@ -163,7 +163,7 @@ function ControlPanel() {
 
       {user?.userperm === 0 && ( // Conditional rendering based on user permissions
         <div>
-          <h2>Available Listings:</h2>
+          <h2>Saved Favorites:</h2>
           {listings.length > 0 ? (
             <ul>
               {listings.map((listing) => (
