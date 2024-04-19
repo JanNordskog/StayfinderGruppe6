@@ -1,5 +1,4 @@
-// SearchResults.js
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SearchResults.css";
@@ -9,19 +8,33 @@ import SearchBar from "../SearchBar";
 function SearchResults() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { data } = location.state || { data: [] };
+  const { data: initialData } = location.state || { data: [] };
+  const [data, setData] = useState(initialData);
+  const [sortType, setSortType] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    let sortedData = [...data];
+    if (sortType === "price") {
+      sortedData.sort((a, b) => a.price - b.price);
+    } else if (sortType === "name") {
+      sortedData.sort((a, b) => a.hotelName.localeCompare(b.hotelName));
+    } // Add more sort types if needed
+    setData(sortedData);
+  }, [sortType]);
+
   const handleBooking = (listingId) => {
     axios
       .get(`http://localhost:8080/listings/getlistingByID/${listingId}`)
       .then((response) => {
-        navigate("/hotelpage", { state: {
-            data: response.data
-        } });
+        navigate("/hotelpage", {
+          state: {
+            data: response.data,
+          },
+        });
       })
       .catch((error) => {
         console.error("Error fetching listing data:", error);
@@ -34,9 +47,16 @@ function SearchResults() {
       <div className="search-bar-container">
         <SearchBar />
       </div>
-
       <div className="SearchResults">
         <h1>Hotel Listings</h1>
+        <div>
+          <label>Sort by: </label>
+          <select onChange={(e) => setSortType(e.target.value)}>
+            <option value="">Select</option>
+            <option value="price">Price</option>
+            <option value="name">Name</option>
+          </select>
+        </div>
         <div className="listings-grid">
           {data.length > 0 ? (
             data.map((item, index) => (
