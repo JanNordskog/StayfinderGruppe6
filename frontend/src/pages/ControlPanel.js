@@ -86,7 +86,7 @@ function ControlPanel() {
   return (
     <div className="Panel">
       {user && (
-        <div>
+        <div className="user-info-box">
           <h1>Du har nå logget inn</h1>
           <h2>Velkommen, {user.name}</h2>
           <p>Email: {user.email}</p>
@@ -99,7 +99,7 @@ function ControlPanel() {
       )}
 
       {isAdmin && (
-        <div>
+        <div className={"Panel1"}>
           <h2>Available Listings:</h2>
           {listings.length > 0 ? (
             <ul>
@@ -107,10 +107,7 @@ function ControlPanel() {
                 <li
                   key={listing.listingID}
                   style={{
-                    margin: "20px",
-                    padding: "10px",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
+
                   }}
                 >
                   <h3>
@@ -119,7 +116,7 @@ function ControlPanel() {
                   <img
                     src={listing.imageLink}
                     alt={listing.hotelName}
-                    style={{ width: "100px", height: "auto" }}
+                    style={{  }}
                   />
                   <p>Agency: {listing.agency.name}</p>
                   <p>
@@ -161,10 +158,7 @@ function ControlPanel() {
                 <li
                   key={listing.listingID}
                   style={{
-                    margin: "20px",
-                    padding: "10px",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
+
                   }}
                 >
                   <h3>
@@ -173,7 +167,7 @@ function ControlPanel() {
                   <img
                     src={listing.imageLink}
                     alt={listing.hotelName}
-                    style={{ width: "100px", height: "auto" }}
+                    style={{ }}
                   />
                   <p>Agency: {listing.agency.name}</p>
                   <p>

@@ -5,11 +5,23 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  width: 100%; /* Stretch to the full width */
   background-color: #f4f4f9;
   color: #333;
   font-family: "Arial", sans-serif;
+  padding-top: 20px;
 }
 
+.user-info-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center align text */
+  margin-bottom: 20px; /* Add space below the user info box */
+  width: 80%;
+  max-width: 500px; /* Limit width and center */
+}
 .Panel h1 {
   color: #4a90e2;
   margin-bottom: 20px;
@@ -36,9 +48,121 @@
   margin-right: 10px;
 }
 
-@media (max-width: 600px) {
+.Panel ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+.Panel li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: white;
+}
+
+.Panel li img {
+  width: 150px;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.Panel li:last-child {
+  border-bottom: none;
+}
+
+.Panel button {
+  padding: 12px 24px;
+  color: white;
+  background-color: #d9534f;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s, transform 0.2s;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.hide-button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s, transform 0.2s;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.hide-button:hover {
+  background-color: #c9302c;
+  transform: scale(1.05);
+}
+
+.show-button {
+  background-color: #4CAF50;
+}
+
+.show-button:hover {
+  background-color: #388E3C;
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments for tablet screens */
+@media (max-width: 768px) {
+  .Panel ul {
+    max-width: 500px;
+  }
+
   .Panel .user-details {
-    width: 90%;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .Panel li img {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .Panel button,
+  .listing-card button,
+  .hide-button,
+  .show-button {
+    padding: 10px 20px;
+    margin: 10px auto;
+  }
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 600px) {
+  .Panel ul {
+    max-width: 100%;
+  }
+
+  .Panel .user-details {
+    width: 100%;
+    max-width: 100%;
     padding: 15px;
+  }
+
+  .Panel li img {
+    max-width: 150px;
+  }
+
+  .Panel button,
+  .listing-card button,
+  .hide-button,
+  .show-button {
+    padding: 8px 16px;
+    margin: 8px auto;
   }
 }
