@@ -19,7 +19,9 @@ function SearchResults() {
     axios
       .get(`http://localhost:8080/listings/getlistingByID/${listingId}`)
       .then((response) => {
-        navigate("/hotelpage", { state: { data: response.data } });
+        navigate("/hotelpage", { state: {
+            data: response.data
+        } });
       })
       .catch((error) => {
         console.error("Error fetching listing data:", error);

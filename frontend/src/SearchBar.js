@@ -41,7 +41,7 @@ function SearchBar() {
         },
       });
 
-      navigate("/searchResults", { state: { data: response.data } });
+      navigate("/searchResults", { state: {data: response.data} });
     } catch (error) {
       console.error("Search failed:", error);
     }

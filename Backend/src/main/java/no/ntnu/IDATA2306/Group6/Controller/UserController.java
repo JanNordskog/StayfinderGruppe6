@@ -16,7 +16,6 @@ import java.util.Optional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.google.common.hash.Hashing;
 
 @RestController
 @CrossOrigin
@@ -55,20 +54,17 @@ public class UserController {
         // Ideally, you would hash the password here before comparing it with database
         // entries
         password = hashPassword(password);
-        User user = userRepo.findByEmailAndPassword(name, password);
+        User user = userRepo.findOneByEmailOrName(name, name);
         System.out.println(name + password);
         System.out.println(user);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
+        if (user == null || new BCryptPasswordEncoder().matches(password, user.getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
+        return ResponseEntity.status(200).body(user);
     }
 
     private String hashPassword(String password) {
-        String sha256hex = Hashing.sha256()
-                .hashString(password, StandardCharsets.UTF_8)
-                .toString();
+        String sha256hex = new BCryptPasswordEncoder().encode(password);
         return sha256hex;
     }
 
