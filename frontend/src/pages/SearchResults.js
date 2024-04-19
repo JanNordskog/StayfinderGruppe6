@@ -18,11 +18,13 @@ function SearchResults() {
 
   useEffect(() => {
     let sortedData = [...data];
-    if (sortType === "price") {
+    if (sortType === "price1") {
       sortedData.sort((a, b) => a.price - b.price);
     } else if (sortType === "name") {
       sortedData.sort((a, b) => a.hotelName.localeCompare(b.hotelName));
-    } // Add more sort types if needed
+    } else if (sortType === "price2") {
+      sortedData.sort((a, b) => b.price - a.price);
+    }
     setData(sortedData);
   }, [sortType]);
 
@@ -50,12 +52,15 @@ function SearchResults() {
       <div className="SearchResults">
         <h1>Hotel Listings</h1>
         <div>
-          <label>Sort by: </label>
-          <select onChange={(e) => setSortType(e.target.value)}>
-            <option value="">Select</option>
-            <option value="price">Price</option>
-            <option value="name">Name</option>
-          </select>
+          <div className="sort-dropdown-container">
+            <label htmlFor="sort">Sort by:</label>
+            <select id="sort" onChange={(e) => setSortType(e.target.value)}>
+              <option value="">Select</option>
+              <option value="price1">Price low-high</option>
+              <option value="price2">Price high-low</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
         </div>
         <div className="listings-grid">
           {data.length > 0 ? (
