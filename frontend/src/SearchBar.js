@@ -33,15 +33,18 @@ function SearchBar() {
     const { startDate, endDate } = range[0]; // Assuming the first range item contains the dates
 
     try {
-      const response = await axios.get("http://localhost:8080/listings/engine", {
-        params: {
-          destination: destination,
-          arrivalDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
-          departureDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
-        },
-      });
+      const response = await axios.get(
+        "http://localhost:8080/listings/engine",
+        {
+          params: {
+            destination: destination,
+            arrivalDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+            departureDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+          },
+        }
+      );
 
-      navigate("/searchResults", { state: {data: response.data} });
+      navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Search failed:", error);
     }
@@ -75,7 +78,7 @@ function SearchBar() {
           <option value="10">10</option>
         </select>
         <div className="Søk">
-          <button type="submit">Søk</button>
+          <button type="submit">Search</button>
         </div>
       </form>
     </div>
