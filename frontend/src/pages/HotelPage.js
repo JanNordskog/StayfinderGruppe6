@@ -56,10 +56,10 @@ function HotelPage() {
             <strong>Address:</strong> {hotel.hotelAddress}
           </p>
           <p>
-            <strong>Arrival Date:</strong> {hotel.arrivalDate}
+            <strong>Available dates from:</strong> {hotel.arrivalDate}
           </p>
           <p>
-            <strong>Departure Date:</strong> {hotel.departureDate}
+            <strong>Available until:</strong> {hotel.departureDate}
           </p>
           <p>
             <strong>Price:</strong> ${hotel.price.toFixed(2)}
