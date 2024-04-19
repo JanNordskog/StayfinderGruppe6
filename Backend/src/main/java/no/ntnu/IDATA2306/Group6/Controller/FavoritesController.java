@@ -3,9 +3,12 @@ package no.ntnu.IDATA2306.Group6.Controller;
 import jakarta.websocket.server.PathParam;
 import no.ntnu.IDATA2306.Group6.Entity.Listing;
 import no.ntnu.IDATA2306.Group6.Repo.ListingRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import no.ntnu.IDATA2306.Group6.Entity.Favorites;
 import no.ntnu.IDATA2306.Group6.Repo.FavoritesRepo;
@@ -21,6 +24,7 @@ public class FavoritesController {
 
     @Autowired
     private FavoritesRepo favoritesRepo;
+    private Logger log = LoggerFactory.getLogger("FavoritesController");
 
     public FavoritesController(FavoritesRepo favoritesRepo) {this.favoritesRepo = favoritesRepo; }
 
@@ -40,10 +44,11 @@ public class FavoritesController {
     }
 
     //Get all favorites from a specific user ID
-    @GetMapping("/listing")
-    public Collection<Favorites> getAllUserFavorites(@PathParam("userid") Integer userid)
+    @GetMapping("/listing/{userid}")
+    public List<Favorites> getAllUserFavorites(@PathVariable int userid)
     {
-        System.out.print(userid);
+        //System.out.print(userid);
+        log.debug(favoritesRepo.findFavoritesByUserId(userid).toString());
         return favoritesRepo.findFavoritesByUserId(userid);
     }
 

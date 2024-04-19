@@ -1,6 +1,7 @@
 package no.ntnu.IDATA2306.Group6.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "favorites")
@@ -11,12 +12,14 @@ public class Favorites {
     @Column(name = "favoriteID")
     private Integer favoriteID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userID", nullable = false) 
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "userid", nullable = false, referencedColumnName = "userId")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "listingID", nullable = false)
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "listingid", nullable = false, referencedColumnName = "listingid")
     private Listing listing;
 
     // Constructors
