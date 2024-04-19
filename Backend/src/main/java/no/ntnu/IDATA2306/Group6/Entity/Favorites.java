@@ -9,7 +9,7 @@ public class Favorites {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "favoriteID")
-    private Long favoriteID;
+    private Integer favoriteID;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userID", nullable = false) 
@@ -29,11 +29,11 @@ public class Favorites {
     }
 
     // Getter and Setter for favoriteID
-    public Long getFavoriteID() {
+    public Integer getFavoriteID() {
         return favoriteID;
     }
 
-    public void setFavoriteID(Long favoriteID) {
+    public void setFavoriteID(Integer favoriteID) {
         this.favoriteID = favoriteID;
     }
 
