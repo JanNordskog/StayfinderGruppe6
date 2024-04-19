@@ -10,7 +10,7 @@ function SearchBar() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useState({
     destination: "",
-    guests: "0",
+    guests: "1",
     range: [
       {
         startDate: new Date(),
