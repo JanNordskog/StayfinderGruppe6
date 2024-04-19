@@ -76,3 +76,35 @@
   width: 100%; /* Ensure it takes the full width */
   padding: 20px 0; /* Add some padding above and below */
 }
+
+.sort-dropdown-container {
+  margin-bottom: 20px; /* Space below the sort dropdown */
+  text-align: left; /* Center align the dropdown */
+}
+
+.sort-dropdown-container label {
+  font-family: "Main", sans-serif; /* Consistent font family */
+  color: #333; /* Dark grey text color */
+  margin-right: 10px; /* Space between label and dropdown */
+  font-size: 18px; /* Slightly larger font size */
+}
+
+.sort-dropdown-container select {
+  padding: 10px 20px; /* Padding for better touch interaction */
+  font-family: "Main", sans-serif;
+  font-size: 16px;
+  border: 1px solid #ddd; /* Light grey border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: white; /* White background */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.sort-dropdown-container select:hover {
+  background-color: #f4f4f4; /* Slight change on hover */
+}
+
+.sort-dropdown-container select:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #4caf50; /* Highlight color when focused */
+}

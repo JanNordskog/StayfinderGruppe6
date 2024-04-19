@@ -68,7 +68,7 @@ function Navbar() {
         ) : (
           <li>
             <Link className="NavbarLink3" to="/Login">
-              <button>Logg inn</button>
+              <button>Sign in</button>
             </Link>
           </li>
         )}
@@ -80,7 +80,7 @@ function Navbar() {
           </Link>
         ) : (
           <Link className="NavbarLink2" to="/Login">
-            <button>Logg inn</button>
+            <button>Sign in</button>
           </Link>
         )}
       </div>
