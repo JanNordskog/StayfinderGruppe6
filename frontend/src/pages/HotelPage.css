@@ -65,21 +65,18 @@
 }
 
 .book-now-btn {
-  background-color: #4e607e;
-  color: #ffffff;
+  background-color: #f9d9d8;
+  color: #5a0032;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-weight: bold;
-  font-size: 16px;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-  align-self: start;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  transition: 0.5s linear;
+  margin-right: 50px;
 }
 
 .book-now-btn:hover {
-  background-color: #3a4e6e;
+  border-radius: 1rem;
 }
 
 .book-now-btn:disabled {
