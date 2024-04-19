@@ -95,6 +95,14 @@ function SearchResults() {
                 />
                 <h2>{item.hotelName}</h2>
                 <p>
+                  <strong>Arrival:</strong>{" "}
+                  {new Date(item.arrivalDate).toLocaleDateString()}
+                </p>
+                <p>
+                  <strong>Departure:</strong>{" "}
+                  {new Date(item.departureDate).toLocaleDateString()}
+                </p>
+                <p>
                   <strong>Address:</strong> {item.hotelAddress}
                 </p>
                 <p>
