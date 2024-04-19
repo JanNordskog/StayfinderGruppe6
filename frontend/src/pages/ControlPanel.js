@@ -5,13 +5,14 @@ import "./ControlPanel.css";
 
 function ControlPanel() {
   const navigate = useNavigate();
-  // Retrieve user data from sessionStorage
   const user = JSON.parse(sessionStorage.getItem("user"));
   const [listings, setListings] = useState([]);
-
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    if (user) {
+    if (!user) {
+      navigate("/login");
+    } else {
       const checkAdminStatus = async () => {
         try {
           const response = await axios.get(
@@ -23,22 +24,18 @@ function ControlPanel() {
         }
       };
       checkAdminStatus();
-    } else {
-      navigate("/login");
     }
   }, [user, navigate]);
 
   useEffect(() => {
     if (isAdmin) {
       fetchListings();
-  }
+    } else {
+      fetchFaveListings();
+    }
+  }, [isAdmin]);
 
-    else if (!isAdmin) {
-          fetchFaveListings();
-        }
-        }, [isAdmin]); // Only fetch listings if isAdmin changes.
-
-  const fetchListings = async (userid) => {
+  const fetchListings = async () => {
     try {
       const response = await axios.get("http://localhost:8080/listings");
       setListings(
@@ -49,26 +46,18 @@ function ControlPanel() {
     }
   };
 
-
-
-    const fetchFaveListings = async (userid) => {
-
-        try {
-            const response = await axios.get(`http://localhost:8080/api/favorites/listing/${user.id}`,
-            {
-
-              });
-              setListings(
-                    response.data.map((listing) => ({ ...listing.listing, hidden: false })
-                  ));
-                  console.log(listings)
-                  console.log(response)
-
-                } catch (error) {.error("Error fetching listings:", error);}
-                }
-};
-
-
+  const fetchFaveListings = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/favorites/listing/${user.id}`
+      );
+      setListings(
+        response.data.map((listing) => ({ ...listing.listing, hidden: false }))
+      );
+    } catch (error) {
+      console.error("Error fetching listings:", error);
+    }
+  };
 
   const toggleListingVisibility = async (id, isVisible) => {
     try {
@@ -90,9 +79,8 @@ function ControlPanel() {
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem("user"); // Clear the user session data
-    window.dispatchEvent(new Event("storage")); // Manually trigger the storage event
-    navigate("/login"); // Redirect to login page
+    sessionStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
@@ -106,8 +94,7 @@ function ControlPanel() {
           <p>Phone: {user.phone}</p>
           <p>Gender: {user.gender}</p>
           <p>Date of Birth: {user.dob}</p>
-          <button onClick={handleLogout}>Logout</button>{" "}
-          {/* Add a logout button */}
+          <button onClick={handleLogout}>Logout</button>
         </div>
       )}
 
@@ -141,7 +128,7 @@ function ControlPanel() {
                   </p>
                   <p>Hotel Address: {listing.hotelAddress}</p>
                   <p>
-                    Arrival: {listing.arrivalDate} | Departure:
+                    Arrival: {listing.arrivalDate} | Departure:{" "}
                     {listing.departureDate}
                   </p>
                   <p>Price: ${listing.price}</p>
@@ -165,8 +152,7 @@ function ControlPanel() {
         </div>
       )}
 
-
-      {!isAdmin && ( // Conditional rendering based on user permissions
+      {!isAdmin && (
         <div>
           <h2>Saved Favorites:</h2>
           {listings.length > 0 ? (
@@ -196,7 +182,7 @@ function ControlPanel() {
                   </p>
                   <p>Hotel Address: {listing.hotelAddress}</p>
                   <p>
-                    Arrival: {listing.arrivalDate} | Departure:
+                    Arrival: {listing.arrivalDate} | Departure:{" "}
                     {listing.departureDate}
                   </p>
                   <p>Price: ${listing.price}</p>
@@ -221,6 +207,6 @@ function ControlPanel() {
       )}
     </div>
   );
-},
+}
 
 export default ControlPanel;
