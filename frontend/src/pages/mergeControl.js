@@ -31,12 +31,11 @@ function ControlPanel() {
   useEffect(() => {
     if (isAdmin) {
       fetchListings();
-  }
+  }, [isAdmin]); // Only fetch listings if isAdmin changes.
 
     else if (!isAdmin) {
           fetchFaveListings();
         }
-        }, [isAdmin]); // Only fetch listings if isAdmin changes.
 
   const fetchListings = async (userid) => {
     try {
@@ -54,8 +53,7 @@ function ControlPanel() {
     const fetchFaveListings = async (userid) => {
 
         try {
-            const response = await axios.get(`http://localhost:8080/api/favorites/listing/${user.id}`,
-            {
+            const response = await axios.get(`http://localhost:8080/api/favorites/listing/${user.id}`, {
 
               });
               setListings(
@@ -63,10 +61,11 @@ function ControlPanel() {
                   ));
                   console.log(listings)
                   console.log(response)
-
-                } catch (error) {.error("Error fetching listings:", error);}
                 }
-};
+                catch (error) {
+                console.error("Error fetching listings:", error);
+                }
+                };
 
 
 
@@ -166,7 +165,7 @@ function ControlPanel() {
       )}
 
 
-      {!isAdmin && ( // Conditional rendering based on user permissions
+      {user?.userperm === 0 && ( // Conditional rendering based on user permissions
         <div>
           <h2>Saved Favorites:</h2>
           {listings.length > 0 ? (

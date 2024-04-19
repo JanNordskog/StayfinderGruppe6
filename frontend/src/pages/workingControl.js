@@ -8,7 +8,7 @@ function ControlPanel() {
   // Retrieve user data from sessionStorage
   const user = JSON.parse(sessionStorage.getItem("user"));
   const [listings, setListings] = useState([]);
-
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -31,44 +31,17 @@ function ControlPanel() {
   useEffect(() => {
     if (isAdmin) {
       fetchListings();
-  }
+    }
+  }, [isAdmin]); // Only fetch listings if isAdmin changes.
 
-    else if (!isAdmin) {
-          fetchFaveListings();
-        }
-        }, [isAdmin]); // Only fetch listings if isAdmin changes.
-
-  const fetchListings = async (userid) => {
+  const fetchListings = async () => {
     try {
       const response = await axios.get("http://localhost:8080/listings");
       setListings(
         response.data.map((listing) => ({ ...listing, hidden: false }))
       );
-    } catch (error) {
-      console.error("Error fetching listings:", error);
-    }
+    } catch (error) {console.error("Error fetching listings:", error);}
   };
-
-
-
-    const fetchFaveListings = async (userid) => {
-
-        try {
-            const response = await axios.get(`http://localhost:8080/api/favorites/listing/${user.id}`,
-            {
-
-              });
-              setListings(
-                    response.data.map((listing) => ({ ...listing.listing, hidden: false })
-                  ));
-                  console.log(listings)
-                  console.log(response)
-
-                } catch (error) {.error("Error fetching listings:", error);}
-                }
-};
-
-
 
   const toggleListingVisibility = async (id, isVisible) => {
     try {
@@ -164,63 +137,8 @@ function ControlPanel() {
           )}
         </div>
       )}
-
-
-      {!isAdmin && ( // Conditional rendering based on user permissions
-        <div>
-          <h2>Saved Favorites:</h2>
-          {listings.length > 0 ? (
-            <ul>
-              {listings.map((listing) => (
-                <li
-                  key={listing.listingID}
-                  style={{
-                    margin: "20px",
-                    padding: "10px",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
-                  }}
-                >
-                  <h3>
-                    {listing.hotelName} - {listing.roomTypeAvailable}
-                  </h3>
-                  <img
-                    src={listing.imageLink}
-                    alt={listing.hotelName}
-                    style={{ width: "100px", height: "auto" }}
-                  />
-                  <p>Agency: {listing.agency.name}</p>
-                  <p>
-                    Contact: {listing.agency.email} |{" "}
-                    {listing.agency.phoneNumber}
-                  </p>
-                  <p>Hotel Address: {listing.hotelAddress}</p>
-                  <p>
-                    Arrival: {listing.arrivalDate} | Departure:
-                    {listing.departureDate}
-                  </p>
-                  <p>Price: ${listing.price}</p>
-                  <p>Features: {listing.extraFeatures}</p>
-                  <button
-                    onClick={() =>
-                      toggleListingVisibility(
-                        listing.listingID,
-                        listing.visible === 0
-                      )
-                    }
-                  >
-                    {listing.visible === 0 ? "Show Listing" : "Hide Listing"}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No listings available.</p>
-          )}
-        </div>
-      )}
     </div>
   );
-},
+}
 
 export default ControlPanel;
