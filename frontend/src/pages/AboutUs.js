@@ -38,8 +38,8 @@ function AboutUs() {
               </div>
               <div className="flip-card-back">
                 <h1>Jan Nordskog</h1>
-                <p>Architect & Engineer</p>
-                <p>We love that guy</p>
+                <p>Website Developer</p>
+                <p>Computer Engineer</p>
               </div>
             </div>
           </div>
@@ -54,8 +54,8 @@ function AboutUs() {
               </div>
               <div className="flip-card-back">
                 <h1>Ulrik Ribler</h1>
-                <p>Architect & Engineer</p>
-                <p>Professional AI user</p>
+                <p>Website Developer</p>
+                <p>Computer Engineer</p>
               </div>
             </div>
           </div>
@@ -70,8 +70,8 @@ function AboutUs() {
               </div>
               <div className="flip-card-back">
                 <h1>Alejandro Miguel Talley Grønhaug</h1>
-                <p>Architect & Engineer</p>
-                <p>We love that guy</p>
+                <p>Website Developer</p>
+                <p>Computer Engineer</p>
               </div>
             </div>
           </div>
@@ -86,8 +86,8 @@ function AboutUs() {
               </div>
               <div className="flip-card-back">
                 <h1>Avnit Simon Singh Anand</h1>
-                <p>Architect & Engineer</p>
-                <p>We love that guy</p>
+                <p>Website Developer</p>
+                <p>Computer Engineer</p>
               </div>
             </div>
           </div>
