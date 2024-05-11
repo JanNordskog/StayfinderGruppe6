@@ -47,6 +47,8 @@ public class Hotel {
      * @param extraFeatures    The extra features provided by the hotel
      * @param description      The description of the hotel
      */
+
+
     public Hotel(String hotelId, String name, String address, String website,
             String phoneNumber, String locationType, String roomTypeAvailable,
             String extraFeatures, String description) {
