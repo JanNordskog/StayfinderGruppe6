@@ -1,3 +1,7 @@
+/**
+ * The extrafeatureController class handles HTTP requests related to extra features of listings.
+ * It provides an endpoint for retrieving listings based on extra features.
+ */
 package no.ntnu.IDATA2306.Group6.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +20,13 @@ public class extrafeatureController {
 
     @Autowired
     private ListingRepo listingRepo;
-
+    /**
+     * Retrieves listings based on extra features.
+     *
+     * @param extraFeatures The extra features to search for in listings
+     * @return ResponseEntity containing the list of listings matching the extra features,
+     *         or internal server error if an exception occurs
+     */
     @GetMapping
     public ResponseEntity<List<Listing>> getListingByExtraFeatures(@RequestParam String extraFeatures) {
         try {
