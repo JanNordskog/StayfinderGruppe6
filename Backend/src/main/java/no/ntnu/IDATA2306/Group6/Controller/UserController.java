@@ -1,3 +1,8 @@
+/**
+ * The UserController class handles HTTP requests related to users.
+ * It provides endpoints for retrieving, creating, and authenticating users,
+ * as well as managing user permissions.
+ */
 package no.ntnu.IDATA2306.Group6.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +34,22 @@ public class UserController {
     public UserController() {
 
     }
-
+    /**
+     * Retrieves all users.
+     *
+     * @return A collection of all users
+     */
     @GetMapping
     public Collection<User> getAll() {
 
         return userRepo.findAll();
     }
-
+    /**
+     * Creates a new user.
+     *
+     * @param newUser The user to create
+     * @return ResponseEntity containing the created user if successful, otherwise internal server error status
+     */
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User newUser) {
         try {
@@ -48,7 +62,13 @@ public class UserController {
             return ResponseEntity.internalServerError().build(); // Return an Internal Server Error status
         }
     }
-
+    /**
+     * Authenticates a user.
+     *
+     * @param name     The username or email of the user
+     * @param password The password of the user
+     * @return ResponseEntity containing the authenticated user if successful, otherwise unauthorized status
+     */
     @GetMapping("/login")
     public ResponseEntity<?> loginUser(@RequestParam("uname") String name, @RequestParam("psw") String password) {
         // Ideally, you would hash the password here before comparing it with database
@@ -62,12 +82,22 @@ public class UserController {
         }
         return ResponseEntity.status(200).body(user);
     }
-
+    /**
+     * Hashes a password using BCrypt.
+     *
+     * @param password The password to hash
+     * @return The hashed password
+     */
     private String hashPassword(String password) {
         String sha256hex = new BCryptPasswordEncoder().encode(password);
         return sha256hex;
     }
-
+    /**
+     * Retrieves the permissions of a user by ID.
+     *
+     * @param id The ID of the user
+     * @return ResponseEntity containing the permissions if the user is found, otherwise not found status
+     */
     @GetMapping("/{id}/permissions")
     public ResponseEntity<?> getUserPermForIdreturn(@PathVariable Integer id) {
         Optional<User> user = userRepo.findById(id);
@@ -77,7 +107,12 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    /**
+     * Checks if a user is an admin.
+     *
+     * @param id The ID of the user
+     * @return ResponseEntity containing true if the user is an admin, otherwise false or not found status
+     */
     @GetMapping("/{id}/is-admin")
     public ResponseEntity<Boolean> getUserPermForId(@PathVariable Integer id) {
         try {
