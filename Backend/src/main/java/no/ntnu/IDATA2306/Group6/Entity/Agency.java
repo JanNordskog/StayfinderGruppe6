@@ -52,12 +52,6 @@ public class Agency {
      *
      * @return The agency ID
      */
-
-    /**
-     *
-     * test
-     */
-
     public String getAgencyID() {
 
         return agencyID;
@@ -68,7 +62,6 @@ public class Agency {
      *
      * @return The agency name
      */
-
     public String getName() {
 
         return name;
@@ -89,8 +82,6 @@ public class Agency {
      *
      * @return The agency phone number
      */
-
-
     public String getPhoneNumber() {
 
         return phoneNumber;
@@ -101,7 +92,6 @@ public class Agency {
      *
      * @return The agency website
      */
-
     public String getWebsite() {
 
         return website;
