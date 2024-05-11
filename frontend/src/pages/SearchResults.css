@@ -4,21 +4,26 @@
   margin: 0 auto;
 }
 
-/* Modified the grid to have only one column */
-.search .listings-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* Only one column */
+.listings-grid {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto the next line as needed */
   gap: 20px;
+  justify-content: space-between; /* Centers cards in the grid */
 }
 
+
 .listing-card {
+  flex: 1 1 300px; /* Starts at 300px but can grow and shrink */
+  box-sizing: border-box;
   margin-top: 40px;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 0px;
+  padding: 20px; /* Added padding inside the card */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  overflow: hidden; /* Added to handle overflow */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Stack the content vertically inside each card */
 }
 
 .listing-card h2 {
@@ -107,4 +112,18 @@
 .sort-dropdown-container select:focus {
   outline: none; /* Remove default focus outline */
   border-color: #4caf50; /* Highlight color when focused */
+}
+
+/* Adjustments for medium screens (e.g., tablets) */
+@media (max-width: 768px) {
+  .listing-card {
+    flex: 1 1 100%; /* Full width on medium screens */
+  }
+}
+
+/* Adjustments for very small screens */
+@media (max-width: 480px) {
+  .listing-card {
+    flex: 1 1 100%; /* Full width on small screens */
+  }
 }
