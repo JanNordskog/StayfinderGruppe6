@@ -1,3 +1,6 @@
+/**
+ * The Agency class represents an agency entity.
+ */
 package no.ntnu.IDATA2306.Group6.Entity;
 
 
@@ -21,6 +24,15 @@ public class Agency {
     @Column(name = "website")
     private String website;
 
+    /**
+     * Constructs a new Agency object.
+     *
+     * @param agencyID    The ID of the agency
+     * @param name        The name of the agency
+     * @param email       The email of the agency
+     * @param phoneNumber The phone number of the agency
+     * @param website     The website of the agency
+     */
     public Agency(String agencyID, String name, String email, String phoneNumber, String website) {
         this.agencyID = agencyID;
         this.name = name;
@@ -29,26 +41,64 @@ public class Agency {
         this.website = website;
     }
 
+    /**
+     * Constructs a new empty Agency object.
+     */
     public Agency() {
     }
 
+    /**
+     * Gets the ID of the agency.
+     *
+     * @return The agency ID
+     */
+
     public String getAgencyID() {
+
         return agencyID;
     }
 
+    /**
+     * Gets the name of the agency.
+     *
+     * @return The agency name
+     */
+
     public String getName() {
+
         return name;
     }
 
+    /**
+     * Gets the email of the agency.
+     *
+     * @return The agency email
+     */
     public String getEmail() {
+
         return email;
     }
 
+    /**
+     * Gets the phone number of the agency.
+     *
+     * @return The agency phone number
+     */
+
+
     public String getPhoneNumber() {
+
         return phoneNumber;
     }
 
+    /**
+     * Gets the website of the agency.
+     *
+     * @return The agency website
+     */
+
     public String getWebsite() {
+
         return website;
     }
 }
