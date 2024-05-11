@@ -1,3 +1,6 @@
+/**
+ * The ReviewRepo interface provides access to review data in the database.
+ */
 package no.ntnu.IDATA2306.Group6.Repo;
 
 
@@ -7,5 +10,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReviewRepo extends JpaRepository<Review, Long> {
-  // Du kan legge til flere spesifikke spørringer etter behov her.
 }
