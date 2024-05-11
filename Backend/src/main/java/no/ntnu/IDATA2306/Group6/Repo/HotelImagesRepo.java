@@ -1,3 +1,6 @@
+/**
+ * The HotelImagesRepo interface provides access to hotel images data in the database.
+ */
 package no.ntnu.IDATA2306.Group6.Repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;

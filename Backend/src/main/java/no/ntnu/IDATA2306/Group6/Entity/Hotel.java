@@ -1,3 +1,6 @@
+/**
+ * The Hotel class represents a hotel entity.
+ */
 package no.ntnu.IDATA2306.Group6.Entity;
 
 import jakarta.persistence.*;
@@ -5,6 +8,9 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "hotels")
 
+/**
+ * Constructs a new Hotel object.
+ */
 public class Hotel {
 
     @Id
@@ -28,8 +34,20 @@ public class Hotel {
     @Column(name = "description") // Added new column for description
     private String description;
 
-    public Hotel() {
-    }
+    /**
+     * Constructs a new Hotel object with specified parameters.
+     *
+     * @param hotelId          The ID of the hotel
+     * @param name             The name of the hotel
+     * @param address          The address of the hotel
+     * @param website          The website of the hotel
+     * @param phoneNumber      The phone number of the hotel
+     * @param locationType     The location type of the hotel
+     * @param roomTypeAvailable The room types available at the hotel
+     * @param extraFeatures    The extra features provided by the hotel
+     * @param description      The description of the hotel
+     */
+
 
     public Hotel(String hotelId, String name, String address, String website,
             String phoneNumber, String locationType, String roomTypeAvailable,
@@ -45,38 +63,83 @@ public class Hotel {
         this.description = description; // Initialize new field
     }
 
-    public String getDescription() { // Getter for description
+    /**
+     * Gets the description of the hotel.
+     *
+     * @return The hotel description
+     */
+    public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets the ID of the hotel.
+     *
+     * @return The hotel ID
+     */
     public String getHotelID() {
         return hotelID;
     }
 
+    /**
+     * Gets the name of the hotel.
+     *
+     * @return The hotel name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets the address of the hotel.
+     *
+     * @return The hotel address
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     * Gets the website of the hotel.
+     *
+     * @return The hotel website
+     */
     public String getWebsite() {
         return website;
     }
 
+    /**
+     * Gets the phone number of the hotel.
+     *
+     * @return The hotel phone number
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * Gets the location type of the hotel.
+     *
+     * @return The hotel location type
+     */
     public String getLocationType() {
         return locationType;
     }
 
+    /**
+     * Gets the room types available at the hotel.
+     *
+     * @return The room types available
+     */
     public String getRoomTypeAvailable() {
         return roomTypeAvailable;
     }
 
+    /**
+     * Gets the extra features provided by the hotel.
+     *
+     * @return The extra features
+     */
     public String getExtraFeatures() {
         return extraFeatures;
     }
