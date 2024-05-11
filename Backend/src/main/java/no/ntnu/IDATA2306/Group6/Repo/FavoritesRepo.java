@@ -1,3 +1,6 @@
+/**
+ * The FavoritesRepo interface provides access to favorite listings data in the database.
+ */
 package no.ntnu.IDATA2306.Group6.Repo;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,5 +27,12 @@ public interface FavoritesRepo extends JpaRepository<Favorites, Integer> {
 //    query above rewritten in jpql
 
 
+
+    /**
+     * Finds all favorite listings associated with a given user ID.
+     *
+     * @param userid The ID of the user.
+     * @return A list of favorite listings associated with the specified user ID.
+     */
     List<Favorites> findFavoritesByUserId(Integer userid);
 }
