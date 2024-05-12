@@ -19,6 +19,7 @@ public class ReviewController {
 
   @Autowired
   private ReviewRepo reviewRepository;
+
   /**
    * Retrieves all reviews.
    *
@@ -29,30 +30,31 @@ public class ReviewController {
 
     return reviewRepository.findAll();
   }
+
   /**
    * Retrieves a review by its ID.
    *
    * @param id The ID of the review to retrieve
    * @return ResponseEntity containing the review if found, otherwise not found status
    */
-
   @GetMapping("/{id}")
   public ResponseEntity<Review> getReviewById(@PathVariable Long id) {
     Optional<Review> review = reviewRepository.findById(id);
     return review.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
+
   /**
    * Creates a new review.
    *
    * @param review The review to create
    * @return The created review
    */
-
   @PostMapping
   public Review createReview(@RequestBody Review review) {
 
     return reviewRepository.save(review);
   }
+
   /**
    * Updates an existing review.
    *
@@ -60,7 +62,6 @@ public class ReviewController {
    * @param reviewDetails The updated review details
    * @return ResponseEntity containing the updated review if found, otherwise not found status
    */
-
   @PutMapping("/{id}")
   public ResponseEntity<Review> updateReview(@PathVariable Long id, @RequestBody Review reviewDetails) {
     return reviewRepository.findById(id).map(existingReview -> {
@@ -69,6 +70,7 @@ public class ReviewController {
       return ResponseEntity.ok(reviewRepository.save(existingReview));
     }).orElseGet(() -> ResponseEntity.notFound().build());
   }
+
   /**
    * Deletes a review by its ID.
    *
