@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import DateRangeComp from '../components/DateRangeComp';
 import './HotelPage.css';
 
@@ -16,6 +16,12 @@ function HotelPage() {
     },
   ]);
   const isDateSelected = dateRange[0].startDate && dateRange[0].endDate;
+
+  const navigate = useNavigate();
+
+  const goToCheckOut = () => {
+      navigate('/checkout', { state: { hotel: hotel, dateRange: dateRange } });
+  };
 
   return (
       <div className="hotel-page-container">
@@ -36,7 +42,7 @@ function HotelPage() {
                   <p><strong>Extra Features:</strong> {hotel.extraFeatures}</p>
                   <p><strong>Price:</strong> ${hotel.price.toFixed(2)}</p>
                   <DateRangeComp range={dateRange} setRange={setDateRange} />
-                  <button className="book-now-btn" disabled={!isDateSelected}>
+                  <button className="book-now-btn" onClick={goToCheckOut} disabled={!isDateSelected}>
                     Book Now
                   </button>
                 </div>
