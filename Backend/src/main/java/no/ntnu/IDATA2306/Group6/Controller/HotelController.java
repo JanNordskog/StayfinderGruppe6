@@ -38,7 +38,6 @@ public class HotelController {
      * @param hotelId The ID of the hotel to retrieve
      * @return ResponseEntity containing the hotel if found, otherwise not found status
      */
-
     @GetMapping("/{hotelId}")
     public ResponseEntity<Hotel> getHotelById(@PathVariable String hotelId) {
         Optional<Hotel> hotel = hotelRepo.findById(hotelId);
