@@ -22,7 +22,6 @@ public class AgencyController {
     // Stores agencies with their IDs as keys
     private final Map<String, Agency> agencies = new HashMap<>();
 
-
     /**
      * Retrieves all agencies.
      *
@@ -39,7 +38,6 @@ public class AgencyController {
      * @param newAgency The agency to create
      * @return ResponseEntity containing the created agency or status conflict if the agency already exists
      */
-
     @PostMapping
     public ResponseEntity<Agency> createAgency(@RequestBody Agency newAgency) {
         if (agencies.containsKey(newAgency.getAgencyID())) {
@@ -55,7 +53,6 @@ public class AgencyController {
      * @param agencyId The ID of the agency to retrieve
      * @return ResponseEntity containing the agency if found, otherwise not found status
      */
-
     @GetMapping("/{agencyId}")
     public ResponseEntity<Agency> getAgency(@PathVariable String agencyId) {
         Agency agency = agencies.get(agencyId);
@@ -88,7 +85,6 @@ public class AgencyController {
      * @param agencyId The ID of the agency to delete
      * @return ResponseEntity indicating success or failure of the deletion
      */
-
     @DeleteMapping("/{agencyId}")
     public ResponseEntity<Void> deleteAgency(@PathVariable String agencyId) {
         if (!agencies.containsKey(agencyId)) {
