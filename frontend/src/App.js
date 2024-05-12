@@ -10,6 +10,7 @@ import SearchResults from "./pages/SearchResults";
 import HotelPage from "./pages/HotelPage";
 import ControlPanel from "./pages/ControlPanel";
 import AboutUs from "./pages/AboutUs";
+import CheckOut from "./pages/CheckOut";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/hotelPage" element={<HotelPage />} />
         <Route path="/controlPanel" element={<ControlPanel />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/checkout" element={<CheckOut />} />
       </Routes>
     </>
   );

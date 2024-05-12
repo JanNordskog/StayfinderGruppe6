@@ -1,7 +1,7 @@
 .SearchResults {
   padding: 20px;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto 5%;
 }
 
 body {
@@ -129,7 +129,7 @@ body {
   }
   .SearchResults .hotel-image{
     width: 100%; /* Ensures the image takes the full width of the card */
-    height: 15rem; /* Maintains aspect ratio */
+    height: 15em; /* Maintains aspect ratio */
   }
 }
 
