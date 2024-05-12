@@ -71,10 +71,8 @@ function SearchResults() {
                   alt={`Image of ${item.hotelName}`}
                   className="hotel-image"
                 />
+                <div className="text-content">
                 <h2>{item.hotelName}</h2>
-                <p>
-                  <strong>Address:</strong> {item.hotelAddress}
-                </p>
                 <p>
                   <strong>Room Type Available:</strong> {item.roomTypeAvailable}
                 </p>
@@ -90,6 +88,7 @@ function SearchResults() {
                 >
                   Book now
                 </button>
+                </div>
               </div>
             ))
           ) : (
