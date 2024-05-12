@@ -229,7 +229,7 @@ public final class User {
 
     /**
      * Sets the permission level of the user.
-     *.
+     *
      * @param userperm The permission level of the user to set.
      */
     public void setUserperm(Integer userperm) {
