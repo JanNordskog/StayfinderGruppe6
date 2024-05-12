@@ -4,12 +4,19 @@
   margin: 0 auto;
 }
 
+body {
+  overflow-x: hidden; /* Hides horizontal overflow */
+}
+
+
 .listings-grid {
   display: flex;
   flex-wrap: wrap; /* Allows items to wrap onto the next line as needed */
   gap: 20px;
   justify-content: space-between; /* Centers cards in the grid */
+  overflow: hidden;
 }
+
 
 
 .listing-card {
@@ -48,7 +55,8 @@
 
 .hotel-image {
   width: 100%; /* Ensures the image takes the full width of the card */
-  height: auto; /* Maintains aspect ratio */
+  height: 12rem; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures the image covers the area without distorting the aspect ratio */
   border-radius: 8px; /* Styled corners */
   margin-bottom: 10px; /* Space between the image and the text below */
 }
@@ -119,11 +127,20 @@
   .listing-card {
     flex: 1 1 100%; /* Full width on medium screens */
   }
+  .hotel-image{
+    width: 100%; /* Ensures the image takes the full width of the card */
+    height: 15rem; /* Maintains aspect ratio */
+  }
 }
 
 /* Adjustments for very small screens */
 @media (max-width: 480px) {
   .listing-card {
     flex: 1 1 100%; /* Full width on small screens */
+  }
+
+  .book-button{
+    bottom: 7px; /* 15px from the bottom */
+    right: 15px; /* 15px from the right */
   }
 }
