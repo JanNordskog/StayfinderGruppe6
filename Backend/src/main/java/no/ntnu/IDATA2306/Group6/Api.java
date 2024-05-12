@@ -1,3 +1,6 @@
+/**
+ * The Api class defines RESTful API endpoints for serving images.
+ */
 package no.ntnu.IDATA2306.Group6;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +19,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("api")
 public class Api {
 
+    /**
+     * Retrieves an image by its name.
+     *
+     * @param imageName The name of the image to retrieve.
+     * @return ResponseEntity<Resource> A response entity containing the requested image.
+     */
     @GetMapping("get/image/{imageName}")
     public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
         Resource r = new ClassPathResource("static/img/" + imageName);
@@ -39,6 +48,4 @@ public class Api {
 
         return ResponseEntity.ok().contentType(type).body(r);
     }
-    
-
 }
