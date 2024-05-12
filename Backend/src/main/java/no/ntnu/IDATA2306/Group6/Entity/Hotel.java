@@ -76,6 +76,7 @@ public class Hotel {
      * @return The hotel ID
      */
     public String getHotelID() {
+
         return hotelID;
     }
 
@@ -85,6 +86,7 @@ public class Hotel {
      * @return The hotel name
      */
     public String getName() {
+
         return name;
     }
 
@@ -94,6 +96,7 @@ public class Hotel {
      * @return The hotel address
      */
     public String getAddress() {
+
         return address;
     }
 
@@ -103,6 +106,7 @@ public class Hotel {
      * @return The hotel website
      */
     public String getWebsite() {
+
         return website;
     }
 
@@ -112,6 +116,7 @@ public class Hotel {
      * @return The hotel phone number
      */
     public String getPhoneNumber() {
+
         return phoneNumber;
     }
 
@@ -121,6 +126,7 @@ public class Hotel {
      * @return The hotel location type
      */
     public String getLocationType() {
+
         return locationType;
     }
 
@@ -130,6 +136,7 @@ public class Hotel {
      * @return The room types available
      */
     public String getRoomTypeAvailable() {
+
         return roomTypeAvailable;
     }
 
@@ -139,6 +146,7 @@ public class Hotel {
      * @return The extra features
      */
     public String getExtraFeatures() {
+
         return extraFeatures;
     }
 
