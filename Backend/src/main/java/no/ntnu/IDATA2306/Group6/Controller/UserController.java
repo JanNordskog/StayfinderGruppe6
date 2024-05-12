@@ -34,6 +34,7 @@ public class UserController {
     public UserController() {
 
     }
+
     /**
      * Retrieves all users.
      *
@@ -44,6 +45,7 @@ public class UserController {
 
         return userRepo.findAll();
     }
+
     /**
      * Creates a new user.
      *
@@ -62,6 +64,7 @@ public class UserController {
             return ResponseEntity.internalServerError().build(); // Return an Internal Server Error status
         }
     }
+
     /**
      * Authenticates a user.
      *
@@ -82,6 +85,7 @@ public class UserController {
         }
         return ResponseEntity.status(200).body(user);
     }
+
     /**
      * Hashes a password using BCrypt.
      *
@@ -92,6 +96,7 @@ public class UserController {
         String sha256hex = new BCryptPasswordEncoder().encode(password);
         return sha256hex;
     }
+
     /**
      * Retrieves the permissions of a user by ID.
      *
@@ -107,6 +112,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
     /**
      * Checks if a user is an admin.
      *
