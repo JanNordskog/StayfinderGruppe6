@@ -133,6 +133,33 @@ body {
   }
 }
 
+.favorite-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  position: relative;
+  line-height: 0; /* Aligns the image better vertically */
+}
+
+.favorite-button img {
+  width: 24px; /* Icon size */
+  height: 24px; /* Icon size */
+  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for transform and filter */
+}
+
+.favorite-button:hover img {
+  transform: scale(1.2); /* Make the image 20% larger */
+  filter: drop-shadow(0 0 2px) hue-rotate(210deg); /* Adds a blue hue and a slight shadow */
+}
+
+.hotel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Adjustments for very small screens */
 @media (max-width: 480px) {
   .SearchResults .listing-card {

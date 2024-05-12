@@ -72,7 +72,12 @@ function SearchResults() {
                   className="hotel-image"
                 />
                 <div className="text-content">
+                  <div className="hotel-header">
                 <h2>{item.hotelName}</h2>
+                  <button className="favorite-button" onClick={() => console.log('Toggle Favorite')}>
+                    <img src="http://localhost:8080/api/get/image/favourite.png"/>
+                  </button>
+                  </div>
                 <p>
                   <strong>Room Type Available:</strong> {item.roomTypeAvailable}
                 </p>
