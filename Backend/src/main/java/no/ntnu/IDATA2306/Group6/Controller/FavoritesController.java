@@ -35,12 +35,9 @@ public class FavoritesController {
      *
      * @param favoritesRepo The repository for managing favorites
      */
-
-
     public FavoritesController(FavoritesRepo favoritesRepo) {
         this.favoritesRepo = favoritesRepo;
     }
-
 
     /**
      * Retrieves all favorites.
@@ -51,6 +48,7 @@ public class FavoritesController {
     public List<Favorites> getAllFavorites() {
         return favoritesRepo.findAll();
     }
+
     /**
      * Retrieves a favorite by its ID.
      *
@@ -63,6 +61,7 @@ public class FavoritesController {
         return favorite.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
     /**
      * Retrieves all favorites belonging to a specific user.
      *
@@ -70,12 +69,12 @@ public class FavoritesController {
      * @return A list of all favorites belonging to the user
      */
     @GetMapping("/listing/{userid}")
-    public List<Favorites> getAllUserFavorites(@PathVariable int userid)
-    {
+    public List<Favorites> getAllUserFavorites(@PathVariable int userid) {
         //System.out.print(userid);
         log.debug(favoritesRepo.findFavoritesByUserId(userid).toString());
         return favoritesRepo.findFavoritesByUserId(userid);
     }
+
     /**
      * Adds a new favorite.
      *
@@ -86,6 +85,7 @@ public class FavoritesController {
     public Favorites addFavorite(@RequestBody Favorites favorite) {
         return favoritesRepo.save(favorite);
     }
+
     /**
      * Deletes a favorite by its ID.
      *

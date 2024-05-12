@@ -20,6 +20,7 @@ public class extrafeatureController {
 
     @Autowired
     private ListingRepo listingRepo;
+
     /**
      * Retrieves listings based on extra features.
      *

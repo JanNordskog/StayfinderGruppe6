@@ -28,6 +28,7 @@ public class ListingController {
 
     @Autowired
     private ListingRepo listingRepo;
+
     /**
      * Constructor for ListingController.
      *
@@ -37,17 +38,18 @@ public class ListingController {
 
         this.listingRepo = listingRepo;
     }
+
     /**
      * Retrieves all listings.
      *
      * @return A collection of all listings
      */
-
     @GetMapping
     public Collection<Listing> getAll() {
 
         return listingRepo.findAll();
     }
+
     /**
      * Searches for listings based on destination and date.
      *
@@ -56,7 +58,6 @@ public class ListingController {
      * @param departureDate The departure date
      * @return A collection of listings matching the destination and date criteria
      */
-
     @GetMapping(value = "/engine", params = { "destination", "arrivalDate", "departureDate" })
     public Collection<Listing> searchListings(@RequestParam String destination,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date arrivalDate,
@@ -71,6 +72,7 @@ public class ListingController {
             return listingRepo.findByDestinationAndDate(destination, arrivalDate, departureDate);
         }
     }
+
     /**
      * Hides a listing by its ID.
      *
@@ -90,13 +92,13 @@ public class ListingController {
             return ResponseEntity.notFound().build();
         }
     }
+
     /**
      * Shows a listing by its ID.
      *
      * @param id The ID of the listing to show
      * @return ResponseEntity indicating success or failure of the operation
      */
-
     @PutMapping("/{id}/show")
     public ResponseEntity<Listing> showListing(@PathVariable String id) {
         Optional<Listing> listing = listingRepo.findById(id);
@@ -110,13 +112,13 @@ public class ListingController {
             return ResponseEntity.notFound().build();
         }
     }
+
     /**
      * Retrieves a listing by its ID.
      *
      * @param id The ID of the listing to retrieve
      * @return ResponseEntity containing the listing if found, otherwise not found status
      */
-
     @GetMapping("/getlistingByID/{id}")
     public ResponseEntity<Listing> getListingById(@PathVariable String id) {
         Optional<Listing> listing = listingRepo.findById(id);
