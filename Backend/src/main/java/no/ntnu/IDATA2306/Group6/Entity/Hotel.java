@@ -63,7 +63,7 @@ public class Hotel {
 
     /**
      * Gets the description of the hotel.
-     *.
+     *
      * @return The hotel description
      */
     public String getDescription() {
