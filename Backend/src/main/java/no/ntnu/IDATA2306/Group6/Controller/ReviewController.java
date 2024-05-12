@@ -57,7 +57,7 @@ public class ReviewController {
 
   /**
    * Updates an existing review.
-   *
+   *.
    * @param id            The ID of the review to update
    * @param reviewDetails The updated review details
    * @return ResponseEntity containing the updated review if found, otherwise not found status
