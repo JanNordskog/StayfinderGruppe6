@@ -28,7 +28,7 @@
   font-size: 1rem;
   padding: 10px;
   height: 42px;
-  width: 200px;
+  width: 10em;
   box-sizing: border-box;
   flex: none; /* Prevent flexing to fit content */
 }
@@ -47,6 +47,20 @@
   border-radius: 1rem;
 }
 
+.MainItems .calendarWrap {
+  position: relative;
+  display: inline-block;
+}
+
+.MainItems .calendarElement {
+  position: absolute;
+  left: -25%;
+  z-index: 1050;  /* High enough to ensure it is on top of other content */
+  width: 200%;
+}
+
+
+
 @media (max-width: 768px) {
   .MainItems form {
     flex-direction: column; /* Stack items vertically */
@@ -62,10 +76,18 @@
   .MainItems h1 {
     font-size: 2rem; /* Adjust font size */
   }
+
+  .MainItems .calendarElement {
+    position: absolute;
+    left: -25%;
+    z-index: 1050;  /* High enough to ensure it is on top of other content */
+    width: 145%;
+  }
 }
 
 @media (max-width: 480px) {
   .MainItems h1 {
     font-size: 1.5rem; /* Further adjust font size */
   }
+
 }
