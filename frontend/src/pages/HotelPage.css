@@ -6,6 +6,8 @@
   margin: 20px;
 }
 
+
+
 .hotel-page-container {
   display: flex;
   flex-direction: column;
@@ -29,6 +31,12 @@
 .hotel-main-content {
   display: flex;
   gap: 20px;
+  overflow: visible;
+}
+
+.any-transformed-or-filtered-parent {
+  transform: none;
+  filter: none;
 }
 
 .hotel-image img {
@@ -84,11 +92,30 @@
   cursor: not-allowed;
 }
 
+.hotel-main-content .calendarElement {
+  position: absolute;  /* Absolute position relative to .calendarWrap */
+  left: -150%;  /* Aligns with the left edge of the calendar input */
+  top: -950%; /* Moves the calendar above the input, adjust according to actual height */
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .hotel-main-content {
     flex-direction: column;
   }
+  .hotel-main-content .calendarWrap {
+    position: relative;  /* Ensures positioning is relative to this container */
+    display: inline-block; /* Keeps the inline behavior of the input */
+  }
+
+  .hotel-main-content .calendarElement {
+    position: absolute;  /* Absolute position relative to .calendarWrap */
+    left: 0;  /* Aligns with the left edge of the calendar input */
+    top: -950%; /* Moves the calendar above the input, adjust according to actual height */
+    z-index: 105;  /* Ensures it appears above other content */
+    width: 100%; /* Match the width to your input field or according to design needs */
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -124,4 +151,5 @@
     padding: 12px;
     font-size: 16px;
   }
+
 }

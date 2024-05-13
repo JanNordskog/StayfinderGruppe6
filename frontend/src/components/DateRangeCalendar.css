@@ -9,16 +9,19 @@ input {
 .DateRange {
   position: absolute;
   margin-top: 2px;
+  z-index: 10000;
 }
 
 .calendarWrap {
   position: relative; /* Ensures that child positioning is relative to this container */
   display: inline-block; /* or 'block', depending on your layout needs */
+  z-index: 10000;
 }
 
 .calendarElement {
   position: absolute; /* Positions the date picker in relation to .calendarWrap */
   left: 0; /* Aligns the left edge of the date picker with the left edge of the input */
   top: 100%; /* Positions the date picker just below the input field */
-  z-index: 10; /* Ensures the date picker is above other content */
+  z-index: 10000; /* Ensures the date picker is above other content */
+
 }
