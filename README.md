@@ -1,0 +1,4 @@
+# WebApplicationProject2024
+Programmet er laget i forbindelse med et skoleprosjekt i IDATA2301 Webteknologi og IDATA2306 Applikasjonsutvikling.
+
+Stayfinder is a one-stop shopfor hotel services. We offer a comprehensive range of providers and services to help you streamline your vacation and maximize the value for your money. Our products include online booking software, a advanced searchengine, professional listing software, professional managing software, and professional financial planning software. Our team of experienced professionals offer comprehensive support and consulting services to ensure hotels get the most traffic as possible trough our website. We strive to provide businesses with the tools they need to succeed in today’s competitive market. With Stayfinder, businesses can quickly connect with their customers they are looking for.
