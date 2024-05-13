@@ -34,6 +34,9 @@ public class Hotel {
     @Column(name = "description") // Added new column for description
     private String description;
 
+    public Hotel() {
+    }
+
     /**
      * Constructs a new Hotel object with specified parameters.
      *
