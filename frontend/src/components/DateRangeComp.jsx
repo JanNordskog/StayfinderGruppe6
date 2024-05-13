@@ -51,30 +51,18 @@ const DateRangeComp = ({ range, setRange }) => {
   const displayValue =
     range[0].startDate && range[0].endDate
       ? `From ${format(range[0].startDate, "dd/MM/yyyy")} To ${format(
-          range[0].endDate,
-          "dd/MM/yyyy"
+          range[0].endDate, "dd/MM/yyyy"
         )}`
       : "";
 
-  // Use handleClick for the onClick handler
-  <input
-    value={displayValue}
-    readOnly
-    className="inputBox"
-    placeholder="Datoer"
-    onClick={handleClick}
-  />;
 
   return (
     <div className="calendarWrap">
       <input
-        value={`From ${format(range[0].startDate, "dd/MM/yyyy")} To ${format(
-          range[0].endDate,
-          "dd/MM/yyyy"
-        )}`}
+        value={displayValue}
         readOnly
         className="inputBox"
-        placeholder="Datoer"
+        placeholder="Dates"
         onClick={() => setOpen(!open)} // Toggles the visibility of the DateRange picker
       />
 

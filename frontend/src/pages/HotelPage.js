@@ -10,8 +10,8 @@ function HotelPage() {
   const searchParams = JSON.parse(sessionStorage.getItem('searchParams') || '{}');
   const [dateRange, setDateRange] = useState([
     {
-      startDate: new Date(searchParams?.range?.[0]?.startDate || new Date()),
-      endDate: new Date(searchParams?.range?.[0]?.endDate || new Date()),
+      startDate: null,
+      endDate: null,
       key: 'selection',
     },
   ]);
