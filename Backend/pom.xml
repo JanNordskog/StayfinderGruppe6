@@ -15,6 +15,8 @@
     <description>This project shows how we can include a frontend application in Spring Boot</description>
     <properties>
         <java.version>21</java.version>
+         <application.main>no.ntnu.IDATA2306.Group6.MainApplication</application.main>
+         <application.filename>Backend</application.filename>
     </properties>
     <dependencies>
         <!-- ThymeLeaf is a template engine - this dependency is needed to serve html files -->
@@ -73,12 +75,17 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.0.0</version> <!-- Use the appropriate version -->
+            <configuration>
+                <mainClass>no.ntnu.IDATA2306.Group6.MainApplication</mainClass>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
 
 </project>
