@@ -62,7 +62,7 @@ const DateRangeComp = ({ range, setRange }) => {
         value={displayValue}
         readOnly
         className="inputBox"
-        placeholder="Dates"
+        placeholder="From ddMMyyy To ddMMyyyy"
         onClick={() => setOpen(!open)} // Toggles the visibility of the DateRange picker
       />
 

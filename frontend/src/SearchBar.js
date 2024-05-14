@@ -45,8 +45,8 @@ function SearchBar() {
         {
           params: {
             destination,
-            arrivalDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
-            departureDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+            openDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+            closedDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
           },
         }
       );
