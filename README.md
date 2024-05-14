@@ -76,4 +76,4 @@ This project exists thanks to the contributions from our development team.
 👤 Jan Christian Nordskog
 
 
-Feel free to add or modify the sections based on your project specifics or personal preference. Good luck with your project!
+
