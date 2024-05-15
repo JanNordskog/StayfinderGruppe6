@@ -1,6 +1,7 @@
 /* SearchBar.css */
 .MainItems {
   text-align: center;
+  height: auto;
 }
 
 .MainItems form {
@@ -55,11 +56,9 @@
 .MainItems .calendarElement {
   position: absolute;
   left: -25%;
-  z-index: 1050;  /* High enough to ensure it is on top of other content */
+  z-index: 1050; /* High enough to ensure it is on top of other content */
   width: 200%;
 }
-
-
 
 @media (max-width: 768px) {
   .MainItems form {
@@ -80,7 +79,7 @@
   .MainItems .calendarElement {
     position: absolute;
     left: -25%;
-    z-index: 1050;  /* High enough to ensure it is on top of other content */
+    z-index: 1050; /* High enough to ensure it is on top of other content */
     width: 145%;
   }
 }
@@ -89,5 +88,4 @@
   .MainItems h1 {
     font-size: 1.5rem; /* Further adjust font size */
   }
-
 }

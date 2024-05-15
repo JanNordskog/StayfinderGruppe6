@@ -26,10 +26,8 @@
 }
 
 .MainItems h1 {
-  position: absolute;
-  top: 265px; /* This will need adjusting if the navbar height is different */
-  left: 50%;
-  transform: translateX(-50%);
+  position: center;
+
   width: max-content;
   color: white;
   font-size: 48px;
@@ -40,9 +38,6 @@
 /* Styles for mobile devices */
 @media (max-width: 768px) {
   .MainItems h1 {
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     font-size: 24px; /* Smaller font size for smaller screens */
     top: 150px;
   }
@@ -66,10 +61,6 @@
   }
 
   .MainItems h1 {
-    /* Adjustments for larger screens if needed */
-    top: 310px; /* Align with the design requirements */
-    font-size: 48px; /* Consistent font size with the original style */
-    /* Add any additional styles for larger screens here */
   }
 
   /* Add any other styles for larger screens here */
