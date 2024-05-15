@@ -14,7 +14,7 @@ function RegisterForm() {
   const [dob, setDob] = useState("");
 
   async function save(event) {
-    console.log("name:", name); 
+    console.log("name:", name);
     console.log("email:", email);
     console.log("password:", password);
     console.log("address:", address);
@@ -76,8 +76,7 @@ function RegisterForm() {
     <div className="RegistrerForm">
       <h1>Please fill in this form to create an account</h1>
       <div className="container">
-
-      <label htmlFor="name">
+        <label htmlFor="name">
           <b>Name</b>
         </label>
         <input

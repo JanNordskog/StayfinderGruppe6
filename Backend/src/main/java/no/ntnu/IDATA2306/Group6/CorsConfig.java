@@ -20,17 +20,19 @@ public class CorsConfig implements WebMvcConfigurer {
 
     // Configure CORS for "/user/**" endpoints
     registry.addMapping("/user/**")
-        .allowedOrigins("http://localhost:3000") // Allow requests from this origin
+        .allowedOrigins("https://localhost:3000") // Allow requests from this origin
         .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specified HTTP methods
         .allowedHeaders("*") // Allow all headers
+        .allowCredentials(true) // Allow credentials
         .maxAge(3600); // Set max age of preflight request in seconds
 
     // Configure CORS for "/api/**" endpoints
     registry.addMapping("/api/**")
-            .allowedOrigins("http://localhost:3000") // Allow requests from this origin
-            .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specified HTTP methods
-            .allowedHeaders("*") // Allow all headers
-            .maxAge(3600); // Set max age of preflight request in seconds
+        .allowedOrigins("https://localhost:3000") // Allow requests from this origin
+        .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specified HTTP methods
+        .allowedHeaders("*") // Allow all headers
+        .allowCredentials(true) // Allow credentials
+        .maxAge(3600); // Set max age of preflight request in seconds
 
   }
 }
