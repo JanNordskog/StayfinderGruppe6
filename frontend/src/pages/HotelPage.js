@@ -24,6 +24,12 @@ function HotelPage() {
   const navigate = useNavigate();
 
   const goToCheckOut = () => {
+      const params = {
+          destination: hotel.hotelName, // Assume destination is the hotel's name
+          guests: 2, // Example static value, adjust as needed
+          range: dateRange[0]
+      };
+      sessionStorage.setItem('searchParams', JSON.stringify(params));
       navigate('/checkout', { state: { hotel: hotel, dateRange: dateRange } });
   };
 
