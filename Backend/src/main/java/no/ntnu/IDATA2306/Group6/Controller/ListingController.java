@@ -2,6 +2,7 @@ package no.ntnu.IDATA2306.Group6.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -78,5 +79,11 @@ public class ListingController {
     public ResponseEntity<Listing> getListingById(@PathVariable String id) {
         Optional<Listing> listing = listingRepo.findById(id);
         return listing.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/getopendates/{id}")
+    public ResponseEntity<Listing> getOpenDates(@PathVariable String id) {
+        Listing listing = listingRepo.getAvailableDates(id);
+        return new ResponseEntity<>(listing, HttpStatus.OK);
     }
 }

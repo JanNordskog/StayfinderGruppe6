@@ -8,7 +8,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import "./DateRangeCalendar.css";
 
-const DateRangeComp = ({ range, setRange }) => {
+const DateRangeComp = ({ range, setRange, min=null, max=null }) => {
   const [open, setOpen] = useState(false);
   const pickerRef = useRef(null);
 
@@ -69,6 +69,8 @@ const DateRangeComp = ({ range, setRange }) => {
       <div ref={pickerRef}>
         {open && (
             <DateRange
+                minDate={min}
+                maxDate={max}
                 editableDateInputs={true}
                 onChange={handleSelect}
                 moveRangeOnFirstSelection={false}

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import DateRangeComp from '../components/DateRangeComp';
+import { parse } from 'date-fns';
 import './HotelPage.css';
+import axios from "axios";
 
 function HotelPage() {
   const location = useLocation();
@@ -16,12 +18,26 @@ function HotelPage() {
     },
   ]);
   const isDateSelected = dateRange[0].startDate && dateRange[0].endDate;
+  const [openDate, setOpenDate] = useState("");
+  const [closingDate, setClosingDate] = useState("");
 
   const navigate = useNavigate();
 
   const goToCheckOut = () => {
       navigate('/checkout', { state: { hotel: hotel, dateRange: dateRange } });
   };
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/listings/getopendates/" + hotel.hotelID)
+            .then((r) => {/*
+                setClosingDate(parse(r.data.closedDate, "yyyy-MM-dd", new Date()));
+                setOpenDate(parse(r.data.openDate, "yyy-MM-dd", new Date()));*/
+                const minDate = parse(r.data.closedDate, "yyyy-MM-dd", new Date());
+                const maxDate = parse(r.data.openDate, "yyyy-MM-dd", new Date());
+                setClosingDate(minDate);
+                setOpenDate(maxDate);
+            })
+    }, [hotel]);
 
   return (
       <div className="hotel-page-container">
@@ -41,7 +57,7 @@ function HotelPage() {
                   <p><strong>Room Type Available:</strong> {hotel.roomTypeAvailable}</p>
                   <p><strong>Extra Features:</strong> {hotel.extraFeatures}</p>
                   <p><strong>Price:</strong> ${hotel.price.toFixed(2)}</p>
-                  <DateRangeComp range={dateRange} setRange={setDateRange} />
+                  <DateRangeComp min={openDate} max={closingDate} range={dateRange} setRange={setDateRange} />
                   <button className="book-now-btn" onClick={goToCheckOut} disabled={!isDateSelected}>
                     Book Now
                   </button>
