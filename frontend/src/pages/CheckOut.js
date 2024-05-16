@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./CheckOut.css";
 
 function CheckOut() {
   const navigate = useNavigate();

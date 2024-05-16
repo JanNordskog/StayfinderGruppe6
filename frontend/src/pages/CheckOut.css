@@ -1,8 +1,8 @@
 .checkout-container {
     max-width: 600px;
-    margin: 0 auto;
     padding: 20px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    min-height: calc(100dvh - 85.26px - 271.73px - 40px - 13px);
 }
 
 .checkout-container form {
