@@ -59,7 +59,7 @@ function RegisterForm() {
         phone: phone,
         dob: dob,
       });
-      alert("Employee Registration Successfully");
+      alert("User Registration Successfully");
       setName(""); // Reset name
       setEmail("");
       setPassword("");
