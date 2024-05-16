@@ -11,13 +11,16 @@ function HotelShowCase() {
     try {
       // Assuming you want to fetch data similar to the HotelShowCase component
       // Adjust the URL/path/query as needed to match your backend API
-      const response = await axios.get("http://localhost:8080/listings", {
-        params: {
-          destination: "Oslo",
-          arrivalDate: today, // Set to today's date
-          departureDate: today,
-        },
-      });
+      const response = await axios.get(
+        "http://localhost:8080/listings/engine",
+        {
+          params: {
+            destination: "Oslo",
+            arrivalDate: today, // Set to today's date
+            departureDate: today,
+          },
+        }
+      );
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Failed to fetch listings for Oslo:", error);
@@ -28,30 +31,38 @@ function HotelShowCase() {
     try {
       // Fetch listings filtered by Oslo
       // Adjust the URL/path/query as needed to match your backend API
-      const response = await axios.get("http://localhost:8080/listings", {
-        params: {
-          destination: "Ålesund",
-          arrivalDate: today, // Set to today's date
-          departureDate: today,
-        },
-      });
+      const response = await axios.get(
+        "http://localhost:8080/listings/engine",
+        {
+          params: {
+            destination: "Ålesund",
+            arrivalDate: today, // Set to today's date
+            departureDate: today,
+          },
+        }
+      );
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Failed to fetch listings for Ålesund:", error);
     }
   };
 
+  
+
   const handleNavigateToAmsterdam = async () => {
     try {
       // Fetch listings filtered by Oslo
       // Adjust the URL/path/query as needed to match your backend API
-      const response = await axios.get("http://localhost:8080/listings", {
-        params: {
-          destination: "Amsterdam",
-          arrivalDate: today, // Set to today's date
-          departureDate: today,
-        },
-      });
+      const response = await axios.get(
+        "http://localhost:8080/listings/engine",
+        {
+          params: {
+            destination: "Amsterdam",
+            arrivalDate: today, // Set to today's date
+            departureDate: today,
+          },
+        }
+      );
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Failed to fetch listings for Amsterdam:", error);

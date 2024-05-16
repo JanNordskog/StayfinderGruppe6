@@ -1,5 +1,6 @@
 import LoginForm from "../LoginForm";
 import Footer from "../Footer";
+import "./Login.css";
 
 function Login() {
   return (

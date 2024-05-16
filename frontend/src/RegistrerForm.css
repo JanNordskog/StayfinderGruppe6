@@ -81,5 +81,6 @@
 
   .RegistrerForm .registerbtn {
     padding: 1rem; /* Increase padding for better touch area */
+    text-decoration: none;
   }
 }
