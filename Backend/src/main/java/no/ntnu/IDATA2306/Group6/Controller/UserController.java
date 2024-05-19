@@ -11,17 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-
 import no.ntnu.IDATA2306.Group6.Entity.User;
 import no.ntnu.IDATA2306.Group6.Repo.UserRepo;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Optional;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RestController
 @CrossOrigin
@@ -39,18 +34,32 @@ public class UserController {
      * Retrieves all users.
      *
      * @return A collection of all users
+     * 
+     *         // Return all users if admin
      */
-    @GetMapping
-    public Collection<User> getAll() {
-
-        return userRepo.findAll();
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAll(@PathVariable Integer id) {
+        try {
+            User user = userRepo.findById(id).orElse(null); // Fetch the user by ID
+            if (user != null && user.getUserperm().equals(1)) { // Check if userperm indicates admin
+                return ResponseEntity.ok(userRepo.findAll()); // Return all users if admin
+            } else if (user != null) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                        .body("Access Denied: Only admins can perform this action.");
+            } else {
+                return ResponseEntity.notFound().build(); // Return 404 if the user is not found
+            }
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build(); // Return 500 in case of exceptions
+        }
     }
 
     /**
      * Creates a new user.
      *
      * @param newUser The user to create
-     * @return ResponseEntity containing the created user if successful, otherwise internal server error status
+     * @return ResponseEntity containing the created user if successful, otherwise
+     *         internal server error status
      */
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User newUser) {
@@ -70,7 +79,8 @@ public class UserController {
      *
      * @param name     The username or email of the user
      * @param password The password of the user
-     * @return ResponseEntity containing the authenticated user if successful, otherwise unauthorized status
+     * @return ResponseEntity containing the authenticated user if successful,
+     *         otherwise unauthorized status
      */
     @GetMapping("/login")
     public ResponseEntity<?> loginUser(@RequestParam("uname") String name, @RequestParam("psw") String password) {
@@ -101,7 +111,8 @@ public class UserController {
      * Retrieves the permissions of a user by ID.
      *
      * @param id The ID of the user
-     * @return ResponseEntity containing the permissions if the user is found, otherwise not found status
+     * @return ResponseEntity containing the permissions if the user is found,
+     *         otherwise not found status
      */
     @GetMapping("/{id}/permissions")
     public ResponseEntity<?> getUserPermForIdreturn(@PathVariable Integer id) {
@@ -117,7 +128,8 @@ public class UserController {
      * Checks if a user is an admin.
      *
      * @param id The ID of the user
-     * @return ResponseEntity containing true if the user is an admin, otherwise false or not found status
+     * @return ResponseEntity containing true if the user is an admin, otherwise
+     *         false or not found status
      */
     @GetMapping("/{id}/is-admin")
     public ResponseEntity<Boolean> getUserPermForId(@PathVariable Integer id) {
