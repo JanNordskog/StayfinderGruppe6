@@ -4,7 +4,7 @@ import "./CheckOut.css";
 
 function CheckOut() {
   const navigate = useNavigate();
-  const searchParams = JSON.parse(sessionStorage.getItem('searchParams') || '{}');
+  const bookingParams = JSON.parse(sessionStorage.getItem('bookingParams') || '{}');
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -27,13 +27,13 @@ function CheckOut() {
   return (
       <div className="checkout-container">
         <h1>Checkout</h1>
-        {searchParams && (
+        {bookingParams && (
             <div className="search-details">
               <div className="search-params-display">
                 <h3>Search Details:</h3>
-                <p><strong>Destination:</strong> {searchParams.destination}</p>
-                <p><strong>Guests:</strong> {searchParams.guests}</p>
-                <p><strong>Dates:</strong> {formatDates(searchParams.range)}</p>
+                <p><strong>Destination:</strong> {bookingParams.destination}</p>
+                <p><strong>Guests:</strong> {bookingParams.guests}</p>
+                <p><strong>Dates:</strong> {formatDates(bookingParams.range)}</p>
               </div>
             </div>
         )}
