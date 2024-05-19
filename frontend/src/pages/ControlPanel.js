@@ -104,19 +104,14 @@ function ControlPanel() {
           {listings.length > 0 ? (
             <ul>
               {listings.map((listing) => (
-                <li
-                  key={listing.listingID}
-                  style={{
-
-                  }}
-                >
+                <li key={listing.listingID} style={{}}>
                   <h3>
                     {listing.hotelName} - {listing.roomTypeAvailable}
                   </h3>
                   <img
                     src={listing.imageLink}
                     alt={listing.hotelName}
-                    style={{  }}
+                    style={{}}
                   />
                   <p>Agency: {listing.agency.name}</p>
                   <p>
@@ -155,19 +150,14 @@ function ControlPanel() {
           {listings.length > 0 ? (
             <ul>
               {listings.map((listing) => (
-                <li
-                  key={listing.listingID}
-                  style={{
-
-                  }}
-                >
+                <li key={listing.listingID} style={{}}>
                   <h3>
                     {listing.hotelName} - {listing.roomTypeAvailable}
                   </h3>
                   <img
                     src={listing.imageLink}
                     alt={listing.hotelName}
-                    style={{ }}
+                    style={{}}
                   />
                   <p>Agency: {listing.agency.name}</p>
                   <p>
@@ -189,7 +179,7 @@ function ControlPanel() {
                       )
                     }
                   >
-                    {listing.visible === 0 ? "Show Listing" : "Hide Listing"}
+                    {listing.visible === 0 ? "Add favorite" : "Remove favorite"}
                   </button>
                 </li>
               ))}
