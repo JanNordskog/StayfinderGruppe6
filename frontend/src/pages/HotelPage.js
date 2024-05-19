@@ -9,7 +9,6 @@ function HotelPage() {
   const location = useLocation();
   const hotel = location.state?.data;
 
-  const searchParams = JSON.parse(sessionStorage.getItem('searchParams') || '{}');
   const [dateRange, setDateRange] = useState([
     {
       startDate: null,
@@ -29,7 +28,7 @@ function HotelPage() {
           guests: 2, // Example static value, adjust as needed
           range: dateRange[0]
       };
-      sessionStorage.setItem('searchParams', JSON.stringify(params));
+      sessionStorage.setItem('bookingParams', JSON.stringify(params));
       navigate('/checkout', { state: { hotel: hotel, dateRange: dateRange } });
   };
 
