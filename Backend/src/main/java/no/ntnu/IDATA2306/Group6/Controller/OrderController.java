@@ -1,32 +1,30 @@
-
 package no.ntnu.IDATA2306.Group6.Controller;
 
-    import no.ntnu.IDATA2306.Group6.Entity.Order;
-    import no.ntnu.IDATA2306.Group6.Repo.OrderRepo;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.mail.SimpleMailMessage;
-    import org.springframework.mail.javamail.JavaMailSender;
-    import org.springframework.web.bind.annotation.*;
+import no.ntnu.IDATA2306.Group6.Entity.Order;
+import no.ntnu.IDATA2306.Group6.Repo.OrderRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
 
   @Autowired
-  private OrderRepo orderRepository;
+  private OrderRepo orderRepo;
 
   @Autowired
   private JavaMailSender mailSender;
 
   @PostMapping
   public Order createOrder(@RequestBody Order order) {
-    Order savedOrder = orderRepository.save(order);
+    Order savedOrder = orderRepo.save(order);
     sendOrderSummaryEmail(savedOrder);
     return savedOrder;
   }
 
   private void sendOrderSummaryEmail(Order order) {
-    System.out.println("Sending email to: " + order.getEmail()); // Debug log
     SimpleMailMessage message = new SimpleMailMessage();
     message.setTo(order.getEmail());
     message.setSubject("Order Confirmation");
@@ -39,7 +37,5 @@ public class OrderController {
         "Departure Date: " + order.getDepartureDate() + "\n" +
         "Price: $" + order.getPrice());
     mailSender.send(message);
-    System.out.println("Email sent"); // Debug log
   }
 }
-
