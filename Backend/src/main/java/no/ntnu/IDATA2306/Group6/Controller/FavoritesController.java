@@ -13,7 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import no.ntnu.IDATA2306.Group6.Entity.Favorites;
 import no.ntnu.IDATA2306.Group6.Repo.FavoritesRepo;
 
@@ -39,60 +43,47 @@ public class FavoritesController {
         this.favoritesRepo = favoritesRepo;
     }
 
-    /**
-     * Retrieves all favorites.
-     *
-     * @return A list of all favorites
-     */
     @GetMapping
+    @Operation(summary = "Retrieve all favorites", description = "Fetches a list of all favorites.")
+    @ApiResponse(responseCode = "200", description = "List of all favorites", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favorites.class)))
     public List<Favorites> getAllFavorites() {
         return favoritesRepo.findAll();
     }
 
-    /**
-     * Retrieves a favorite by its ID.
-     *
-     * @param id The ID of the favorite to retrieve
-     * @return ResponseEntity containing the favorite if found, otherwise not found status
-     */
     @GetMapping("/{id}")
+    @Operation(summary = "Retrieve a favorite by ID", description = "Fetches a single favorite by its unique identifier.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Favorite found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favorites.class))),
+        @ApiResponse(responseCode = "404", description = "Favorite not found")
+    })
     public ResponseEntity<Favorites> getFavoriteById(@PathVariable Integer id) {
         Optional<Favorites> favorite = favoritesRepo.findById(id);
         return favorite.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    /**
-     * Retrieves all favorites belonging to a specific user.
-     *
-     * @param userid The ID of the user
-     * @return A list of all favorites belonging to the user
-     */
     @GetMapping("/listing/{userid}")
+    @Operation(summary = "Retrieve all favorites by user ID", description = "Fetches all favorites associated with a specific user.")
+    @ApiResponse(responseCode = "200", description = "Favorites list for user retrieved", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favorites.class)))
     public List<Favorites> getAllUserFavorites(@PathVariable int userid) {
         //System.out.print(userid);
         log.debug(favoritesRepo.findFavoritesByUserId(userid).toString());
         return favoritesRepo.findFavoritesByUserId(userid);
     }
 
-    /**
-     * Adds a new favorite.
-     *
-     * @param favorite The favorite to add
-     * @return The added favorite
-     */
     @PostMapping
+    @Operation(summary = "Add a new favorite", description = "Adds a new favorite to the database.")
+    @ApiResponse(responseCode = "201", description = "Favorite added successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favorites.class)))
     public Favorites addFavorite(@RequestBody Favorites favorite) {
         return favoritesRepo.save(favorite);
     }
 
-    /**
-     * Deletes a favorite by its ID.
-     *
-     * @param id The ID of the favorite to delete
-     * @return ResponseEntity indicating success or failure of the deletion
-     */
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete a favorite by ID", description = "Deletes a favorite based on its ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Favorite deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Favorite not found")
+    })
     public ResponseEntity<?> deleteFavorite(@PathVariable Integer id) {
         if (favoritesRepo.existsById(id)) {
             favoritesRepo.deleteById(id);

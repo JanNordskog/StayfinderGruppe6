@@ -11,6 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import no.ntnu.IDATA2306.Group6.Entity.User;
 import no.ntnu.IDATA2306.Group6.Repo.UserRepo;
 
@@ -26,18 +31,14 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
-    public UserController() {
-
-    }
-
-    /**
-     * Retrieves all users.
-     *
-     * @return A collection of all users
-     * 
-     *         // Return all users if admin
-     */
     @GetMapping("/{id}")
+    @Operation(summary = "Get all users", description = "Retrieves all users if the requester is an admin.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "All users returned", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+            @ApiResponse(responseCode = "403", description = "Access Denied: Only admins can perform this action."),
+            @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     public ResponseEntity<?> getAll(@PathVariable Integer id) {
         try {
             User user = userRepo.findById(id).orElse(null); // Fetch the user by ID
@@ -54,14 +55,12 @@ public class UserController {
         }
     }
 
-    /**
-     * Creates a new user.
-     *
-     * @param newUser The user to create
-     * @return ResponseEntity containing the created user if successful, otherwise
-     *         internal server error status
-     */
     @PostMapping
+    @Operation(summary = "Create a new user", description = "Creates a new user with encrypted password.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "User created successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     public ResponseEntity<User> createUser(@RequestBody User newUser) {
         try {
             String hashedPsw = hashPassword(newUser.getPassword());
@@ -74,15 +73,12 @@ public class UserController {
         }
     }
 
-    /**
-     * Authenticates a user.
-     *
-     * @param name     The username or email of the user
-     * @param password The password of the user
-     * @return ResponseEntity containing the authenticated user if successful,
-     *         otherwise unauthorized status
-     */
     @GetMapping("/login")
+    @Operation(summary = "Authenticate a user", description = "Authenticates user by username and password.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "User authenticated successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+            @ApiResponse(responseCode = "401", description = "Invalid username or password")
+    })
     public ResponseEntity<?> loginUser(@RequestParam("uname") String name, @RequestParam("psw") String password) {
         // Ideally, you would hash the password here before comparing it with database
         // entries
@@ -107,14 +103,12 @@ public class UserController {
         return sha256hex;
     }
 
-    /**
-     * Retrieves the permissions of a user by ID.
-     *
-     * @param id The ID of the user
-     * @return ResponseEntity containing the permissions if the user is found,
-     *         otherwise not found status
-     */
     @GetMapping("/{id}/permissions")
+    @Operation(summary = "Get user permissions", description = "Retrieves the permissions of a user by their ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Permissions retrieved", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "User not found")
+    })
     public ResponseEntity<?> getUserPermForIdreturn(@PathVariable Integer id) {
         Optional<User> user = userRepo.findById(id);
         if (user.isPresent()) {
@@ -124,14 +118,13 @@ public class UserController {
         }
     }
 
-    /**
-     * Checks if a user is an admin.
-     *
-     * @param id The ID of the user
-     * @return ResponseEntity containing true if the user is an admin, otherwise
-     *         false or not found status
-     */
     @GetMapping("/{id}/is-admin")
+    @Operation(summary = "Check if user is admin", description = "Checks if the user with given ID is an admin.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Admin status returned", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "User not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     public ResponseEntity<Boolean> getUserPermForId(@PathVariable Integer id) {
         try {
             User user = userRepo.findById(id).orElse(null); // Fetch the user by ID
