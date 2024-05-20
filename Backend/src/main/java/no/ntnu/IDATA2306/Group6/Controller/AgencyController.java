@@ -8,6 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import no.ntnu.IDATA2306.Group6.Entity.Agency;
 
 import java.util.Collection;
@@ -22,23 +27,21 @@ public class AgencyController {
     // Stores agencies with their IDs as keys
     private final Map<String, Agency> agencies = new HashMap<>();
 
-    /**
-     * Retrieves all agencies.
-     *
-     * @return A collection of all agencies
-     */
     @GetMapping
+    @Operation(summary = "Get all agencies", description = "Retrieves all agencies stored in the system.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "All agencies returned", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Agency.class)))
+    })
     public Collection<Agency> getAllAgencies() {
         return agencies.values();
     }
 
-    /**
-     * Creates a new agency.
-     *
-     * @param newAgency The agency to create
-     * @return ResponseEntity containing the created agency or status conflict if the agency already exists
-     */
     @PostMapping
+    @Operation(summary = "Create a new agency", description = "Creates a new agency. Conflicts if agency with same ID already exists.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Agency created successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Agency.class))),
+            @ApiResponse(responseCode = "409", description = "Conflict, agency already exists")
+    })
     public ResponseEntity<Agency> createAgency(@RequestBody Agency newAgency) {
         if (agencies.containsKey(newAgency.getAgencyID())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
@@ -47,13 +50,12 @@ public class AgencyController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newAgency);
     }
 
-    /**
-     * Retrieves an agency by its ID.
-     *
-     * @param agencyId The ID of the agency to retrieve
-     * @return ResponseEntity containing the agency if found, otherwise not found status
-     */
     @GetMapping("/{agencyId}")
+    @Operation(summary = "Retrieve an agency by ID", description = "Retrieves an agency based on the provided ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Agency found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Agency.class))),
+            @ApiResponse(responseCode = "404", description = "Agency not found")
+    })
     public ResponseEntity<Agency> getAgency(@PathVariable String agencyId) {
         Agency agency = agencies.get(agencyId);
         if (agency != null) {
@@ -63,14 +65,12 @@ public class AgencyController {
         }
     }
 
-    /**
-     * Updates an existing agency.
-     *
-     * @param agencyId      The ID of the agency to update
-     * @param updatedAgency The updated agency object
-     * @return ResponseEntity containing the updated agency if found, otherwise not found status
-     */
     @PutMapping("/{agencyId}")
+    @Operation(summary = "Update an agency", description = "Updates an existing agency by ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Agency updated successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Agency.class))),
+            @ApiResponse(responseCode = "404", description = "Agency not found")
+    })
     public ResponseEntity<Agency> updateAgency(@PathVariable String agencyId, @RequestBody Agency updatedAgency) {
         if (!agencies.containsKey(agencyId)) {
             return ResponseEntity.notFound().build();
@@ -79,13 +79,12 @@ public class AgencyController {
         return ResponseEntity.ok(updatedAgency);
     }
 
-    /**
-     * Deletes an agency by its ID.
-     *
-     * @param agencyId The ID of the agency to delete
-     * @return ResponseEntity indicating success or failure of the deletion
-     */
     @DeleteMapping("/{agencyId}")
+    @Operation(summary = "Delete an agency", description = "Deletes an agency by its ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Agency deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Agency not found")
+    })
     public ResponseEntity<Void> deleteAgency(@PathVariable String agencyId) {
         if (!agencies.containsKey(agencyId)) {
             return ResponseEntity.notFound().build();
