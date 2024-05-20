@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
+
   @Autowired
   private OrderRepo orderRepo;
 
@@ -19,12 +20,15 @@ public class OrderController {
 
   @PostMapping
   public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    System.out.println("Received order: " + order); // Debug log
     Order savedOrder = orderRepo.save(order);
+    System.out.println("Saved order: " + savedOrder); // Debug log
     sendOrderSummaryEmail(order);
     return ResponseEntity.ok(savedOrder);
   }
 
   private void sendOrderSummaryEmail(Order order) {
+    System.out.println("Sending email to: " + order.getEmail()); // Debug log
     SimpleMailMessage message = new SimpleMailMessage();
     message.setTo(order.getEmail());
     message.setSubject("Booking Confirmation");
@@ -36,5 +40,6 @@ public class OrderController {
         "Price: $" + order.getPrice() + "\n\n" +
         "Please don't hesitate to contact us if you have any questions.");
     emailSender.send(message);
+    System.out.println("Email sent"); // Debug log
   }
 }
