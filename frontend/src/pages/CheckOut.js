@@ -42,7 +42,7 @@ function CheckOut() {
       const response = await axios.post("http://localhost:8080/orders", order);
       console.log("Order response:", response); // Debug log
       if (response.status === 200) {
-        navigate("/confirmation");
+        navigate("/confirmation", { state: { email: order.email }, replace: true });
       } else {
         console.error("Failed to create order:", response);
       }

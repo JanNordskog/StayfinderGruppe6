@@ -34,9 +34,7 @@ function HotelPage() {
 
     useEffect(() => {
         axios.get("http://localhost:8080/listings/getopendates/" + hotel.hotelID)
-            .then((r) => {/*
-                setClosingDate(parse(r.data.closedDate, "yyyy-MM-dd", new Date()));
-                setOpenDate(parse(r.data.openDate, "yyy-MM-dd", new Date()));*/
+            .then((r) => {
                 const minDate = parse(r.data.closedDate, "yyyy-MM-dd", new Date());
                 const maxDate = parse(r.data.openDate, "yyyy-MM-dd", new Date());
                 setClosingDate(minDate);
