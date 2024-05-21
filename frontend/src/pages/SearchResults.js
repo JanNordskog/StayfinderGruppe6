@@ -10,10 +10,23 @@ function SearchResults() {
   const { data } = location.state || { data: [] };
   const searchParams = JSON.parse(sessionStorage.getItem("searchParams"));
   const user = JSON.parse(sessionStorage.getItem("user")); // Retrieve user from session storage
+  const [favorites, setFavorites] = useState(new Set()); // State to track favorite listings
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+    if (user) {
+      // Optionally load favorites from the server when the component mounts
+      axios
+        .get(`http://localhost:8080/api/favorites/user/${user.id}`)
+        .then((response) => {
+          const newFavorites = new Set(
+            response.data.map((fav) => fav.listing.listingID)
+          );
+          setFavorites(newFavorites);
+        })
+        .catch((error) => console.error("Error fetching favorites:", error));
+    }
+  }, [user]);
 
   const handleBooking = (listingId) => {
     axios
@@ -36,12 +49,17 @@ function SearchResults() {
       alert("Please log in to add favorites.");
       return;
     }
+    if (favorites.has(listingId)) {
+      alert("This listing is already a favorite.");
+      return;
+    }
     const url = `http://localhost:8080/api/favorites/add?userId=${user.id}&listingId=${listingId}`;
 
     axios
       .post(url)
       .then(() => {
         alert("Favorite toggled successfully!");
+        setFavorites(new Set(favorites.add(listingId))); // Add to favorites
       })
       .catch((error) => {
         console.error("Error toggling favorite:", error);
@@ -78,7 +96,6 @@ function SearchResults() {
             </div>
           )}
         </div>
-
         <div className="listings-grid">
           {data.length > 0 ? (
             data.map((item, index) => (
@@ -94,7 +111,7 @@ function SearchResults() {
                     <button
                       className="favorite-button"
                       onClick={() => toggleFavorite(item.listingID)}
-                      disabled={!user}
+                      disabled={!user || favorites.has(item.listingID)} // Disable if not logged in or already a favorite
                     >
                       <img
                         src="http://localhost:8080/api/get/image/favourite.png"
