@@ -89,15 +89,6 @@
                 <mainClass>no.ntnu.IDATA2306.Group6.MainApplication</mainClass>
             </configuration>
         </plugin>
-        <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.6.3</version>
-            <configuration>
-                <source>21</source>
-                <target>21</target>
-            </configuration>
-        </plugin>
-
     </plugins>
 </build>
 
