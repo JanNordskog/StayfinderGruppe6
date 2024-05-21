@@ -14,7 +14,7 @@
     <name>StayfinderGruppe6</name>
     <description>This project shows how we can include a frontend application in Spring Boot</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
         <application.main>no.ntnu.IDATA2306.Group6.MainApplication</application.main>
         <application.filename>Backend</application.filename>
     </properties>
@@ -81,6 +81,14 @@
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
