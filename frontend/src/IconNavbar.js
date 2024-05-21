@@ -7,28 +7,8 @@ const IconNavbar = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate
   const navRef = useRef(null);
 
-  // Function to handle horizontal scrolling
-  const scroll = (direction) => {
-    if (direction === 'left') {
-      navRef.current.scrollBy({left: -200, behavior: 'smooth'});
-    } else {
-      navRef.current.scrollBy({left: 200, behavior: 'smooth'});
-    }
-  };
-
-  // Async functions to handle navigation and data fetching
-  const handleNavigateToPool = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/extra", {
-        params: {
-          extraFeatures: "pool",
-        },
-      });
-      navigate("/searchResults", {state: {data: response.data}});
-    } catch (error) {
-      console.error("Failed to fetch listings based on extra features:", error);
-    }
-  };
+ 
+  
 
   const handleNavigateToBar = async () => {
     try {

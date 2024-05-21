@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SearchResults.css";
-import Footer from "../Footer";
-import SearchBar from "../SearchBar";
+import SearchBar from "../SearchBar"; 
 
 function SearchResults() {
   const location = useLocation();
@@ -32,7 +31,7 @@ function SearchResults() {
   };
 
   const formatDates = ({ startDate, endDate }) => {
-    // Convert strings to Date objects
+   
     const start = new Date(startDate);
     const end = new Date(endDate);
     return `${start.toLocaleDateString()} - ${end.toLocaleDateString()}`;
@@ -68,31 +67,39 @@ function SearchResults() {
               <div className="listing-card" key={index}>
                 <img
                   src={item.imageLink}
-                  alt={`Image of ${item.hotelName}`}
+                  alt={`${item.hotelName}`} 
                   className="hotel-image"
                 />
                 <div className="text-content">
                   <div className="hotel-header">
-                <h2>{item.hotelName}</h2>
-                  <button className="favorite-button" onClick={() => console.log('Toggle Favorite')}>
-                    <img src="http://localhost:8080/api/get/image/favourite.png"/>
-                  </button>
+                    <h2>{item.hotelName}</h2>
+                    <button
+                      className="favorite-button"
+                      onClick={() => console.log("Toggle Favorite")}
+                    >
+                      <img
+                        src="http://localhost:8080/api/get/image/favourite.png"
+                        alt="Toggle favorite"
+                      />{" "}
+                     
+                    </button>
                   </div>
-                <p>
-                  <strong>Room Type Available:</strong> {item.roomTypeAvailable}
-                </p>
-                <p>
-                  <strong>Extra Features:</strong> {item.extraFeatures}
-                </p>
-                <h2 className="price">
-                  <strong>Price:</strong> ${item.price}
-                </h2>
-                <button
-                  className="book-button"
-                  onClick={() => handleBooking(item.listingID)}
-                >
-                  Book now
-                </button>
+                  <p>
+                    <strong>Room Type Available:</strong>{" "}
+                    {item.roomTypeAvailable}
+                  </p>
+                  <p>
+                    <strong>Extra Features:</strong> {item.extraFeatures}
+                  </p>
+                  <h2 className="price">
+                    <strong>Price:</strong> ${item.price}
+                  </h2>
+                  <button
+                    className="book-button"
+                    onClick={() => handleBooking(item.listingID)}
+                  >
+                    Book now
+                  </button>
                 </div>
               </div>
             ))

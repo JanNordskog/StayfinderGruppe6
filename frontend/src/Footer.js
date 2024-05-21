@@ -21,7 +21,7 @@ const Footer = () => {
       <div className="section right-section">
         <img
           src="http://localhost:8080/api/get/image/Logo.png"
-          alt="Right Image"
+          alt="Logo" // Changed from "Right Image" to just "Logo" to be less redundant
         />
         <h2>Support</h2>
         <ul>

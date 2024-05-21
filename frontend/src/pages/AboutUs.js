@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from "../Footer";
 import './AboutUs.css'; // Assuming you have an accompanying CSS file for styling
 
 function AboutUs() {

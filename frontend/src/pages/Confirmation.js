@@ -1,15 +1,11 @@
 import React from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import './Confirmation.css';
 
 function Confirmation() {
-    const navigate = useNavigate();
     const location = useLocation();
     const email = location.state?.email || 'your email';
-    const handleGoHome = () => {
-        navigate('/', { replace: true });
-    };
-
+    
     return (
         <div className="confirmation-container">
             <h1>Reservation Confirmed!</h1>

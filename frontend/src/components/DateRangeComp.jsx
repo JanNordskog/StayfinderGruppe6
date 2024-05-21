@@ -31,18 +31,7 @@ const DateRangeComp = ({ range, setRange, min = null, max = null, bookedDates = 
     setRange([ranges.selection]);
   };
 
-  const handleClick = () => {
-    if (!range[0].startDate || !range[0].endDate) {
-      setRange([
-        {
-          startDate: new Date(),
-          endDate: new Date(),
-          key: "selection",
-        },
-      ]);
-    }
-    setOpen(!open);
-  };
+  
 
   const displayValue = () => {
     if (range[0].startDate && range[0].endDate) {

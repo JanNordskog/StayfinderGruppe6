@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ControlPanel.css";
@@ -8,6 +8,31 @@ function ControlPanel() {
   const user = JSON.parse(sessionStorage.getItem("user"));
   const [listings, setListings] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+
+  // useCallback to ensure function identity is stable
+  const fetchListings = useCallback(async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/listings");
+      setListings(
+        response.data.map((listing) => ({ ...listing, hidden: false }))
+      );
+    } catch (error) {
+      console.error("Error fetching listings:", error);
+    }
+  }, []);
+
+  const fetchFaveListings = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/favorites/listing/${user.id}`
+      );
+      setListings(
+        response.data.map((listing) => ({ ...listing.listing, hidden: false }))
+      );
+    } catch (error) {
+      console.error("Error fetching listings:", error);
+    }
+  }, [user.id]); // user.id as a dependency to recreate the function when user.id changes
 
   useEffect(() => {
     if (!user) {
@@ -33,31 +58,7 @@ function ControlPanel() {
     } else {
       fetchFaveListings();
     }
-  }, [isAdmin]);
-
-  const fetchListings = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/listings");
-      setListings(
-        response.data.map((listing) => ({ ...listing, hidden: false }))
-      );
-    } catch (error) {
-      console.error("Error fetching listings:", error);
-    }
-  };
-
-  const fetchFaveListings = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/api/favorites/listing/${user.id}`
-      );
-      setListings(
-        response.data.map((listing) => ({ ...listing.listing, hidden: false }))
-      );
-    } catch (error) {
-      console.error("Error fetching listings:", error);
-    }
-  };
+  }, [isAdmin, fetchListings, fetchFaveListings]); // Adding both functions to dependencies
 
   const toggleListingVisibility = async (id, isVisible) => {
     try {
@@ -99,20 +100,16 @@ function ControlPanel() {
       )}
 
       {isAdmin && (
-        <div className={"Panel1"}>
+        <div className="Panel1">
           <h2>Available Listings:</h2>
           {listings.length > 0 ? (
             <ul>
               {listings.map((listing) => (
-                <li key={listing.listingID} style={{}}>
+                <li key={listing.listingID}>
                   <h3>
                     {listing.hotelName} - {listing.roomTypeAvailable}
                   </h3>
-                  <img
-                    src={listing.imageLink}
-                    alt={listing.hotelName}
-                    style={{}}
-                  />
+                  <img src={listing.imageLink} alt={listing.hotelName} />
                   <p>Agency: {listing.agency.name}</p>
                   <p>
                     Contact: {listing.agency.email} |{" "}
@@ -150,15 +147,11 @@ function ControlPanel() {
           {listings.length > 0 ? (
             <ul>
               {listings.map((listing) => (
-                <li key={listing.listingID} style={{}}>
+                <li key={listing.listingID}>
                   <h3>
                     {listing.hotelName} - {listing.roomTypeAvailable}
                   </h3>
-                  <img
-                    src={listing.imageLink}
-                    alt={listing.hotelName}
-                    style={{}}
-                  />
+                  <img src={listing.imageLink} alt={listing.hotelName} />
                   <p>Agency: {listing.agency.name}</p>
                   <p>
                     Contact: {listing.agency.email} |{" "}
@@ -179,7 +172,7 @@ function ControlPanel() {
                       )
                     }
                   >
-                    {listing.visible === 0 ? "Add favorite" : "Remove favorite"}
+                    {listing.visible === 0 ? "Add Favorite" : "Remove Favorite"}
                   </button>
                 </li>
               ))}
