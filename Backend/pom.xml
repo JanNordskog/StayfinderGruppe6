@@ -14,7 +14,7 @@
     <name>StayfinderGruppe6</name>
     <description>This project shows how we can include a frontend application in Spring Boot</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
          <application.main>no.ntnu.IDATA2306.Group6.MainApplication</application.main>
          <application.filename>Backend</application.filename>
     </properties>
