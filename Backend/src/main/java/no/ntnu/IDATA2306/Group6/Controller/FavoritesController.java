@@ -39,7 +39,7 @@ public class FavoritesController {
     private UserRepo userRepository;
 
     @Autowired
-    private ListingRepo  listingRepository;
+    private ListingRepo listingRepository;
 
     @Autowired
     private FavoritesRepo favoritesRepo;
@@ -77,7 +77,7 @@ public class FavoritesController {
     @Operation(summary = "Retrieve all favorites by user ID", description = "Fetches all favorites associated with a specific user.")
     @ApiResponse(responseCode = "200", description = "Favorites list for user retrieved", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favorites.class)))
     public List<Favorites> getAllUserFavorites(@PathVariable int userid) {
-        //System.out.print(userid);
+        // System.out.print(userid);
         log.debug(favoritesRepo.findFavoritesByUserId(userid).toString());
         return favoritesRepo.findFavoritesByUserId(userid);
     }
@@ -106,8 +106,6 @@ public class FavoritesController {
             return ResponseEntity.internalServerError().build(); // Handle other exceptions with a generic 500 error
         }
     }
-
-
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a favorite by ID", description = "Deletes a favorite based on its ID.")

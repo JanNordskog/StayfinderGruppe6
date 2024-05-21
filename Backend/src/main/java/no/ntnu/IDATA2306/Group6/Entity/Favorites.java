@@ -3,6 +3,9 @@
  */
 package no.ntnu.IDATA2306.Group6.Entity;
 
+import java.util.List;
+import java.util.Optional;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 public class Favorites {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "favoriteID")
     private Integer favoriteID;
 
@@ -113,5 +116,35 @@ public class Favorites {
                 ", user=" + user +
                 ", listing=" + listing +
                 '}';
+    }
+
+    public List<Favorites> findAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    }
+
+    public Optional<Favorites> findById(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+    public Object findFavoritesByUserId(int userid) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findFavoritesByUserId'");
+    }
+
+    public Favorites save(Favorites favorite) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    }
+
+    public boolean existsById(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'existsById'");
+    }
+
+    public void deleteById(Integer id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
     }
 }

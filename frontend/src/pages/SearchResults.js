@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SearchResults.css";
-import SearchBar from "../SearchBar"; 
+import SearchBar from "../SearchBar";
 
 function SearchResults() {
   const location = useLocation();
   const navigate = useNavigate();
   const { data } = location.state || { data: [] };
   const searchParams = JSON.parse(sessionStorage.getItem("searchParams"));
+  const user = JSON.parse(sessionStorage.getItem("user")); // Retrieve user from session storage
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,8 +31,25 @@ function SearchResults() {
       });
   };
 
+  const toggleFavorite = (listingId) => {
+    if (!user) {
+      alert("Please log in to add favorites.");
+      return;
+    }
+    const url = `http://localhost:8080/api/favorites/add?userId=${user.id}&listingId=${listingId}`;
+
+    axios
+      .post(url)
+      .then(() => {
+        alert("Favorite toggled successfully!");
+      })
+      .catch((error) => {
+        console.error("Error toggling favorite:", error);
+        alert("Failed to toggle favorite.");
+      });
+  };
+
   const formatDates = ({ startDate, endDate }) => {
-   
     const start = new Date(startDate);
     const end = new Date(endDate);
     return `${start.toLocaleDateString()} - ${end.toLocaleDateString()}`;
@@ -67,7 +85,7 @@ function SearchResults() {
               <div className="listing-card" key={index}>
                 <img
                   src={item.imageLink}
-                  alt={`${item.hotelName}`} 
+                  alt={`${item.hotelName}`}
                   className="hotel-image"
                 />
                 <div className="text-content">
@@ -75,13 +93,13 @@ function SearchResults() {
                     <h2>{item.hotelName}</h2>
                     <button
                       className="favorite-button"
-                      onClick={() => console.log("Toggle Favorite")}
+                      onClick={() => toggleFavorite(item.listingID)}
+                      disabled={!user}
                     >
                       <img
                         src="http://localhost:8080/api/get/image/favourite.png"
                         alt="Toggle favorite"
-                      />{" "}
-                     
+                      />
                     </button>
                   </div>
                   <p>
