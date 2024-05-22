@@ -19,12 +19,12 @@ public class CorsConfig implements WebMvcConfigurer {
   public void addCorsMappings(CorsRegistry registry) {
 
     registry.addMapping("/**")
-            .allowedOrigins("https://localhost:3000")
-            .allowedHeaders("*");
+        .allowedOrigins("*")
+        .allowedHeaders("*");
 
     // Configure CORS for "/user/**" endpoints
     registry.addMapping("/user/**")
-        .allowedOrigins("https://localhost:3000") // Allow requests from this origin
+        .allowedOrigins("*") // Allow requests from this origin
         .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specified HTTP methods
         .allowedHeaders("*") // Allow all headers
         .allowCredentials(true) // Allow credentials
@@ -32,7 +32,7 @@ public class CorsConfig implements WebMvcConfigurer {
 
     // Configure CORS for "/api/**" endpoints
     registry.addMapping("/api/**")
-        .allowedOrigins("https://localhost:3000") // Allow requests from this origin
+        .allowedOrigins("*") // Allow requests from this origin
         .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specified HTTP methods
         .allowedHeaders("*") // Allow all headers
         .allowCredentials(true) // Allow credentials
