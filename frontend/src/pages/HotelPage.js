@@ -33,13 +33,20 @@ function HotelPage() {
   };
 
     useEffect(() => {
-        axios.get("http://localhost:8080/listings/getopendates/" + hotel.hotelID)
-            .then((r) => {
-                const minDate = parse(r.data.closedDate, "yyyy-MM-dd", new Date());
-                const maxDate = parse(r.data.openDate, "yyyy-MM-dd", new Date());
-                setClosingDate(minDate);
-                setOpenDate(maxDate);
-            })
+        if (hotel && hotel.hotelID) {
+            axios.get("http://localhost:8080/listings/getopendates/" + hotel.hotelID)
+                .then((r) => {
+                    const minDate = parse(r.data.closedDate, "yyyy-MM-dd", new Date());
+                    const maxDate = parse(r.data.openDate, "yyyy-MM-dd", new Date());
+                    setClosingDate(minDate);
+                    setOpenDate(maxDate);
+                })
+                .catch((error) => {
+                    console.error('Error fetching open dates:', error);
+                });
+        } else {
+            console.error('Invalid hotel data:', hotel);
+        }
     }, [hotel]);
 
   return (
