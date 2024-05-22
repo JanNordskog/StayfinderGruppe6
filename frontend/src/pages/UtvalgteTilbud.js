@@ -1,4 +1,4 @@
-
+import './UtvalgteTilbud.css';
 
 function UtvalgteTilbud() {
   return (
