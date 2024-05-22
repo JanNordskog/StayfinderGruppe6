@@ -80,17 +80,26 @@ public class UserController {
             @ApiResponse(responseCode = "401", description = "Invalid username or password")
     })
     public ResponseEntity<?> loginUser(@RequestParam("uname") String name, @RequestParam("psw") String password) {
-        // Ideally, you would hash the password here before comparing it with database
-        // entries
-        password = hashPassword(password);
+        // Attempt to find the user by email or name
         User user = userRepo.findOneByEmailOrName(name, name);
-        System.out.println(name + password);
-        System.out.println(user);
-        if (user == null || new BCryptPasswordEncoder().matches(password, user.getPassword())) {
+        if (user == null) {
+            // No user found, respond with an error without revealing too much about the reason
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
-        return ResponseEntity.status(200).body(user);
+
+        // Retrieve the stored password
+        String userpassword = user.getPassword();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (!encoder.matches(password, userpassword)) {
+            // Passwords do not match, respond with an error
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        }
+
+        // User authenticated successfully
+        return ResponseEntity.ok(user);
     }
+
+
 
     /**
      * Hashes a password using BCrypt.
