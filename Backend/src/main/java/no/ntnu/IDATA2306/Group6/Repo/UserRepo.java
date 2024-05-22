@@ -27,6 +27,8 @@ public interface UserRepo extends JpaRepository<User, Integer> {
    */
     User findByEmail(String name);
 
+    User findOneByEmailOrName(String name, String name2);
+
   /**
    * Retrieves a user by their email or username.
    *
@@ -34,5 +36,5 @@ public interface UserRepo extends JpaRepository<User, Integer> {
    * @param email The email of the user
    * @return The user matching the provided email or username
    */
-  User findOneByEmailOrName(String name, String email);
+
 }
