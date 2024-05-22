@@ -84,11 +84,15 @@ To run the Stay Finder application locally, follow these steps:
    npm start
    ```
 
+2. **Run our datasbase**:
+  in our solution we used xamp to host our database on port 3306, it can be adjusted i the application properties
+
 2. **Backend Setup**:
    ```bash
    Open backend folder
    Run MainApplication.java
    ```
+   May be some issues with backend if database is not running
 
 # Installing
 
