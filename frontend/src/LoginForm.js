@@ -12,7 +12,7 @@ function LoginForm() {
   const handleLogin = async (event) => {
     event.preventDefault(); // Prevent the default form submission
     try {
-      const response = await axios.get("http://localhost:8080/user/login", {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_PATH}/user/login`, {
         params: {
           uname: username,
           psw: password,
@@ -31,47 +31,46 @@ function LoginForm() {
     }
   };
 
-
   return (
-    <div className="loginForm">
-      <h2>Logg på eller lag en konto</h2>
-      <form onSubmit={handleLogin}>
-        <div className="container">
-          <label htmlFor="uname">
-            <b>Username</b>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Username or email"
-            name="uname"
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <label htmlFor="psw">
-            <b>Password</b>
-          </label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            name="psw"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit">Logg inn</button>
-          {error && <div style={{ color: "red" }}>{error}</div>}
-        </div>
+      <div className="loginForm">
+        <h2>Logg på eller lag en konto</h2>
+        <form onSubmit={handleLogin}>
+          <div className="container">
+            <label htmlFor="uname">
+              <b>Username</b>
+            </label>
+            <input
+                type="text"
+                placeholder="Enter Username or email"
+                name="uname"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+            <label htmlFor="psw">
+              <b>Password</b>
+            </label>
+            <input
+                type="password"
+                placeholder="Enter Password"
+                name="psw"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit">Logg inn</button>
+            {error && <div style={{ color: "red" }}>{error}</div>}
+          </div>
 
-        <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
-          <span className="psw">Forgot password</span>
-        </div>
+          <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
+            <span className="psw">Forgot password</span>
+          </div>
 
-        <p>
-          Har du ikke en konto? <Link to="/registrer">Registrer deg her</Link>
-        </p>
-      </form>
-    </div>
+          <p>
+            Har du ikke en konto? <Link to="/registrer">Registrer deg her</Link>
+          </p>
+        </form>
+      </div>
   );
 }
 

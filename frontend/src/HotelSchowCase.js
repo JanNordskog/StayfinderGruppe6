@@ -6,111 +6,53 @@ import "./HotelSchowCase.css";
 function HotelShowCase() {
   const navigate = useNavigate();
   const today = new Date().toISOString().split("T")[0];
-  // Function to fetch listings for Oslo and navigate to search results
-  const handleNavigateToOslo = async () => {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_PATH; // Get the API base URL from environment variables
+
+  const handleNavigate = async (destination) => {
     try {
-      // Assuming you want to fetch data similar to the HotelShowCase component
-      // Adjust the URL/path/query as needed to match your backend API
-      const response = await axios.get(
-        "http://localhost:8080/listings/engine",
-        {
-          params: {
-            destination: "Oslo",
-            arrivalDate: today, // Set to today's date
-            departureDate: today,
-          },
-        }
-      );
+      const response = await axios.get(`${apiBaseUrl}/listings/engine`, {
+        params: {
+          destination: destination,
+          arrivalDate: today,
+          departureDate: today,
+        },
+      });
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
-      console.error("Failed to fetch listings for Oslo:", error);
-    }
-  };
-
-  const handleNavigateToÅlesund = async () => {
-    try {
-      // Fetch listings filtered by Oslo
-      // Adjust the URL/path/query as needed to match your backend API
-      const response = await axios.get(
-        "http://localhost:8080/listings/engine",
-        {
-          params: {
-            destination: "Ålesund",
-            arrivalDate: today, // Set to today's date
-            departureDate: today,
-          },
-        }
-      );
-      navigate("/searchResults", { state: { data: response.data } });
-    } catch (error) {
-      console.error("Failed to fetch listings for Ålesund:", error);
-    }
-  };
-
-  
-
-  const handleNavigateToAmsterdam = async () => {
-    try {
-      // Fetch listings filtered by Oslo
-      // Adjust the URL/path/query as needed to match your backend API
-      const response = await axios.get(
-        "http://localhost:8080/listings/engine",
-        {
-          params: {
-            destination: "Amsterdam",
-            arrivalDate: today, // Set to today's date
-            departureDate: today,
-          },
-        }
-      );
-      navigate("/searchResults", { state: { data: response.data } });
-    } catch (error) {
-      console.error("Failed to fetch listings for Amsterdam:", error);
+      console.error(`Failed to fetch listings for ${destination}:`, error);
     }
   };
 
   return (
-    <div className="hotelshowcase">
-      <div className="container">
-        <h1>Discover trending destinations</h1>
-        <ul className="destinations">
-          <li className="destination">
-            {/* Use onClick handler directly on the <li> element */}
-            <a onClick={handleNavigateToOslo} href="#!">
-              <img
-                src="http://localhost:8080/api/get/image/Oslo.jpg"
-                alt="Oslo"
-              />
-              <h2>Oslo</h2>
-              <p>Norge</p>
-            </a>
-          </li>
-          <li className="destination">
-            {/* Use onClick handler directly on the <li> element */}
-            <a onClick={handleNavigateToÅlesund} href="#!">
-              <img
-                src="http://localhost:8080/api/get/image/Ålesund.jpg"
-                alt="Ålesund"
-              />
-              <h2>Ålesund</h2>
-              <p>Norge</p>
-            </a>
-          </li>
-          <li className="destination">
-            {/* Use onClick handler directly on the <li> element */}
-            <a onClick={handleNavigateToAmsterdam} href="#!">
-              <img
-                src="http://localhost:8080/api/get/image/Amsterdam.png"
-                alt="Amsterdam"
-              />
-              <h2>Amsterdam</h2>
-              <p>Norge</p>
-            </a>
-          </li>
-          {/* Other destinations unchanged */}
-        </ul>
+      <div className="hotelshowcase">
+        <div className="container">
+          <h1>Discover trending destinations</h1>
+          <ul className="destinations">
+            <li className="destination">
+              <a onClick={() => handleNavigate("Oslo")} href="#!">
+                <img src={`${apiBaseUrl}/api/get/image/Oslo.jpg`} alt="Oslo" />
+                <h2>Oslo</h2>
+                <p>Norge</p>
+              </a>
+            </li>
+            <li className="destination">
+              <a onClick={() => handleNavigate("Ålesund")} href="#!">
+                <img src={`${apiBaseUrl}/api/get/image/Ålesund.jpg`} alt="Ålesund" />
+                <h2>Ålesund</h2>
+                <p>Norge</p>
+              </a>
+            </li>
+            <li className="destination">
+              <a onClick={() => handleNavigate("Amsterdam")} href="#!">
+                <img src={`${apiBaseUrl}/api/get/image/Amsterdam.png`} alt="Amsterdam" />
+                <h2>Amsterdam</h2>
+                <p>Norge</p>
+              </a>
+            </li>
+            {/* Add other destinations similarly */}
+          </ul>
+        </div>
       </div>
-    </div>
   );
 }
 

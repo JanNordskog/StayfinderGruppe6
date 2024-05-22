@@ -17,7 +17,7 @@ function Navbar() {
   const handleAllListings = async () => {
     try {
       // You might want to modify this request to suit how your backend handles fetching all listings
-      const response = await axios.get("http://localhost:8080/listings");
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_PATH}/listings`);
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Failed to fetch listings:", error);
@@ -25,66 +25,66 @@ function Navbar() {
   };
 
   return (
-    <div className={`navbar ${isActive ? "active" : ""}`}>
-      <div className="logo">
-        <Link className="NavbarDink" to="/">
+      <div className={`navbar ${isActive ? "active" : ""}`}>
+        <div className="logo">
+          <Link className="NavbarDink" to="/">
+            <img
+                src={`${process.env.REACT_APP_API_BASE_PATH}/api/get/image/LogoIcon.png`}
+                alt="Logo"
+            />
+          </Link>
+        </div>
+        <div className="hamburger" onClick={toggleMenu}>
           <img
-            src="http://localhost:8080/api/get/image/LogoIcon.png"
-            alt="Logo"
+              src={`${process.env.REACT_APP_API_BASE_PATH}/api/get/image/Hamburgermenu.png`}
+              alt="Menu"
           />
-        </Link>
-      </div>
-      <div className="hamburger" onClick={toggleMenu}>
-        <img
-          src="http://localhost:8080/api/get/image/Hamburgermenu.png"
-          alt="Menu"
-        />
-      </div>
-      <ul
-        className={isActive ? "nav-links-mobile" : "nav-links"}
-        onClick={() => setIsActive(false)}
-      >
-        <li>
-          <a className="NavbarLink" href="#!" onClick={handleAllListings}>
-            Hotell & destinations
-          </a>
-        </li>
-        <li>
-          <Link className="NavbarLink" to="/UtvalgteTilbud">
-            Check sites
-          </Link>
-        </li>
-        <li>
-          <Link className="NavbarLink" to="/aboutus">
-            About us
-          </Link>
-        </li>
-        {user ? (
+        </div>
+        <ul
+            className={isActive ? "nav-links-mobile" : "nav-links"}
+            onClick={() => setIsActive(false)}
+        >
           <li>
-            <Link className="NavbarLink3" to="/controlPanel">
-              <button>My Page</button>
+            <a className="NavbarLink" href="#!" onClick={handleAllListings}>
+              Hotell & destinations
+            </a>
+          </li>
+          <li>
+            <Link className="NavbarLink" to="/UtvalgteTilbud">
+              Check sites
             </Link>
           </li>
-        ) : (
           <li>
-            <Link className="NavbarLink3" to="/Login">
-              <button>Sign in</button>
+            <Link className="NavbarLink" to="/aboutus">
+              About us
             </Link>
           </li>
-        )}
-      </ul>
-      <div className="logg-inn-desktop">
-        {user ? (
-          <Link className="NavbarLink2" to="/controlPanel">
-            <button>My Page</button>
-          </Link>
-        ) : (
-          <Link className="NavbarLink2" to="/Login">
-            <button>Sign in</button>
-          </Link>
-        )}
+          {user ? (
+              <li>
+                <Link className="NavbarLink3" to="/controlPanel">
+                  <button>My Page</button>
+                </Link>
+              </li>
+          ) : (
+              <li>
+                <Link className="NavbarLink3" to="/Login">
+                  <button>Sign in</button>
+                </Link>
+              </li>
+          )}
+        </ul>
+        <div className="logg-inn-desktop">
+          {user ? (
+              <Link className="NavbarLink2" to="/controlPanel">
+                <button>My Page</button>
+              </Link>
+          ) : (
+              <Link className="NavbarLink2" to="/Login">
+                <button>Sign in</button>
+              </Link>
+          )}
+        </div>
       </div>
-    </div>
   );
 }
 

@@ -2,7 +2,9 @@ import React from 'react';
 import './AboutUs.css'; // Assuming you have an accompanying CSS file for styling
 
 function AboutUs() {
-    return (
+  const API_BASE_PATH = process.env.REACT_APP_API_BASE_PATH;
+
+  return (
       <div className="us">
         <meta name="viewport" content="width=device, initial-scale=1.0" />
         <h1>About us:</h1>
@@ -30,9 +32,9 @@ function AboutUs() {
             <div className="flip-card-inner">
               <div className="flip-card-front">
                 <img
-                  src="http://localhost:8080/api/get/image/jan.png"
-                  alt="Avatar"
-                  style={{ width: "300px", height: "300px" }}
+                    src={`${API_BASE_PATH}/api/get/image/jan.png`}
+                    alt="Avatar"
+                    style={{ width: "300px", height: "300px" }}
                 />
               </div>
               <div className="flip-card-back">
@@ -46,9 +48,9 @@ function AboutUs() {
             <div className="flip-card-inner">
               <div className="flip-card-front">
                 <img
-                  src="http://localhost:8080/api/get/image/ulrik.png"
-                  alt="Avatar"
-                  style={{ width: "300px", height: "300px" }}
+                    src={`${API_BASE_PATH}/api/get/image/ulrik.png`}
+                    alt="Avatar"
+                    style={{ width: "300px", height: "300px" }}
                 />
               </div>
               <div className="flip-card-back">
@@ -62,9 +64,9 @@ function AboutUs() {
             <div className="flip-card-inner">
               <div className="flip-card-front">
                 <img
-                  src="http://localhost:8080/api/get/image/alejandro.png"
-                  alt="Avatar"
-                  style={{ width: "300px", height: "300px" }}
+                    src={`${API_BASE_PATH}/api/get/image/alejandro.png`}
+                    alt="Avatar"
+                    style={{ width: "300px", height: "300px" }}
                 />
               </div>
               <div className="flip-card-back">
@@ -78,9 +80,9 @@ function AboutUs() {
             <div className="flip-card-inner">
               <div className="flip-card-front">
                 <img
-                  src="http://localhost:8080/api/get/image/avnit.png"
-                  alt="Avatar"
-                  style={{ width: "300px", height: "300px" }}
+                    src={`${API_BASE_PATH}/api/get/image/avnit.png`}
+                    alt="Avatar"
+                    style={{ width: "300px", height: "300px" }}
                 />
               </div>
               <div className="flip-card-back">
@@ -98,7 +100,7 @@ function AboutUs() {
           comfortable, and impeccably arranged.
         </p>
       </div>
-    );
+  );
 }
 
 export default AboutUs;

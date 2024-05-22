@@ -1,4 +1,3 @@
-// SearchBar.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -41,14 +40,14 @@ function SearchBar() {
 
     try {
       const response = await axios.get(
-        "http://localhost:8080/listings/engine",
-        {
-          params: {
-            destination,
-            openDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
-            closedDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
-          },
-        }
+          `${process.env.REACT_APP_API_BASE_PATH}/listings/engine`,
+          {
+            params: {
+              destination,
+              openDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+              closedDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+            },
+          }
       );
 
       navigate("/searchResults", {
@@ -60,39 +59,39 @@ function SearchBar() {
   };
 
   return (
-    <div className="MainItems">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          id="destination"
-          name="destination"
-          placeholder="Going to"
-          onChange={handleChange}
-        />
-        <DateRangeComp
-          range={searchParams.range}
-          setRange={(newRange) =>
-            setSearchParams({ ...searchParams, range: newRange })
-          }
-        />
-        <select id="Gjester" name="guests" onChange={handleChange}>
-          <option value="1">Guests</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-        <div className="Søk">
-          <button type="submit">Search</button>
-        </div>
-      </form>
-    </div>
+      <div className="MainItems">
+        <form onSubmit={handleSubmit}>
+          <input
+              type="text"
+              id="destination"
+              name="destination"
+              placeholder="Going to"
+              onChange={handleChange}
+          />
+          <DateRangeComp
+              range={searchParams.range}
+              setRange={(newRange) =>
+                  setSearchParams({ ...searchParams, range: newRange })
+              }
+          />
+          <select id="Gjester" name="guests" onChange={handleChange}>
+            <option value="1">Guests</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <div className="Søk">
+            <button type="submit">Search</button>
+          </div>
+        </form>
+      </div>
   );
 }
 
