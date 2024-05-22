@@ -100,19 +100,19 @@ CREATE TABLE `hotelimages` (
 --
 
 INSERT INTO `hotelimages` (`imageID`, `hotelID`, `grade`, `source_link`) VALUES
-('img1', 'hotel1', 2, 'http://localhost:8443/api/get/image/andante_hotel.png'),
-('img10', 'hotel10', 2, 'http://localhost:8443/api/get/image/The_thief.png'),
-('img11', 'hotel11', 2, 'http://localhost:8443/api/get/image/hotel-bristol.jpg'),
-('img12', 'hotel12', 2, 'http://localhost:8443/api/get/image/Marina_bay_sand.png'),
-('img2', 'hotel2', 2, 'http://localhost:8443/api/get/image/thon_hotel_ålesud.jpg'),
-('img3', 'hotel3', 2, 'http://localhost:8443/api/get/image/scandic_parken.jpg'),
-('img4', 'hotel4', 2, 'http://localhost:8443/api/get/image/carlton_tower_hotel.jpg'),
-('img5', 'hotel5', 2, 'http://localhost:8443/api/get/image/Swissôtel_Amsterdam.jpg'),
-('img6', 'hotel6', 2, 'http://localhost:8443/api/get/image/Hotel_Homs.jpg'),
-('img7', 'hotel7', 2, 'http://localhost:8443/api/get/image/Radisson_Blu_Atlantic Hotel_Stavanger.jpg'),
-('img8', 'hotel8', 2, 'http://localhost:8443/api/get/image/Clarion_Hotel_The_Hub_Oslo.png'),
-('img9', 'hotel9', 2, 'http://localhost:8443/api/get/image/Grand_Hotel_Terminus_Bergen.png'),
-('The_thief2.png', 'hotel10', 1, 'http://localhost:8443/api/get/image/The_thief2.png');
+('img1', 'hotel1', 2, 'http://localhost:8080/api/get/image/andante_hotel.png'),
+('img10', 'hotel10', 2, 'http://localhost:8080/api/get/image/The_thief.png'),
+('img11', 'hotel11', 2, 'http://localhost:8080/api/get/image/hotel-bristol.jpg'),
+('img12', 'hotel12', 2, 'http://localhost:8080/api/get/image/Marina_bay_sand.png'),
+('img2', 'hotel2', 2, 'http://localhost:8080/api/get/image/thon_hotel_ålesud.jpg'),
+('img3', 'hotel3', 2, 'http://localhost:8080/api/get/image/scandic_parken.jpg'),
+('img4', 'hotel4', 2, 'http://localhost:8080/api/get/image/carlton_tower_hotel.jpg'),
+('img5', 'hotel5', 2, 'http://localhost:8080/api/get/image/Swissôtel_Amsterdam.jpg'),
+('img6', 'hotel6', 2, 'http://localhost:8080/api/get/image/Hotel_Homs.jpg'),
+('img7', 'hotel7', 2, 'http://localhost:8080/api/get/image/Radisson_Blu_Atlantic Hotel_Stavanger.jpg'),
+('img8', 'hotel8', 2, 'http://localhost:8080/api/get/image/Clarion_Hotel_The_Hub_Oslo.png'),
+('img9', 'hotel9', 2, 'http://localhost:8080/api/get/image/Grand_Hotel_Terminus_Bergen.png'),
+('The_thief2.png', 'hotel10', 1, 'http://localhost:8080/api/get/image/The_thief2.png');
 
 -- --------------------------------------------------------
 
