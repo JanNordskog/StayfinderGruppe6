@@ -52,6 +52,7 @@ function CheckOut() {
   };
 
   return (
+      <div className="checkout-page-container">
       <div className="checkout-container">
         <h1>Checkout</h1>
         {bookingParams && (
@@ -113,6 +114,7 @@ function CheckOut() {
           </label>
           <button type="submit">Complete Booking</button>
         </form>
+      </div>
       </div>
   );
 }
