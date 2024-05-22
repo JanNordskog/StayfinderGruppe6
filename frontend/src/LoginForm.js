@@ -14,7 +14,7 @@ function LoginForm() {
   const handleLogin = async (event) => {
     event.preventDefault(); // Prevent the default form submission
     try {
-      const response = await axios.get("http://localhost:8080/user/login", {
+      const response = await axios.get(`${BACKENDURL}/user/login`, {
         params: {
           uname: username,
           psw: password,
@@ -32,7 +32,6 @@ function LoginForm() {
       console.error("Login error:", error);
     }
   };
-
 
   return (
     <div className="loginForm">

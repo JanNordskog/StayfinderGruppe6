@@ -42,16 +42,13 @@ function SearchBar() {
     sessionStorage.setItem("searchParams", JSON.stringify(searchParams));
 
     try {
-      const response = await axios.get(
-        "http://localhost:8080/listings/engine",
-        {
-          params: {
-            destination,
-            openDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
-            closedDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
-          },
-        }
-      );
+      const response = await axios.get(`${BACKENDURL}/listings/engine`, {
+        params: {
+          destination,
+          openDate: startDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+          closedDate: endDate.toISOString().split("T")[0], // Format the date as 'YYYY-MM-DD'
+        },
+      });
 
       navigate("/searchResults", {
         state: { data: response.data, range: range[0] },

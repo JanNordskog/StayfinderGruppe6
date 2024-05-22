@@ -19,7 +19,7 @@ function SearchResults() {
     if (user) {
       // Optionally load favorites from the server when the component mounts
       axios
-        .get(`http://localhost:8080/api/favorites/user/${user.id}`)
+        .get(`${BACKENDURL}/api/favorites/user/${user.id}`)
         .then((response) => {
           const newFavorites = new Set(
             response.data.map((fav) => fav.listing.listingID)
@@ -32,7 +32,7 @@ function SearchResults() {
 
   const handleBooking = (listingId) => {
     axios
-      .get(`http://localhost:8080/listings/getlistingByID/${listingId}`)
+      .get(`${BACKENDURL}/listings/getlistingByID/${listingId}`)
       .then((response) => {
         navigate("/hotelpage", {
           state: {
@@ -61,7 +61,7 @@ function SearchResults() {
       newFavorites.add(listingId);
     }
 
-    const url = `http://localhost:8080/api/favorites/add?userId=${user.id}&listingId=${listingId}`;
+    const url = `${BACKENDURL}/api/favorites/add?userId=${user.id}&listingId=${listingId}`;
 
     axios
       .post(url)
@@ -121,10 +121,7 @@ function SearchResults() {
                       onClick={() => toggleFavorite(item.listingID)}
                       disabled={!user || favorites.has(item.listingID)} // Disable if not logged in or already a favorite
                     >
-                      <img
-                        src="http://localhost:8080/api/get/image/favourite.png"
-                        alt="Toggle favorite"
-                      />
+                      <img src={`${BACKENDURL}/api/get/image/favourite.png`} />
                     </button>
                   </div>
                   <p>

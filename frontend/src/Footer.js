@@ -21,10 +21,8 @@ const Footer = () => {
         </form>
       </div>
       <div className="section right-section">
-        <img
-          src="http://localhost:8080/api/get/image/Logo.png"
-          alt="Logo" // Changed from "Right Image" to just "Logo" to be less redundant
-        />
+        <img src={`${BACKENDURL}/api/get/image/Logo.png`} alt="Logo" />
+
         <h2>Support</h2>
         <ul>
           <li>

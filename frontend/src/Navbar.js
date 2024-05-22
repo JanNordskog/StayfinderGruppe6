@@ -19,7 +19,7 @@ function Navbar() {
   const handleAllListings = async () => {
     try {
       // You might want to modify this request to suit how your backend handles fetching all listings
-      const response = await axios.get("http://localhost:8080/listings");
+      const response = await axios.get(`${BACKENDURL}/listings`);
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Failed to fetch listings:", error);
@@ -30,17 +30,11 @@ function Navbar() {
     <div className={`navbar ${isActive ? "active" : ""}`}>
       <div className="logo">
         <Link className="NavbarDink" to="/">
-          <img
-            src="http://localhost:8080/api/get/image/LogoIcon.png"
-            alt="Logo"
-          />
+          <img src={`${BACKENDURL}/api/get/image/LogoIcon.png`} alt="Logo" />
         </Link>
       </div>
       <div className="hamburger" onClick={toggleMenu}>
-        <img
-          src="http://localhost:8080/api/get/image/Hamburgermenu.png"
-          alt="Menu"
-        />
+        <img src={`${BACKENDURL}/api/get/image/Hamburgermenu.png`} alt="Menu" />
       </div>
       <ul
         className={isActive ? "nav-links-mobile" : "nav-links"}

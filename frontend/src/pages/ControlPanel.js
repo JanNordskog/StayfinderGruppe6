@@ -14,7 +14,7 @@ function ControlPanel() {
   // useCallback to ensure function identity is stable
   const fetchListings = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8080/listings");
+      const response = await axios.get(`${BACKENDURL}/listings`);
       setListings(
         response.data.map((listing) => ({ ...listing, hidden: false }))
       );
@@ -26,7 +26,7 @@ function ControlPanel() {
   const fetchFaveListings = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/favorites/listing/${user.id}`
+        `${BACKENDURL}/api/favorites/listing/${user.id}`
       );
       setListings(
         response.data.map((listing) => ({ ...listing.listing, hidden: false }))
@@ -43,7 +43,7 @@ function ControlPanel() {
       const checkAdminStatus = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8080/user/${user.id}/is-admin`
+            `${BACKENDURL}/user/${user.id}/is-admin`
           );
           setIsAdmin(response.data);
         } catch (error) {
@@ -65,7 +65,7 @@ function ControlPanel() {
   const toggleListingVisibility = async (id, isVisible) => {
     try {
       await axios.put(
-        `http://localhost:8080/listings/${id}/${isVisible ? "show" : "hide"}`
+        `${BACKENDURL}/listings/${id}/${isVisible ? "show" : "hide"}`
       );
       const updatedListings = listings.map((listing) =>
         listing.listingID === id
@@ -88,7 +88,7 @@ function ControlPanel() {
 
   const removeFavorite = async (listingId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/favorites/delete`, {
+      await axios.delete(`${BACKENDURL}/api/favorites/delete`, {
         params: {
           userId: user.id,
           listingId: listingId,

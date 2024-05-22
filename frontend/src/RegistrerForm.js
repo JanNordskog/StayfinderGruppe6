@@ -52,7 +52,7 @@ function RegisterForm() {
     }
 
     try {
-      await axios.post("http://localhost:8080/user", {
+      await axios.post(`${BACKENDURL}/user`, {
         name: name, // Include name in POST request
         email: email,
         password: password,

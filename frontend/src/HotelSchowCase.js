@@ -13,16 +13,13 @@ function HotelShowCase() {
     try {
       // Assuming you want to fetch data similar to the HotelShowCase component
       // Adjust the URL/path/query as needed to match your backend API
-      const response = await axios.get(
-        "http://localhost:8080/listings/engine",
-        {
-          params: {
-            destination: "Oslo",
-            arrivalDate: today, // Set to today's date
-            departureDate: today,
-          },
-        }
-      );
+      const response = await axios.get(`${BACKENDURL}/listings/engine`, {
+        params: {
+          destination: "Oslo",
+          arrivalDate: today, // Set to today's date
+          departureDate: today,
+        },
+      });
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Failed to fetch listings for Oslo:", error);
@@ -33,38 +30,30 @@ function HotelShowCase() {
     try {
       // Fetch listings filtered by Oslo
       // Adjust the URL/path/query as needed to match your backend API
-      const response = await axios.get(
-        "http://localhost:8080/listings/engine",
-        {
-          params: {
-            destination: "Ålesund",
-            arrivalDate: today, // Set to today's date
-            departureDate: today,
-          },
-        }
-      );
+      const response = await axios.get(`${BACKENDURL}/listings/engine`, {
+        params: {
+          destination: "Ålesund",
+          arrivalDate: today, // Set to today's date
+          departureDate: today,
+        },
+      });
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Failed to fetch listings for Ålesund:", error);
     }
   };
 
-  
-
   const handleNavigateToAmsterdam = async () => {
     try {
       // Fetch listings filtered by Oslo
       // Adjust the URL/path/query as needed to match your backend API
-      const response = await axios.get(
-        "http://localhost:8080/listings/engine",
-        {
-          params: {
-            destination: "Amsterdam",
-            arrivalDate: today, // Set to today's date
-            departureDate: today,
-          },
-        }
-      );
+      const response = await axios.get(`${BACKENDURL}/listings/engine`, {
+        params: {
+          destination: "Amsterdam",
+          arrivalDate: today, // Set to today's date
+          departureDate: today,
+        },
+      });
       navigate("/searchResults", { state: { data: response.data } });
     } catch (error) {
       console.error("Failed to fetch listings for Amsterdam:", error);
@@ -79,10 +68,7 @@ function HotelShowCase() {
           <li className="destination">
             {/* Use onClick handler directly on the <li> element */}
             <a onClick={handleNavigateToOslo} href="#!">
-              <img
-                src="http://localhost:8080/api/get/image/Oslo.jpg"
-                alt="Oslo"
-              />
+              <img src={`${BACKENDURL}/api/get/image/Oslo.jpg`} alt="Oslo" />
               <h2>Oslo</h2>
               <p>Norge</p>
             </a>
@@ -91,7 +77,7 @@ function HotelShowCase() {
             {/* Use onClick handler directly on the <li> element */}
             <a onClick={handleNavigateToÅlesund} href="#!">
               <img
-                src="http://localhost:8080/api/get/image/Ålesund.jpg"
+                src={`${BACKENDURL}/api/get/image/Ålesund.jpg`}
                 alt="Ålesund"
               />
               <h2>Ålesund</h2>
@@ -102,7 +88,7 @@ function HotelShowCase() {
             {/* Use onClick handler directly on the <li> element */}
             <a onClick={handleNavigateToAmsterdam} href="#!">
               <img
-                src="http://localhost:8080/api/get/image/Amsterdam.png"
+                src={`${BACKENDURL}/api/get/image/Amsterdam.png`}
                 alt="Amsterdam"
               />
               <h2>Amsterdam</h2>
