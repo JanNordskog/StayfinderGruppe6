@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import "./CheckOut.css";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function CheckOut() {
   const navigate = useNavigate();
   const location = useLocation();

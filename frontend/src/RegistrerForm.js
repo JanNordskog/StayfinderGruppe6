@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import "./RegistrerForm.css";
 import axios from "axios";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function RegisterForm() {
   const [name, setName] = useState(""); // New state for name
   const [email, setEmail] = useState("");

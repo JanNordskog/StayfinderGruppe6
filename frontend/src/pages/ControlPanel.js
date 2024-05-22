@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ControlPanel.css";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function ControlPanel() {
   const navigate = useNavigate();
   const user = JSON.parse(sessionStorage.getItem("user"));

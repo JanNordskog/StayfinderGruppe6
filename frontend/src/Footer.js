@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 const Footer = () => {
   return (
     <div className="Footer">

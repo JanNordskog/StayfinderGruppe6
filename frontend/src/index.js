@@ -7,6 +7,8 @@ import reportWebVitals from "./reportWebVitals";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

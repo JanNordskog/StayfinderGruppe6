@@ -2,6 +2,8 @@ import React from 'react';
 import {useLocation} from 'react-router-dom';
 import './Confirmation.css';
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function Confirmation() {
     const location = useLocation();
     const email = location.state?.email || 'your email';

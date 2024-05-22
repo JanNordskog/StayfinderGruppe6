@@ -4,6 +4,8 @@ import axios from "axios";
 import "./SearchResults.css";
 import SearchBar from "../SearchBar";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function SearchResults() {
   const location = useLocation();
   const navigate = useNavigate();

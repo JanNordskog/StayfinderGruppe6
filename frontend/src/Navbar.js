@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import axios from "axios";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();

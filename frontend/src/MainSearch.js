@@ -2,6 +2,8 @@ import React from "react";
 import "./MainSearch.css";
 import SearchBar from "./SearchBar";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function MainSearch() {
   const background = "api/get/image/0_0.png";
 

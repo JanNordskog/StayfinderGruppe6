@@ -6,6 +6,8 @@ import DateRangeComp from "./components/DateRangeComp"; // Adjust the import pat
 import "./SearchBar.css";
 import { addDays } from "date-fns";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function SearchBar() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useState({

@@ -5,6 +5,8 @@ import { parse } from 'date-fns';
 import './HotelPage.css';
 import axios from "axios";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function HotelPage() {
   const location = useLocation();
   const hotel = location.state?.data;

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./HotelSchowCase.css";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 function HotelShowCase() {
   const navigate = useNavigate();
   const today = new Date().toISOString().split("T")[0];

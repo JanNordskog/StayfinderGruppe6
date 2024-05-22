@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./IconNavbar.css";
 
+export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+
 const IconNavbar = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate
   const navRef = useRef(null);
