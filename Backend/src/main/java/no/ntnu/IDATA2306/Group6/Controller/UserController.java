@@ -41,17 +41,17 @@ public class UserController {
     })
     public ResponseEntity<?> getAll(@PathVariable Integer id) {
         try {
-            User user = userRepo.findById(id).orElse(null); // Fetch the user by ID
-            if (user != null && user.getUserperm().equals(1)) { // Check if userperm indicates admin
-                return ResponseEntity.ok(userRepo.findAll()); // Return all users if admin
+            User user = userRepo.findById(id).orElse(null);
+            if (user != null && user.getUserperm().equals(1)) {
+                return ResponseEntity.ok(userRepo.findAll());
             } else if (user != null) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN)
                         .body("Access Denied: Only admins can perform this action.");
             } else {
-                return ResponseEntity.notFound().build(); // Return 404 if the user is not found
+                return ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().build(); // Return 500 in case of exceptions
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -66,10 +66,10 @@ public class UserController {
             String hashedPsw = hashPassword(newUser.getPassword());
             newUser.setPassword(hashedPsw);
 
-            User savedUser = userRepo.save(newUser); // Save the new user to the database
-            return ResponseEntity.ok(savedUser); // Return the saved user with an OK status
+            User savedUser = userRepo.save(newUser);
+            return ResponseEntity.ok(savedUser);
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().build(); // Return an Internal Server Error status
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -80,22 +80,19 @@ public class UserController {
             @ApiResponse(responseCode = "401", description = "Invalid username or password")
     })
     public ResponseEntity<?> loginUser(@RequestParam("uname") String name, @RequestParam("psw") String password) {
-        // Attempt to find the user by email or name
+
         User user = userRepo.findOneByEmailOrName(name, name);
         if (user == null) {
-            // No user found, respond with an error without revealing too much about the reason
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
 
-        // Retrieve the stored password
+
         String userpassword = user.getPassword();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (!encoder.matches(password, userpassword)) {
-            // Passwords do not match, respond with an error
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
 
-        // User authenticated successfully
         return ResponseEntity.ok(user);
     }
 
@@ -136,15 +133,15 @@ public class UserController {
     })
     public ResponseEntity<Boolean> getUserPermForId(@PathVariable Integer id) {
         try {
-            User user = userRepo.findById(id).orElse(null); // Fetch the user by ID
+            User user = userRepo.findById(id).orElse(null);
             if (user != null) {
-                boolean isAdmin = user.getUserperm().equals(1); // Check if userperm is 1
-                return ResponseEntity.ok(isAdmin); // Return the boolean result
+                boolean isAdmin = user.getUserperm().equals(1);
+                return ResponseEntity.ok(isAdmin);
             } else {
-                return ResponseEntity.notFound().build(); // Return 404 if the user is not found
+                return ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().build(); // Return 500 in case of exceptions
+            return ResponseEntity.internalServerError().build();
         }
     }
 
