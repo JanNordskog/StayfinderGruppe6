@@ -60,7 +60,7 @@ function HotelPage() {
                   <p><strong>Room Type Available:</strong> {hotel.roomTypeAvailable}</p>
                   <p><strong>Extra Features:</strong> {hotel.extraFeatures}</p>
                   <p><strong>Price:</strong> ${hotel.price.toFixed(2)}</p>
-                  <DateRangeComp min={openDate} max={closingDate} range={dateRange} setRange={setDateRange} />
+                  <DateRangeComp min={openDate > new Date() ? openDate : new Date()} max={closingDate} range={dateRange} setRange={setDateRange} />
                   <button className="book-now-btn" onClick={goToCheckOut} disabled={!isDateSelected}>
                     Book Now
                   </button>
