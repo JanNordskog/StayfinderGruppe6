@@ -120,4 +120,25 @@ public class FavoritesController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/delete")
+    @Operation(summary = "Delete all favorites by user ID and listing ID", description = "Deletes all favorites associated with a specific user and listing.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Favorites deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "No favorites found to delete")
+    })
+    public ResponseEntity<?> deleteAllFavoritesByUserAndListing(@RequestParam Integer userId, @RequestParam String listingId) {
+        try {
+            int deletedCount = favoritesRepo.deleteByUserIdAndListingId(userId, listingId);
+            if (deletedCount > 0) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            log.error("Failed to delete favorites", e);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
 }

@@ -49,17 +49,23 @@ function SearchResults() {
       alert("Please log in to add favorites.");
       return;
     }
+
+    const newFavorites = new Set(favorites);
+    let message = "Favorite added successfully!";
     if (favorites.has(listingId)) {
-      alert("This listing is already a favorite.");
-      return;
+      newFavorites.delete(listingId);
+      message = "Favorite removed successfully!";
+    } else {
+      newFavorites.add(listingId);
     }
+
     const url = `http://localhost:8080/api/favorites/add?userId=${user.id}&listingId=${listingId}`;
 
     axios
       .post(url)
       .then(() => {
-        alert("Favorite toggled successfully!");
-        setFavorites(new Set(favorites.add(listingId))); // Add to favorites
+        alert(message);
+        setFavorites(newFavorites); // Update favorites state correctly
       })
       .catch((error) => {
         console.error("Error toggling favorite:", error);

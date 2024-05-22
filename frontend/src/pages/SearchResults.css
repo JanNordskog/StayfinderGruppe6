@@ -8,7 +8,6 @@ body {
   overflow-x: hidden; /* Hides horizontal overflow */
 }
 
-
 .SearchResults .listings-grid {
   display: flex;
   flex-wrap: wrap; /* Allows items to wrap onto the next line as needed */
@@ -16,8 +15,6 @@ body {
   justify-content: space-between; /* Centers cards in the grid */
   overflow: hidden;
 }
-
-
 
 .SearchResults .listing-card {
   flex: 1 1 300px; /* Starts at 300px but can grow and shrink */
@@ -127,7 +124,7 @@ body {
   .SearchResults .listing-card {
     flex: 1 1 100%; /* Full width on medium screens */
   }
-  .SearchResults .hotel-image{
+  .SearchResults .hotel-image {
     width: 100%; /* Ensures the image takes the full width of the card */
     height: 15em; /* Maintains aspect ratio */
   }
@@ -140,18 +137,19 @@ body {
   padding: 0;
   display: inline-block;
   position: relative;
-  line-height: 0; /* Aligns the image better vertically */
+  line-height: 0;
 }
 
 .favorite-button img {
-  width: 24px; /* Icon size */
-  height: 24px; /* Icon size */
-  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for transform and filter */
+  width: 24px;
+  height: 24px;
+  filter: grayscale(100%) opacity(50%);
+  transition: filter 0.3s ease, box-shadow 0.3s ease;
 }
 
 .favorite-button:hover img {
-  transform: scale(1.2); /* Make the image 20% larger */
-  filter: drop-shadow(0 0 2px) hue-rotate(210deg); /* Adds a blue hue and a slight shadow */
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
 .hotel-header {
@@ -160,14 +158,25 @@ body {
   align-items: center;
 }
 
-/* Adjustments for very small screens */
 @media (max-width: 480px) {
   .SearchResults .listing-card {
-    flex: 1 1 100%; /* Full width on small screens */
+    flex: 1 1 100%;
   }
 
-  .SearchResults .book-button{
-    bottom: 7px; /* 15px from the bottom */
-    right: 15px; /* 15px from the right */
+  .SearchResults .book-button {
+    bottom: 7px;
+    right: 15px;
   }
+}
+
+.favorite-button:disabled img {
+  filter: grayscale(0%) opacity(100%);
+}
+
+.favorite-button:disabled {
+  cursor: default;
+}
+
+.favorite-button:active img {
+  filter: none;
 }

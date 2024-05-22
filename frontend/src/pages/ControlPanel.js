@@ -84,6 +84,21 @@ function ControlPanel() {
     navigate("/login");
   };
 
+  const removeFavorite = async (listingId) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/favorites/delete`, {
+        params: {
+          userId: user.id,
+          listingId: listingId,
+        },
+      });
+
+      fetchFaveListings();
+    } catch (error) {
+      console.error("Error removing favorite:", error);
+    }
+  };
+
   return (
     <div className="Panel">
       {user && (
@@ -140,39 +155,21 @@ function ControlPanel() {
           )}
         </div>
       )}
-
       {!isAdmin && (
         <div>
           <h2>Saved Favorites:</h2>
           {listings.length > 0 ? (
             <ul>
               {listings.map((listing) => (
-                <li key={listing.listingID}>
-                  <h3>
-                    {listing.hotelName} - {listing.roomTypeAvailable}
-                  </h3>
-                  <img src={listing.imageLink} alt={listing.hotelName} />
-                  <p>Agency: {listing.agency.name}</p>
-                  <p>
-                    Contact: {listing.agency.email} |{" "}
-                    {listing.agency.phoneNumber}
-                  </p>
-                  <p>Hotel Address: {listing.hotelAddress}</p>
-                  <p>
-                    Arrival: {listing.arrivalDate} | Departure:{" "}
-                    {listing.departureDate}
-                  </p>
-                  <p>Price: ${listing.price}</p>
-                  <p>Features: {listing.extraFeatures}</p>
-                  <button
-                    onClick={() =>
-                      toggleListingVisibility(
-                        listing.listingID,
-                        listing.visible === 0
-                      )
-                    }
-                  >
-                    {listing.visible === 0 ? "Add Favorite" : "Remove Favorite"}
+                <li key={listing.listingID} className="listing-item">
+                  <h3>{listing.hotelName}</h3> {/* Hotel Name */}
+                  <img
+                    src={listing.imageLink}
+                    alt={`Image of ${listing.hotelName}`}
+                    style={{ width: "200px", height: "auto" }} // Inline styles for the image
+                  />
+                  <button onClick={() => removeFavorite(listing.listingID)}>
+                    Remove Favorite
                   </button>
                 </li>
               ))}

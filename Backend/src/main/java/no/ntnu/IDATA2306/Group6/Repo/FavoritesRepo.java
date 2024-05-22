@@ -4,11 +4,13 @@
 package no.ntnu.IDATA2306.Group6.Repo;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import jakarta.transaction.Transactional;
 import no.ntnu.IDATA2306.Group6.Entity.Hotel;
 import no.ntnu.IDATA2306.Group6.Entity.Listing;
 import no.ntnu.IDATA2306.Group6.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import no.ntnu.IDATA2306.Group6.Entity.Favorites;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -35,4 +37,12 @@ public interface FavoritesRepo extends JpaRepository<Favorites, Integer> {
      * @return A list of favorite listings associated with the specified user ID.
      */
     List<Favorites> findFavoritesByUserId(Integer userid);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Favorites f WHERE f.user.id = :userId AND f.listing.listingID = :listingId")
+    int deleteByUserIdAndListingId(@Param("userId") Integer userId, @Param("listingId") String listingId);
+
+
+
 }
