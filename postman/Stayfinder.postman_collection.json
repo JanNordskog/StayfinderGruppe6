@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "996b54ee-d8a5-4f3b-b58a-302b9986b013",
+		"name": "Stayfinder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32852871"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/user",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add one user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"john@example.com\",\r\n    \"password\": \"password123\",\r\n    \"address\": \"1234 Main St\",\r\n    \"gender\": \"male\",\r\n    \"phone\": \"1234567890\",\r\n    \"dob\": \"1990-01-01\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "'uname:' \"Avnit\"\r\npsw: \"123\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/login?uname=Avnit&psw=123",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							],
+							"query": [
+								{
+									"key": "uname",
+									"value": "Avnit"
+								},
+								{
+									"key": "psw",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one user, wrong password",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/user/login?uname=Avnit&psw=1234",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"login"
+							],
+							"query": [
+								{
+									"key": "uname",
+									"value": "Avnit"
+								},
+								{
+									"key": "psw",
+									"value": "1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/user/13/is-admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/107/is-admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"107",
+								"is-admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "listings",
+			"item": [
+				{
+					"name": "get all listings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/listings",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get listings with param",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "hide listing",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Listing is hidden\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData.visible).to.eql(0);\r\n});\r\n",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/listings/1/hide",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"listings",
+								"1",
+								"hide"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show listing",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/listings/1/show",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"listings",
+								"1",
+								"show"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get listing by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get opendates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/listings/getopendates/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"listings",
+								"getopendates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favorites",
+			"item": [
+				{
+					"name": "Getallfavorite",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "addfavorite",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deletefavorite",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deletebyuidandlid",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotels",
+			"item": [
+				{
+					"name": "Get all hotels",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get hotel by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/hotels/hotel1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"hotels",
+								"hotel1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "extraFeature",
+			"item": [
+				{
+					"name": "Get listings by extra feature",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "agencies",
+			"item": [
+				{
+					"name": "get angencies",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
