@@ -4,6 +4,7 @@ import axios from "axios";
 import "./IconNavbar.css";
 
 export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+export const IMGURL = process.env.REACT_APP_IMGURL;
 
 const IconNavbar = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate
@@ -223,13 +224,13 @@ const IconNavbar = () => {
         <ul ref={navRef}>
           <li>
             <a className="NavbarLink" onClick={handleNavigateToBar} href="#!">
-              <img src={`${BACKENDURL}/api/get/image/Bar.png`} alt="Bar" />
+              <img src={`${IMGURL}/api/get/image/Bar.png`} alt="Bar" />
               Bar
             </a>
           </li>
           <li>
             <a className="NavbarLink" onClick={handleNavigateToSpa} href="#!">
-              <img src={`${BACKENDURL}/api/get/image/Spa.png`} alt="Spa" />
+              <img src={`${IMGURL}/api/get/image/Spa.png`} alt="Spa" />
               Spa
             </a>
           </li>
@@ -239,10 +240,7 @@ const IconNavbar = () => {
               onClick={handleNavigateToResort}
               href="#!"
             >
-              <img
-                src={`${BACKENDURL}/api/get/image/Resort.png`}
-                alt="Resort"
-              />
+              <img src={`${IMGURL}/api/get/image/Resort.png`} alt="Resort" />
               Resort
             </a>
           </li>
@@ -253,7 +251,7 @@ const IconNavbar = () => {
               href="#!"
             >
               <img
-                src={`${BACKENDURL}/api/get/image/BusinessCenter.png`}
+                src={`${IMGURL}/api/get/image/BusinessCenter.png`}
                 alt="Business Center"
               />
               Business Center
@@ -266,7 +264,7 @@ const IconNavbar = () => {
               href="#!"
             >
               <img
-                src={`${BACKENDURL}/api/get/image/FitnessCenter.png`}
+                src={`${IMGURL}/api/get/image/FitnessCenter.png`}
                 alt="Fitness Center"
               />
               Fitness Center
@@ -279,7 +277,7 @@ const IconNavbar = () => {
               href="#!"
             >
               <img
-                src={`${BACKENDURL}/api/get/image/ArtDecor.png`}
+                src={`${IMGURL}/api/get/image/ArtDecor.png`}
                 alt="Art Decor"
               />
               Art Decor
@@ -287,7 +285,7 @@ const IconNavbar = () => {
           </li>
           <li>
             <a className="NavbarLink" onClick={handleNavigateToGym} href="#!">
-              <img src={`${BACKENDURL}/api/get/image/Gym.png`} alt="Gym" />
+              <img src={`${IMGURL}/api/get/image/Gym.png`} alt="Gym" />
               Gym
             </a>
           </li>
@@ -297,10 +295,7 @@ const IconNavbar = () => {
               onClick={handleNavigateToRoofTop}
               href="#!"
             >
-              <img
-                src={`${BACKENDURL}/api/get/image/RoofTop.png`}
-                alt="Roof Top"
-              />
+              <img src={`${IMGURL}/api/get/image/RoofTop.png`} alt="Roof Top" />
               Roof Top
             </a>
           </li>
@@ -311,7 +306,7 @@ const IconNavbar = () => {
               href="#!"
             >
               <img
-                src={`${BACKENDURL}/api/get/image/EcoFriendly.png`}
+                src={`${IMGURL}/api/get/image/EcoFriendly.png`}
                 alt="Eco-Friendly"
               />
               Eco-friendly
@@ -324,7 +319,7 @@ const IconNavbar = () => {
               href="#!"
             >
               <img
-                src={`${BACKENDURL}/api/get/image/BabySitting.png`}
+                src={`${IMGURL}/api/get/image/BabySitting.png`}
                 alt="Babysitting"
               />
               Babysitting
@@ -336,10 +331,7 @@ const IconNavbar = () => {
               onClick={handleNavigateToDining}
               href="#!"
             >
-              <img
-                src={`${BACKENDURL}/api/get/image/Dining.png`}
-                alt="Dining"
-              />
+              <img src={`${IMGURL}/api/get/image/Dining.png`} alt="Dining" />
               Dining
             </a>
           </li>
@@ -349,28 +341,25 @@ const IconNavbar = () => {
               onClick={handleNavigateToExotic}
               href="#!"
             >
-              <img
-                src={`${BACKENDURL}/api/get/image/Exotic.png`}
-                alt="Exotic"
-              />
+              <img src={`${IMGURL}/api/get/image/Exotic.png`} alt="Exotic" />
               Exotic
             </a>
           </li>
           <li>
             <a className="NavbarLink" onClick={handleNavigateToArtic} href="#!">
-              <img src={`${BACKENDURL}/api/get/image/Artic.png`} alt="Artic" />
+              <img src={`${IMGURL}/api/get/image/Artic.png`} alt="Artic" />
               Artic
             </a>
           </li>
           <li>
             <a className="NavbarLink" onClick={handleNavigateToBeach} href="#!">
-              <img src={`${BACKENDURL}/api/get/image/Beach.png`} alt="Beach" />
+              <img src={`${IMGURL}/api/get/image/Beach.png`} alt="Beach" />
               Beach
             </a>
           </li>
           <li>
             <a className="NavbarLink" onClick={handleNavigateToCheap} href="#!">
-              <img src={`${BACKENDURL}/api/get/image/Cheap.png`} alt="Cheap" />
+              <img src={`${IMGURL}/api/get/image/Cheap.png`} alt="Cheap" />
               Cheap
             </a>
           </li>
@@ -380,10 +369,7 @@ const IconNavbar = () => {
               onClick={handleNavigateToWedding}
               href="#!"
             >
-              <img
-                src={`${BACKENDURL}/api/get/image/Wedding.png`}
-                alt="Wedding"
-              />
+              <img src={`${IMGURL}/api/get/image/Wedding.png`} alt="Wedding" />
               Wedding
             </a>
           </li>

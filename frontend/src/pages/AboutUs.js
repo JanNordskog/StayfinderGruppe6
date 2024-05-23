@@ -2,6 +2,8 @@ import React from "react";
 import "./AboutUs.css"; // Assuming you have an accompanying CSS file for styling
 
 export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+export const IMGURL = process.env.REACT_APP_IMGURL;
+
 
 function AboutUs() {
   return (
@@ -45,7 +47,7 @@ function AboutUs() {
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <img
-                src={`${BACKENDURL}/api/get/image/jan.png`}
+                src={`${IMGURL}/api/get/image/jan.png`}
                 alt="Avatar"
                 style={{ width: "300px", height: "300px" }}
               />
@@ -61,7 +63,7 @@ function AboutUs() {
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <img
-                src={`${BACKENDURL}/api/get/image/ulrik.png`}
+                src={`${IMGURL}/api/get/image/ulrik.png`}
                 alt="Avatar"
                 style={{ width: "300px", height: "300px" }}
               />
@@ -77,7 +79,7 @@ function AboutUs() {
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <img
-                src={`${BACKENDURL}/api/get/image/alejandro.png`}
+                src={`${IMGURL}/api/get/image/alejandro.png`}
                 alt="Avatar"
                 style={{ width: "300px", height: "300px" }}
               />
@@ -93,7 +95,7 @@ function AboutUs() {
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <img
-                src={`${BACKENDURL}/api/get/image/avnit.png`}
+                src={`${IMGURL}/api/get/image/avnit.png`}
                 alt="Avatar"
                 style={{ width: "300px", height: "300px" }}
               />

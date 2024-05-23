@@ -3,10 +3,11 @@ import "./MainSearch.css";
 import SearchBar from "./SearchBar";
 
 export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+export const IMGURL = process.env.REACT_APP_IMGURL;
 
 function MainSearch() {
   const background = "/api/get/image/0_0.png";
-  const url = BACKENDURL
+  const url = IMGURL;
 
   return (
     <div

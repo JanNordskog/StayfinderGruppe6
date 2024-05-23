@@ -1,7 +1,7 @@
 .Background {
   width: 100%;
   height: 700px;
-  background-image: url("http://localhost:8080/api/get/image/Discountbackground1.png");
+  background-image: url("http://localhost:3000/api/get/image/Discountbackground1.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

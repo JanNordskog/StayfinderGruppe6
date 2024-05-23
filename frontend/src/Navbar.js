@@ -4,6 +4,7 @@ import "./Navbar.css";
 import axios from "axios";
 
 export const BACKENDURL = process.env.REACT_APP_BACKENDURL;
+export const IMGURL = process.env.REACT_APP_IMGURL;
 
 function Navbar() {
   const [isActive, setIsActive] = useState(false);
@@ -30,11 +31,11 @@ function Navbar() {
     <div className={`navbar ${isActive ? "active" : ""}`}>
       <div className="logo">
         <Link className="NavbarDink" to="/">
-          <img src={`${BACKENDURL}/api/get/image/LogoIcon.png`} alt="Logo" />
+          <img src={`${IMGURL}/api/get/image/LogoIcon.png`} alt="Logo" />
         </Link>
       </div>
       <div className="hamburger" onClick={toggleMenu}>
-        <img src={`${BACKENDURL}/api/get/image/Hamburgermenu.png`} alt="Menu" />
+        <img src={`${IMGURL}/api/get/image/Hamburgermenu.png`} alt="Menu" />
       </div>
       <ul
         className={isActive ? "nav-links-mobile" : "nav-links"}
