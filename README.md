@@ -101,6 +101,9 @@ To run the Stay Finder application locally, follow these steps:
    ```
    Our database is hosted seperate from our backend, if the database is not running it may cause some issues for the backend
 
+   Here is a youtube guide for launching our application:
+   https://youtu.be/WsxglAxVtCY
+
 # Installing
 
 To build the project and create a deployable artifact, run:
