@@ -84,15 +84,22 @@ To run the Stay Finder application locally, follow these steps:
    npm start
    ```
 
+    ```
+   REACT_APP_BACKENDURL=http://localhost:8080
+   REACT_APP_IMGURL=http://localhost:8080
+   ```
+
+   make sure to implement the .env file in the frontend
+
 2. **Run our datasbase**:
   in our solution we used xamp to host our database on port 3306, it can be adjusted i the application properties
 
-2. **Backend Setup**:
+3. **Backend Setup**:
    ```bash
    Open backend folder
    Run MainApplication.java
    ```
-   May be some issues with backend if database is not running
+   Our database is hosted seperate from our backend, if the database is not running it may cause some issues for the backend
 
 # Installing
 
